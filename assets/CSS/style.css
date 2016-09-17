@@ -1,3 +1,28 @@
 body {
-	background-color: #fff;
+	
+}
+
+#header {
+	background-color: #31C8C8;
+	padding: 20px;
+}
+
+#searchBar {
+	color: #fff;
+	margin-top: 60px;
+}
+
+input {
+	color: #909996;
+	border-radius: 5px;
+	border-style: none;
+}
+
+#submit {
+	background-color: #31C8C8;
+	color: #fff;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #fff;
+	border-radius: 5px;
 }
