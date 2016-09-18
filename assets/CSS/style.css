@@ -1,16 +1,24 @@
 body {
-	
+	background-color: #D8D8D8;
 }
 
+/*HEADER CSS --------------------------------------------------------------------------*/
 #header {
 	background-color: #31C8C8;
 	padding: 20px;
 }
 
-#searchBar {
-	color: #fff;
-	margin-top: 60px;
+.one-edge-shadow {
+	-webkit-box-shadow: 0 8px 15px -6px #9C9C9C;
+	   -moz-box-shadow: 0 8px 15px -6px #9C9C9C;
+	        box-shadow: 0 8px 15px -6px #9C9C9C;
 }
+
+span {
+	color: #fff;
+	margin-top: 62px;
+}
+
 
 input {
 	color: #909996;
@@ -26,3 +34,39 @@ input {
 	border-color: #fff;
 	border-radius: 5px;
 }
+/*--------------------------------------------------------------------------*/
+
+/*WISHLIST CSS --------------------------------------------------------------------------*/
+
+#wishListBar {
+}
+
+/*--------------------------------------------------------------------------*/
+
+/*CONTENT SECTION CSS --------------------------------------------------------------------------*/
+
+#contentSection{
+ margin-top: 50px;
+ background-image: url("../images/buying.png");
+ background-size: 100%;
+ height: 800px;
+}
+
+.one-edge-shadow-1 {
+	-webkit-box-shadow: 15px 8px 0 -6px #9C9C9C;
+	   -moz-box-shadow: 15px 8px 0 -6px #9C9C9C;
+	        box-shadow: 15px 8px 0 -6px #9C9C9C;
+}
+
+
+/*--------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
