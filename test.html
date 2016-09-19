@@ -1,9 +1,167 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Test HTML</title>
+
+	<title>BuyAK.com</title>
+
+	<!--CSS & Bootstrap Links-->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- Custom CSS -->
+    <link href="assets/css/stylelanding.css" rel="stylesheet">
+    <!--Bootstrap Scripts  -->
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+   
+
 </head>
+
 <body>
-Just testing my git push for BuyAK Change
+
+ <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">BuyAK</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <form class="form-inline">
+						  <div class="form-group">
+						    <label for="productSearch" class="sr-only">Product Search: </label>
+						    <input class="form-control" id="productSearch" type="text" placeholder="Search Your Product">
+						  </div>
+						<button type="submit" class="btn btn-info" id="searchProduct">Search</button>
+                    </li>
+                    
+                </ul>
+               
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container-fluid">
+          <!--   <div class="intro-text">
+                <div class="intro-lead-in">Welcome To Our Studio!</div>
+                <div class="intro-heading">It's Nice To Meet You</div>
+                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+            </div> -->
+
+			<!-- ================================================================================================== -->
+				<div id="contentSection" class="row one-edge-shadow-1"><!--Begin row for results-->
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!--Begin columns for results-->
+
+						<div class = "row"><!--First row of content-->
+
+							<div id="walmart" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--First store-->
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+								
+								<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/walmart-white.png">
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+							</div><!--End first store-->
+
+							<div id="ebay" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--Second store-->
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+								
+								<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/ebay-white.png">
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+							</div><!--End second store-->
+							
+						</div><!--End first row of content-->
+
+						<div class = "row"><!--First second of content-->
+
+							<div id="bestbuy" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--Third store-->
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+								
+								<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/bestbuy-white.png">
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+							</div><!--End third store-->
+
+							<div id="overstock" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--Fourth store-->
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+								
+								<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/overstock-white.png">
+
+								<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+							</div><!--End fourth store-->
+							
+						</div><!--End Second row of content-->
+						
+					</div><!--Endcolumns for results-->
+
+				</div><!--End row for results-->
+			<!-- ================================================================================================== -->
+
+        </div>
+    </header>
+
+   
+      <div class="container">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <h3>Pills left</h3>
+	            <!-- tabs left -->
+	            <div class="tabbable">
+	                <ul class="nav nav-pills nav-stacked col-md-3">
+	                    <li><a href="#a" data-toggle="tab">One</a></li>
+	                    <li class="active"><a href="#b" data-toggle="tab">Two</a></li>
+	                    <li><a href="#c" data-toggle="tab">Twee</a></li>
+	                </ul>
+	                <div class="tab-content col-md-9">
+	                    <div class="tab-pane active" id="a">Lorem ipsum dolor sit amet, charetra varius rci quis tortor imperdiet venenatis quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.</div>
+	                    <div class="tab-pane" id="b">Secondo sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.</div>
+	                    <div class="tab-pane" id="c">Thirdamuno, ipsum dolor sit amet, consectetur adipiscing elit. Duis elementum auctor accumsan. Duis pharetra
+	                    varius quam sit amet vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae. </div>
+	                </div>
+	            </div>
+	            <!-- /tabs -->
+	        </div>   		
+	    </div>
+	  </div>
+ 
+
+ <!--JavaScript & jQuery Links-->	
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+
 </body>
+
 </html>
