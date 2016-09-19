@@ -18,22 +18,32 @@
 
 <body>
 
-<div class="container"><!--Begin page container-->
+ <div class="container-fluid"> <!--Begin page container-->
 
 <!-- ================================================================================================== -->
-	<div class="row"><!--Begin row for header-->
-		
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!--Begin columns for header-->
+	<div id="header" class="row one-edge-shadow"><!--Begin row for header-->
 
-			<!--HEADER CONTENT-->
-			
-		</div><!--Endcolumns for header-->
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!-- columns for header elements-->
+
+			<div class="col-xs-0 col-sm-4 col-md-4 col-lg-4"></div>
+
+			<img class="col-xs-12 col-sm-4 col-md-4 col-lg-4" src="assets/images/Group.png"/><!--LOGO-->
+
+			<span class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+
+				Search Products<br>
+				<input id="search" type="text" name="Search">
+				<input id="submit" type="submit" name="Submit">
+
+			</span>
+
+		</div><!--End columns for header elements-->	
 
 	</div><!--End row for header-->
 <!-- ================================================================================================== -->
 
 <!-- ================================================================================================== -->	
-	<div class="row"><!--Begin row for wishlist bar-->
+	<div id="wishListBar" class="row"><!--Begin row for wishlist bar-->
 		
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!--Begin columns for wishlist bar-->
 
@@ -45,11 +55,57 @@
 <!-- ================================================================================================== -->
 
 <!-- ================================================================================================== -->
-	<div class="row"><!--Begin row for results-->
+	<div id="contentSection" class="row one-edge-shadow-1"><!--Begin row for results-->
 		
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!--Begin columns for results-->
 
-			<!--RESULT CONTENT-->
+			<div class = "row"><!--First row of content-->
+
+				<div id="walmart" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--First store-->
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+					
+					<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/walmart-white.png">
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+				</div><!--End first store-->
+
+				<div id="ebay" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--Second store-->
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+					
+					<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/ebay-white.png">
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+				</div><!--End second store-->
+				
+			</div><!--End first row of content-->
+
+			<div class = "row"><!--First second of content-->
+
+				<div id="bestbuy" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--Third store-->
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+					
+					<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/bestbuy-white.png">
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+				</div><!--End third store-->
+
+				<div id="overstock" class = "col-xs-12 col-sm-6 col-md-6 col-lg-6"><!--Fourth store-->
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+					
+					<img class="logo col-xs-8 col-sm-8 col-md-8 col-lg-8" src="assets/images/overstock-white.png">
+
+					<span class = "col-xs-2 col-sm-2 col-md-2 col-lg-2"></span>
+
+				</div><!--End fourth store-->
+				
+			</div><!--End Second row of content-->
 			
 		</div><!--Endcolumns for results-->
 
@@ -68,7 +124,7 @@
 	</div><!--End row for bottom-->
 <!-- ================================================================================================== -->
 
-</div><!--End page container-->
+ </div><!--End page container-->
 
 </body>
 
