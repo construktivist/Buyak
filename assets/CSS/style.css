@@ -59,6 +59,25 @@ input {
 	        box-shadow: 15px 8px 0 -6px #9C9C9C;
 }
 
+#walmart, #ebay, #bestbuy, #overstock {
+	position: relative;
+	height: 400px;
+}
+
+.logo {
+	max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}
+
+
 
 /*--------------------------------------------------------------------------*/
 
