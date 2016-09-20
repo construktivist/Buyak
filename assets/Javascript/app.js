@@ -27,6 +27,7 @@ var wishArray= [];
   //Add Item to wishlist function
   function addItem(productItem){
   	var wishItem = productItem;
+  	wishArray.push(wishItem);
 
   };
 // ================================================================================================== //
