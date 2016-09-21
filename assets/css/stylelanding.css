@@ -205,3 +205,11 @@ header .intro-text .intro-heading {
     position: relative;
     height: 250px;
 }
+.item{
+    margin: 10px auto;
+    margin-left: 5px;
+    height: 200px;
+}
+.col-md-3 {
+    width: 23%;
+}
