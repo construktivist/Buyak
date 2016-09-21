@@ -8,7 +8,7 @@ body {
 
 /*HEADER CSS --------------------------------------------------------------------------*/
 #header {
-	padding: 20px;
+	/*padding: 20px;*/
 }
 
 
@@ -32,6 +32,17 @@ input {
 	color: #fff;
 	border-radius: 5px;
 	width: 20%;
+}
+
+#wishlist {
+	margin-top: 45px;
+	background-color: #31C8C8;
+	color: #fff;
+	border-radius: 5px;
+	border-style: none;
+	border-color: #31C8C8;
+	border-width: 4px;
+	width: 100%;
 }
 /*--------------------------------------------------------------------------*/
 
@@ -66,11 +77,13 @@ input {
 	width: 100%;
 	border-radius: 0;
 	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
 }
 
 .btn {
 	background-color: #31C8C8;
 	color: #fff;
+	margin-top: 20px;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -78,7 +91,7 @@ input {
 /*WISHLIST SECTION CSS --------------------------------------------------------------------------*/
 
 #wishListGrid {
-	margin-top: 50px;
+	margin-top: 80px;
 	font-family:'Open Sans', sans-serif;
 }
 

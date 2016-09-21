@@ -25,7 +25,7 @@ $(document).ready(function(){
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
-  var product;
+  var product = "tv";
 
 // ================================================================================================== //
 
@@ -64,9 +64,14 @@ $('#submit').on('click', function(){
 
 
 
-
 //BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
 // ================================================================================================== //
+//View wishlist
+$('#wishlist').on('click', function(){
+	$('#wishListGrid').removeClass('hidden');
+});
+
+
 //Calls addItem function when Add Item button is clicked
   $("#addItem").click(function(){
   		addItem(testProduct);
