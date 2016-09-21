@@ -44,6 +44,7 @@ $(document).ready(function(){
 
 
 
+
 // ================================================================================================== //
 
 //ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
