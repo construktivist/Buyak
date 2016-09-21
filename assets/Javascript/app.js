@@ -31,6 +31,14 @@ $('#submit').on('click', function(){
 	$('#search').val("");
 });
 
+
+//View wishlist
+$('#wishlist').on('click', function(){
+	$('#wishListGrid').removeClass('hidden');
+});
+
+
+
 //Calls addItem function when Add Item button is clicked
   $("#addItem").click(function(){
   		addItem(testProduct);
