@@ -1,23 +1,52 @@
 $(document).ready(function(){
 
+// FIREBASE INITIALIZATION
 // ================================================================================================== //
-  // Initialize Firebase
-  // var config = {
-  //   apiKey: "AIzaSyAzBMRn1owNGPyB24mOo6UUP0v8KfUqMaQ",
-  //   authDomain: "buyakdb.firebaseapp.com",
-  //   databaseURL: "https://buyakdb.firebaseio.com",
-  //   storageBucket: "buyakdb.appspot.com",
-  //   messagingSenderId: "781575941750"
-  // };
+//  Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAzBMRn1owNGPyB24mOo6UUP0v8KfUqMaQ",
+    authDomain: "buyakdb.firebaseapp.com",
+    databaseURL: "https://buyakdb.firebaseio.com",
+    storageBucket: "buyakdb.appspot.com",
+    messagingSenderId: "781575941750"
+  };
   
-  // firebase.initializeApp(config);
+  firebase.initializeApp(config);
+
+  database = firebase.database();
 // ================================================================================================== //
 
+
+
+
+
+// GLOBAL VARIABLES
 // ================================================================================================== //
-//Global Variables below
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
+  var product = "tv";
+
+// ================================================================================================== //
+
+
+
+
+// AJAX CALL FOR APIs BELOW
+// ================================================================================================== //
+// Walmart Key = (bs4qexhbfxu9xaee8f53bhyr)
+  var walmartQuery = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
+  console.log("walmartQuery");
+
+
+
+
+
+
+
+
+
+
 
 // ================================================================================================== //
 
@@ -32,11 +61,15 @@ $('#submit').on('click', function(){
 });
 
 
+
+
+
+//BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
+// ================================================================================================== //
 //View wishlist
 $('#wishlist').on('click', function(){
 	$('#wishListGrid').removeClass('hidden');
 });
-
 
 
 //Calls addItem function when Add Item button is clicked
