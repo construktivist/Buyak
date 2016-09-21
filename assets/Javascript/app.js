@@ -38,6 +38,11 @@ $(document).ready(function(){
   console.log(localStorage.getItem("localWishlist"));
 // ================================================================================================== //
 
+	$('#submit').on('click', function(){
+		$('.logo').addClass('hidden');
+		$('.modal-content').removeClass('hidden');
+
+
 
 
 
