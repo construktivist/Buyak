@@ -25,7 +25,6 @@ $(document).ready(function(){
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
-  var product = "tv";
 
 // ================================================================================================== //
 
@@ -34,9 +33,6 @@ $(document).ready(function(){
 
 // AJAX CALL FOR APIs BELOW
 // ================================================================================================== //
-// Walmart Key = (bs4qexhbfxu9xaee8f53bhyr)
-  var walmartQuery = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
-  console.log("walmartQuery");
 
 
 
