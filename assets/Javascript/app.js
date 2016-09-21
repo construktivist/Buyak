@@ -33,7 +33,18 @@ $(document).ready(function(){
 
 // AJAX CALL FOR APIs BELOW
 // ================================================================================================== //
+ var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p;
 
+        // $.ajax({
+        //         url: queryURL,
+        //         method: 'GET',
+        //         crossDomain: true,
+        //         dataType: 'jsonp'
+        //     })
+        //     .done(function(response) {
+
+        //       }
+        //     });
 
 
 

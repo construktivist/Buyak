@@ -207,9 +207,12 @@ header .intro-text .intro-heading {
 }
 .item{
     margin: 10px auto;
-    margin-left: 5px;
     height: 200px;
 }
-.col-md-3 {
-    width: 23%;
+.titleProduct{
+    font-size: 12px;
+    padding: 5px;
+}
+.well{
+    background-color: #ffffff;
 }
