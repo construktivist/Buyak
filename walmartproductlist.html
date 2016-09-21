@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap Example</title>
+
   <!--CSS & Bootstrap Links-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     <!-- Custom CSS -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/stylelanding.css" rel="stylesheet">
+    
     <!--Bootstrap Scripts  -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
   <!-- Custom Fonts -->
     
@@ -19,11 +25,11 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Fontawesome Icon CDN -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">  
+    <script src="https://use.fontawesome.com/44665284cb.js"></script>  
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    <div class="row animated bounceInLeft">
       <div class="col-md-12 text-center">
         <div id="buttons">
             <button data-person="TV">Search Your Fav TV</button>
@@ -46,10 +52,11 @@
     $('button').on('click', function() {
         var p = $(this).data('person');
         console.log("Value of P : " +p);
-        var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p;
+        var queryURLWalmart = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p;
+        var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p +"&sort=bestseller&responseGroup=full"
 
         $.ajax({
-                url: queryURL,
+                url: sortQueryURLWalmart,
                 method: 'GET',
                 crossDomain: true,
                 dataType: 'jsonp'
@@ -59,32 +66,34 @@
                 console.log("Results: " + JSON.stringify(results));
 
                 for (var i = 0; i < results.items.length; i++) {
+                    
                     //Make outer div 
-                    var containerDiv = $("<div>");
-                    containerDiv.addClass("col-sm-4");
+                    var containerDiv = $("<div class='col-xs-6 col-sm-4 animated zoomIn'>");
+                    
                     //make  inner div
-                    var divItem = $("<div>");
-                    divItem.addClass("col-sm-12");
-                    divItem.addClass("well");
-                    divItem.addClass("item");
+                    var divItem = $("<div class='col-xs-12 well item'>");
+                    
 
                     //add row for title
-                    var rowTitleDiv = $("<div>");
-                    rowTitleDiv.addClass("row");
+                    var rowTitleDiv = $("<div class='row'>");
+                    //Get Item Name
                     var nameItem = results.items[i].name;
-                    var divTitle = $('<div class="col-md-12">').html(nameItem);
-                    //divTitle.addClass("titleProduct");
+                    //make shorttext of the name
+                    var shortnameItem = jQuery.trim(nameItem).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
+
+                    var divTitle = $('<div class="col-xs-12 titleProduct">').html("<p>" + shortnameItem + "</p>");
+                    // append div to rowTitleDiv and append rowTitleDiv to divItem
                     rowTitleDiv.append(divTitle);
                     divItem.append(rowTitleDiv);
 
-                    //Add row to hold image col and productinfo
-                    var rowProductDiv = $("<div>");
-                    rowProductDiv.addClass("row");
-                    var colproductDiv = $("<div>");
-                    colproductDiv.addClass("col-md-12");
 
-                    var divImage = $("<div>");
-                    divImage.addClass("col-sm-6");
+                    //Add row to hold image and productinfo
+                    var rowProductDiv = $("<div class='row'>");
+                    var colproductDiv = $("<div class='col-xs-12'>");
+                    
+                    //Add column to hold image
+                    var divImage = $("<div class='col-xs-6'>");    
+
                     var personImage = $('<img>');
                     personImage.attr('src', results.items[i].mediumImage);
                     personImage.addClass("img-responsive img-rounded");  
@@ -95,12 +104,32 @@
 
                     //Add info section to product
 
-                    var divInfo = $("<div>");
-                    divInfo.addClass("col-sm-6");
+                    var divInfo = $("<div class='col-xs-6'>");
+
+                    var reviewNum = results.items[i].numReviews;
+                     console.log("Number Of Reviews" + reviewNum);
+
+                     if (typeof reviewNum === "undefined") {
+                            reviewNum = "None" ;
+                        }
+
+                    divInfo.append("<p class='salePrice'> $" + results.items[i].salePrice + "</p>")
+                    divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + results.items[i].customerRating + "</span><img src='"+ results.items[i].customerRatingImage + "' class='img-responsive' alt='customer ratings'></p>");
+                   
+                    
+
+
                     var buttonWishList = $("<button>");
                     buttonWishList.attr("type", "submit");
-                    buttonWishList.text("Add To Wish List");
+                    var spanBtn = $("<i class='fa fa-heart'>");
+                    spanBtn.text("List");
                     buttonWishList.addClass("btn btn-default");
+                    buttonWishList.append(spanBtn);
+
+
+
+
+
                     divInfo.append(buttonWishList);
                     colproductDiv.append(divInfo);
 
