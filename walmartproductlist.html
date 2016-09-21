@@ -5,13 +5,14 @@
   <!--CSS & Bootstrap Links-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/stylelanding.css" rel="stylesheet">
     <!--Bootstrap Scripts  -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -55,30 +56,60 @@
             })
             .done(function(response) {
                 var results = response;
-
                 console.log("Results: " + JSON.stringify(results));
 
                 for (var i = 0; i < results.items.length; i++) {
-                    
-                    var gifDiv = $("<div>");
-                    gifDiv.addClass("col-md-3");
-                    gifDiv.addClass("well");
-                    gifDiv.addClass("item");
+                    //Make outer div 
+                    var containerDiv = $("<div>");
+                    containerDiv.addClass("col-sm-4");
+                    //make  inner div
+                    var divItem = $("<div>");
+                    divItem.addClass("col-sm-12");
+                    divItem.addClass("well");
+                    divItem.addClass("item");
 
+                    //add row for title
+                    var rowTitleDiv = $("<div>");
+                    rowTitleDiv.addClass("row");
                     var nameItem = results.items[i].name;
+                    var divTitle = $('<div class="col-md-12">').html(nameItem);
+                    //divTitle.addClass("titleProduct");
+                    rowTitleDiv.append(divTitle);
+                    divItem.append(rowTitleDiv);
 
-                    var divTitle = $('<div class="col-md-12 titleProduct">').html(nameItem);
+                    //Add row to hold image col and productinfo
+                    var rowProductDiv = $("<div>");
+                    rowProductDiv.addClass("row");
+                    var colproductDiv = $("<div>");
+                    colproductDiv.addClass("col-md-12");
 
+                    var divImage = $("<div>");
+                    divImage.addClass("col-sm-6");
                     var personImage = $('<img>');
-                    personImage.attr('src', results.items[i].thumbnailImage);
-                    personImage.addClass("img-responsive img-rounded");
+                    personImage.attr('src', results.items[i].mediumImage);
+                    personImage.addClass("img-responsive img-rounded");  
+                    personImage.addClass("itemImage");
+                    divImage.append(personImage);
+                    colproductDiv.append(divImage);    
+                    
 
-                    gifDiv.append(divTitle);
-                    gifDiv.append(personImage);
+                    //Add info section to product
 
-                    $('#productList').append(gifDiv);
+                    var divInfo = $("<div>");
+                    divInfo.addClass("col-sm-6");
+                    var buttonWishList = $("<button>");
+                    buttonWishList.attr("type", "submit");
+                    buttonWishList.text("Add To Wish List");
+                    buttonWishList.addClass("btn btn-default");
+                    divInfo.append(buttonWishList);
+                    colproductDiv.append(divInfo);
 
-
+                    rowProductDiv.append(colproductDiv); 
+                    divItem.append(rowProductDiv);  
+                    
+                    
+                    containerDiv.append(divItem);
+                    $('#productList').append(containerDiv);
                 }
             });
     });
