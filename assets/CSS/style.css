@@ -8,14 +8,18 @@ body {
 
 /*HEADER CSS --------------------------------------------------------------------------*/
 #header {
-	/*padding: 20px;*/
+	margin-bottom: 20px;
+}
+
+#buyak-logo{
+	top: -20px;
 }
 
 
 span {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 15px;
-	color: #31C8C8;
+	color: #31C8C8;`
 	margin-top: 25px;
 }
 
@@ -35,7 +39,7 @@ input {
 }
 
 #wishlist {
-	margin-top: 47px;
+	margin-top: 25px;
 	font-family:'Open Sans', sans-serif;
 	font-size: 15px;
 	background-color: #31C8C8;
