@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 // AJAX CALL FOR APIs BELOW
 // ================================================================================================== //
- var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p;
+ // var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p;
 
         // $.ajax({
         //         url: queryURL,
@@ -87,7 +87,7 @@ $('#wishlist').on('click', function(){
   });
 
   //Add Item to wishlist function
-  function addItem(productItem){
+  function addItem(productItem){``  
   	var wishItem = productItem;
     console.log(wishItem);
   	wishArray.push(wishItem);
