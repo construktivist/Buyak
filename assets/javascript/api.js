@@ -1,3 +1,4 @@
+ 
  $("body").on("click", "#searchProduct", function() {
         
         var searchFor = $("#productSearch").val().trim();
@@ -106,3 +107,49 @@
             });
             return false;
     });
+
+
+// Pseudo Code
+// Onpageload:
+// Create API functions for calling each api (with Fixed Query Decided by us)
+// Data response is used to populate the carousal at landing 
+// get response for api and save the results in format 
+// StoreArray[
+//     items{
+//         name:
+//         price:
+//         customerRating:
+//         storeLogo:
+//         numberReviews:
+//         imageURLSmall:
+//         imageURLLarge:
+//         shortdescription:
+//         storeURL:
+//     }]
+//  once we have all the arrays ready with product information next step is to populate 
+//  each div block with first item from array for respective store
+// For $ block Carousal 
+// identify properties container by #ID 
+// Populate first slide of carousal with item one from array 
+
+    
+
+
+
+
+
+walmartAPICall = function(){
+     var queryURLWalmart = "https://api.bestbuy.com/beta/products/trendingViewed?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&format=json";
+        $.ajax({
+                url: queryURLBB,
+                method: 'GET',
+                cache: true,
+                crossDomain: true,
+                dataType: 'jsonp'
+            })
+            .done(function(response) {
+                var results = response;
+                console.log("Results: " + JSON.stringify(results));                
+            });
+
+}
