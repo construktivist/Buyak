@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap Example</title>
+
+  <!--CSS & Bootstrap Links-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/stylelanding.css" rel="stylesheet">
+    
+    <!--Bootstrap Scripts  -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  <!-- Custom Fonts -->
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Fontawesome Icon CDN -->
+    <script src="https://use.fontawesome.com/44665284cb.js"></script>  
+</head>
+<body>
+<div class="container">
+    <div class="row animated bounceInLeft">
+      <div class="col-md-12 text-center">
+        <div id="buttons">
+            <button data-person="TV">Search Your Fav TV</button>
+            <button data-person="Ipod">Search Your Fav IPOD</button>
+            <button data-person="Mixer and Grinder">Get Kitchen Gadgets</button>
+        </div>
+      </div>
+ </div>
+ </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="productList">
+            </div>
+        </div>
+    </div>
+
+<script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script type="text/javascript">
+    $('button').on('click', function() {
+        var p = $(this).data('person');
+        console.log("Value of P : " +p);
+        var queryURLBB = "https://api.bestbuy.com/beta/products/trendingViewed?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&format=json";
+        $.ajax({
+                url: queryURLBB,
+                method: 'GET',
+                cache: true,
+                crossDomain: true,
+                dataType: 'jsonp'
+            })
+            .done(function(response) {
+                var results = response;
+                console.log("Results: " + JSON.stringify(results));                
+            });
+    });
+</script>
+</body>
+
+</html>

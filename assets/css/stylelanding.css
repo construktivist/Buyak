@@ -10,8 +10,9 @@ body {
 }
 
 p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.0;
+    color: grey;
 }
 
 p.large {
@@ -156,10 +157,10 @@ section h3.section-subheading {
 }
 
 header {
-    text-align: center;
     color: #fff;
+    min-height: 800px;
     background-attachment: scroll;
-    background-image: url(../images/buying.png);
+    background-image: url(../images/portfolio/headerbg.png);
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -193,25 +194,15 @@ header .intro-text .intro-heading {
 
 
 /*CONTENT SECTION CSS --------------------------------------------------------------------------*/
-
-#contentSection{
- margin-top: 150px;
- background-repeat: no-repeat;
- background-size: 100%;
- height: 600px;
-}
-
-#walmart, #ebay, #bestbuy, #overstock {
-    position: relative;
-    height: 250px;
-}
 .item{
     margin: 10px auto;
-    height: 200px;
+    height: 210px;
 }
 .titleProduct{
     font-size: 12px;
-    padding: 5px;
+    font-weight: 500;
+    padding: 10px;
+    text-align: center;
 }
 .well{
     background-color: #ffffff;
@@ -220,17 +211,16 @@ header .intro-text .intro-heading {
     font-size: 18px;
     font-weight: 500;
 }
-.badge{
-     
+.badge{     
     min-width: 10px;
     padding: 3px 7px;
     font-size: 11px;
     font-weight: 700;
     line-height: 1;
     color: #fff;
-    text-align: center;
+    
     white-space: nowrap;
-    vertical-align: middle;
+    
     background-color: #30c7c7;
     border-radius: 5px;
     margin-top: 5px;
@@ -238,5 +228,4 @@ header .intro-text .intro-heading {
 .btn {
     background-color: #31C8C8;
     color: #fff;
-    margin-top: 10px;
 }
