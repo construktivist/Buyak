@@ -1,0 +1,22 @@
+
+
+<script type="text/javascript">
+	
+var keyword = $('#search').val().trim();
+
+//This needs checked after key is received
+var searsQueryURL = "http://api.developer.sears.com/v2.1/products/search/Sears/json%20/keyword/%7B" + keyword + "%7D?apikey=XXXXXXXX";
+
+			$.ajax({
+                url: searsQueryURL,
+                method: 'GET',
+                crossDomain: true,
+                dataType: 'jsonp'
+            })
+            .done(function(response) {
+                var results = response;
+                console.log("Results: " + JSON.stringify(results));
+
+
+
+</script>
