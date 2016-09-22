@@ -6,25 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>BuyAK.com</title>
-
-
 	<!--CSS & Bootstrap Links-->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- Custom CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <!-- Custom CSS -->
+   
     <link href="assets/css/stylelanding.css" rel="stylesheet">
+    
     <!--Bootstrap Scripts  -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
   <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Fontawesome Icon CDN -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">   
+    <script src="https://use.fontawesome.com/44665284cb.js"></script>  
 
 </head>
 
@@ -71,72 +74,19 @@
     <!-- Header -->
     <header>
         <div class="container-fluid">
-          <!--   <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Our Studio!</div>
-                <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
-            </div> -->
-
-			<!-- ================================================================================================== -->
-				<div id="contentSection" class="row one-edge-shadow-1"><!--Begin row for results-->
-					
-					<div class="col-sm-12"><!--Begin columns for results-->
-
-						<div class = "row"><!--First row of content-->
-
-							<div id="walmart" class = "col-sm-6"><!--First store-->
-
-								<span class = "col-sm-2"></span>
-								
-								<img class="logo col-sm-8" src="assets/images/walmart-white.png">
-
-								<span class = "col-sm-2"></span>
-
-							</div><!--End first store-->
-
-							<div id="ebay" class = "col-sm-6"><!--Second store-->
-
-								<span class = "col-sm-2"></span>
-								
-								<img class="logo col-sm-8" src="assets/images/ebay-white.png">
-
-								<span class = "col-sm-2"></span>
-
-							</div><!--End second store-->
-							
-						</div><!--End first row of content-->
-
-						<div class = "row"><!--First second of content-->
-
-							<div id="bestbuy" class = "col-sm-6"><!--Third store-->
-
-								<span class = "col-sm-2"></span>
-								
-								<img class="logo col-sm-8" src="assets/images/bestbuy-white.png">
-
-								<span class = "col-sm-2"></span>
-
-							</div><!--End third store-->
-
-							<div id="overstock" class = "col-sm-6"><!--Fourth store-->
-
-								<span class = "col-sm-2"></span>
-								
-								<img class="logo col-sm-8" src="assets/images/overstock-white.png">
-
-								<span class = "col-sm-2"></span>
-
-							</div><!--End fourth store-->
-							
-						</div><!--End Second row of content-->
-						
-					</div><!--Endcolumns for results-->
-
-				</div><!--End row for results-->
-			<!-- ================================================================================================== -->
+			<section>
+		      <div class="container">
+			    <div class="row">
+			        <div class="col-md-12" id="productList">
+			            
+			        </div>   		
+			    </div>
+			  </div>
+		 </section>
 
         </div>
     </header>
+    
  <!-- Portfolio Grid Section -->
     <section id="wishListGrid" class="bg-light-gray">
         <div class="container">
@@ -148,6 +98,7 @@
             </div>
             <!-- Modal Grid Items -->
             <div class="row">
+            <div class="col-sm-12">
             	<!-- Item One -->
                  <div class="col-md-3 col-sm-6 portfolio-item text-center">
                     <a href="#" data-target="#myModalOne" data-toggle="modal">
@@ -254,6 +205,7 @@
 				    </div>
 				  </div>
 				  <!-- Modal Content Block Two Ends -->
+				</div>
             </div><!-- Modal Grid Items Row Ends -->       
         </div> <!-- Modal Grid container ends -->       
     </section><!-- Wish list section ends -->
@@ -262,7 +214,8 @@
    
 
 
-   <section>
+   
+<section>
       <div class="container">
 	    <div class="row">
 	        <div class="col-md-12">
@@ -286,10 +239,10 @@
 	    </div>
 	  </div>
  </section>
-
  <!--JavaScript & jQuery Links-->	
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script type="text/javascript" src="assets/javascript/app.js"></script>
+	<script type="text/javascript" src="assets/javascript/api.js"></script>
+	<!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
 
 </body>
 
