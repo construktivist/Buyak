@@ -22,6 +22,8 @@ $(document).ready(function(){
 
 // GLOBAL VARIABLES
 // ================================================================================================== //
+  var walmartItems = [];
+  var bestBuyItems = [];
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
@@ -37,47 +39,74 @@ $(document).ready(function(){
 
     var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
 
-      $.ajax({
-        url: queryURL,
-        method: 'GET',
-        crossDomain: true,
-        dataType: 'jsonp'
-      })
-      .done(function(response) {
-        var results = response;
-                console.log("Results: " + JSON.stringify(results));
-      });
+console.log(queryURL);
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      crossDomain: true,
+      dataType: 'jsonp'
+    })
+    .done(function(response) {
+      var results = response.items;
+
+      for (var i = 0; i < 2; i++){
+
+        var item = {
+          name: results[i].name,
+          price: results[i].salePrice,
+          mdImage: results[i].mediumImage,
+          lgImage: results[i].largeImage,
+          rating: results[i].customerRating
+        };
+      
+        walmartItems.push(item);
+        console.log(walmartItems);
+
+      };
+
+    });
+  
   };
    
   function bestBuy(product){
 
-    var queryURL = "https://api.bestbuy.com/beta/products/trendingViewed?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&format=json";
+    var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&callback=JSON_CALLBACK&format=json";
 
-      $.ajax({
-        url: queryURL,
-          method: 'GET',
-          cache: true,
-          crossDomain: true,
-          dataType: 'jsonp'
-        })
-      .done(function(response) {
+console.log(queryURL);
+
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      cache: true,
+      crossDomain: true,
+      dataType: 'jsonp'
+    })
+    .done(function(response) {
         var results = response;
-        console.log("Results: " + JSON.stringify(results));                
+        console.log("Results: " + JSON.stringify(results));
+
+              for (var i = 0; i < 2; i++){
+
+        var item = {
+          name: results[i].name,
+          price: results[i].salePrice,
+          mdImage: results[i].mediumImage,
+          lgImage: results[i].largeImage,
+          rating: results[i].customerRating
+        };
+      
+        bestBuyItems.push(item);
+        console.log(bestBuyItems);
+
+      };                
+      
       });
+    
     };    
-  
 
-walmart();
-bestBuy();
-
-
-
-
-
-
-
-
-
+walmart("laptop");
+bestBuy("laptop");
 // ================================================================================================== //
 
 //ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
