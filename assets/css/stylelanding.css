@@ -19,6 +19,7 @@ p.large {
     font-size: 16px;
 }
 
+
 a,
 a:hover,
 a:focus,
@@ -229,3 +230,7 @@ header .intro-text .intro-heading {
     background-color: #31C8C8;
     color: #fff;
 }
+.img-logo-panel-heading{
+    padding: 10px;
+}
+
