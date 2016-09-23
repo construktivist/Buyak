@@ -31,22 +31,44 @@ $(document).ready(function(){
 
 
 
-// AJAX CALL FOR APIs BELOW
+// AJAX CALL FUNCTIONS FOR APIs BELOW
 // ================================================================================================== //
- // var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p;
+  function walmart(product){
 
-        // $.ajax({
-        //         url: queryURL,
-        //         method: 'GET',
-        //         crossDomain: true,
-        //         dataType: 'jsonp'
-        //     })
-        //     .done(function(response) {
+    var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
 
-        //       }
-        //     });
+      $.ajax({
+        url: queryURL,
+        method: 'GET',
+        crossDomain: true,
+        dataType: 'jsonp'
+      })
+      .done(function(response) {
+        var results = response;
+                console.log("Results: " + JSON.stringify(results));
+      });
+  };
+   
+  function bestBuy(product){
 
+    var queryURL = "https://api.bestbuy.com/beta/products/trendingViewed?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&format=json";
 
+      $.ajax({
+        url: queryURL,
+          method: 'GET',
+          cache: true,
+          crossDomain: true,
+          dataType: 'jsonp'
+        })
+      .done(function(response) {
+        var results = response;
+        console.log("Results: " + JSON.stringify(results));                
+      });
+    };    
+  
+
+walmart();
+bestBuy();
 
 
 
