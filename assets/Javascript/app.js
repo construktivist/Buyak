@@ -61,7 +61,6 @@ console.log(queryURL);
         };
       
         walmartItems.push(item);
-        console.log(walmartItems);
 
       };
 
@@ -71,7 +70,7 @@ console.log(queryURL);
    
   function bestBuy(product){
 
-    var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&callback=JSON_CALLBACK&format=json";
+    var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&format=json";
 
 console.log(queryURL);
 
@@ -99,13 +98,14 @@ console.log(queryURL);
         console.log(bestBuyItems);
 
       };                
-      
+      console.log(walmartItems);
       });
     
     };    
 
 walmart("laptop");
 bestBuy("tv");
+
 // ================================================================================================== //
 
 //ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
