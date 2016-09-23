@@ -56,7 +56,7 @@ input {
 /*CONTENT SECTION CSS --------------------------------------------------------------------------*/
 
 
-#walmart, #ebay, #bestbuy, #overstock {
+#walmart, #ebay, #bestbuy, #sears {
 	position: relative;
 	height: 300px;
 }
@@ -79,6 +79,14 @@ input {
 /*PRODUCT MODAL CSS --------------------------------------------------------------------------*/
 
 .modal-content {
+	height: 100%;
+	width: 100%;
+	border-radius: 0;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+}
+
+.panel {
 	height: 100%;
 	width: 100%;
 	border-radius: 0;

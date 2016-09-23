@@ -113,9 +113,10 @@ bestBuy("tv");
 //WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
 //WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
 $('#submit').on('click', function(){
-	$('.logo').addClass('hidden');
-	$('.modal-content').removeClass('hidden');
-	$('#search').val("");
+  $('.logo').addClass('hidden');
+  $('.panel').removeClass('hidden');
+  $('.modal-content').removeClass('hidden');
+  $('#search').val("");
 });
 
 
@@ -126,21 +127,21 @@ $('#submit').on('click', function(){
 // ================================================================================================== //
 //View wishlist
 $('#wishlist').on('click', function(){
-	$('#wishListGrid').removeClass('hidden');
+  $('#wishListGrid').removeClass('hidden');
 });
 
 
 //Calls addItem function when Add Item button is clicked
   $("#addItem").click(function(){
-  		addItem(testProduct);
+      addItem(testProduct);
       wishItemCount++
   });
 
   //Add Item to wishlist function
   function addItem(productItem){``  
-  	var wishItem = productItem;
+    var wishItem = productItem;
     console.log(wishItem);
-  	wishArray.push(wishItem);
+    wishArray.push(wishItem);
     localStorage.setItem("localWishlist", wishArray)
   };
 
