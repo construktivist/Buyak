@@ -108,15 +108,21 @@ bestBuy("tv");
 
 // ================================================================================================== //
 
+$('.carousel').carousel({
+      interval: 5000
+});
+
+
 //ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
 
 //WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
 //WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
 $('#submit').on('click', function(){
-  $('.logo').addClass('hidden');
-  $('.panel').removeClass('hidden');
-  $('.modal-content').removeClass('hidden');
+  $('#contentSection').removeClass('hidden');
+  $('#contentSectionFeatured').addClass('hidden');
   $('#search').val("");
+
+  //NOTE: Remove hidden class from logos when no store results are available
 });
 
 
