@@ -52,7 +52,7 @@
     $('button').on('click', function() {
         var p = $(this).data('person');
         console.log("Value of P : " +p);
-        var queryURLBB = "https://api.bestbuy.com/beta/products/trendingViewed?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&format=json";
+        var queryURLBB = "https://api.bestbuy.com/v1/products((search=65&search=inch&search=TV)&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&callback=JSON_CALLBACK&format=json";
         $.ajax({
                 url: queryURLBB,
                 method: 'GET',
@@ -62,7 +62,7 @@
             })
             .done(function(response) {
                 var results = response;
-                console.log("Results: " + JSON.stringify(results));                
+                console.log("Results Name: " + results.products[0].name);                
             });
     });
 </script>
