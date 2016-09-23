@@ -83,8 +83,7 @@ console.log(queryURL);
       dataType: 'jsonp'
     })
     .done(function(response) {
-        var results = response;
-        console.log("Results: " + JSON.stringify(results));
+        var results = response.products;
 
               for (var i = 0; i < 2; i++){
 
@@ -106,7 +105,7 @@ console.log(queryURL);
     };    
 
 walmart("laptop");
-bestBuy("laptop");
+bestBuy("tv");
 // ================================================================================================== //
 
 //ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
