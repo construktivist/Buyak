@@ -14,8 +14,6 @@ body {
 #buyak-logo{
 	top: -20px;
 }
-
-
 span {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 15px;
@@ -103,6 +101,7 @@ input {
 .product-image {
 	height: 150px;
 }
+
 
 /*--------------------------------------------------------------------------*/
 

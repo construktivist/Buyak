@@ -1,5 +1,5 @@
 var searchResults = [];
-
+$("#storeSortBtnList").empty();
 
 $("body").on("click", "#searchProduct", function() {
         
@@ -27,12 +27,21 @@ $("body").on("click", "#searchProduct", function() {
                           mdImage: results[i].mediumImage,
                           lgImage: results[i].largeImage,
                           rating: results[i].customerRating,
-                          numReviews: results[i].numReviews
+                          numReviews: results[i].numReviews,
+                          storeName: "walmart"
                         };
                   
                         searchResults.push(item);
                     }
 
+                    // Then dynamicaly generates button store
+                        var storeBtn = $("<button>") 
+                        storeBtn.addClass("btn btn-default animated swing store"); // Added a class 
+                        storeBtn.attr('data-store', "walmart"); // Added a data-attribute
+                        storeBtn.text("Walmart"); // Provided the initial button text
+                        $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+    
+                    // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                     var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
@@ -56,106 +65,24 @@ $("body").on("click", "#searchProduct", function() {
                               lgImage: resultsBB[i].largeImage,
                               rating: resultsBB[i].customerReviewAverage,
                               numReviews: resultsBB[i].customerReviewCount,
+                              storeName: "bestbuy"
                             };
                           
                             searchResults.push(item);
-                            console.log(searchResults);
+                            
                           }  
+
+                          // Then dynamicaly generates button store
+                            var storeBtn = $("<button>") 
+                            storeBtn.addClass("btn btn-default animated swing store"); // Added a class 
+                            storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
+                            storeBtn.text("Best Buy"); // Provided the initial button text
+                            $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+
                            displayResults(searchResults);           
                         });
 
-                          // displayResults(searchResults);
-
-                   
-
-                // for (var i = 0; i < results.items.length; i++) {
-
-                //     //Get Item Values
-                //         //Get Item Name
-                //         var nameItem = results.items[i].name;
-                //         //make shorttext of the name
-                //         var shortnameItem = jQuery.trim(nameItem).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
-                //         //Get Number of reviews
-                //         var reviewNum = results.items[i].numReviews;                         
-                //         if (typeof reviewNum === "undefined") {
-                //                 reviewNum = "None" ;
-                //             }
-
-                //         //Get Image source url
-                //         var imageSrc = results.items[i].mediumImage;
-                //         if(typeof imageSrc === "undefined"){
-                //             imageSrc = "http://placehold.it/180x180";
-                //         }
-
-                //         //Get Customer Rating
-                //         var ratingVal = results.items[i].customerRating;
-                //          if(typeof ratingVal === "undefined"){
-                //             ratingVal = ""
-                //          }                      
-
-                    
-                //     //Make outer div 
-                //     var containerDiv = $("<div class='col-xs-6 col-sm-4 animated zoomIn'>");
-                    
-                //     //make  inner div
-                //     var divItem = $("<div class='col-xs-12 well item'>");
-                    
-
-                //     //add row for title
-                //     var rowTitleDiv = $("<div class='row'>");
-                    
-
-                //     var divTitle = $('<div class="col-xs-12 titleProduct">').html("<p>" + shortnameItem + "</p>");
-                //     // append div to rowTitleDiv and append rowTitleDiv to divItem
-                //     rowTitleDiv.append(divTitle);
-                //     divItem.append(rowTitleDiv);
-
-
-                //     //Add row to hold image and productinfo
-                //     var rowProductDiv = $("<div class='row'>");
-                //     var colproductDiv = $("<div class='col-xs-12'>");
-                    
-                //     //Add column to hold image
-                //     var divImage = $("<div class='col-xs-6'>");    
-
-                //     var itemImage = $('<img>');
-                //     itemImage.attr('src', imageSrc);
-                //     itemImage.addClass("img-responsive img-rounded");  
-                //     itemImage.addClass("itemImage");
-                //     divImage.append(itemImage);
-                //     colproductDiv.append(divImage);    
-                    
-
-                //     //Add info section to product
-
-                //     var divInfo = $("<div class='col-xs-6'>");                
-
-                //     divInfo.append("<p class='salePrice'> $" + results.items[i].salePrice + "</p>")                    
-                //     divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span><img src='"+ results.items[i].customerRatingImage + "' class='img-responsive starRatingImage' alt='customer ratings'></p>");  
-                    
-                //     //Get Customer Rating
-                //         var ratingImage = results.items[i].customerRatingImage;
-                //          if(typeof ratingImage === "undefined"){
-                //             $(".img-responsive.starRatingImage").hide();
-                //          } 
-
-                //     var buttonWishList = $("<button>");
-                //     buttonWishList.attr("type", "submit");
-                //     var spanBtn = $("<i class='fa fa-heart'>");
-                //     spanBtn.text(" List ");
-                //     buttonWishList.addClass("btn btn-default");
-                //     buttonWishList.append(spanBtn);
-
-                //     divInfo.append(buttonWishList);
-                //     colproductDiv.append(divInfo);
-
-                //     rowProductDiv.append(colproductDiv); 
-                //     divItem.append(rowProductDiv);  
-                    
-                    
-                //     containerDiv.append(divItem);
-                //     $('#productList').append(containerDiv);
-                // }
+                         
             });
             return false;
     });
@@ -188,7 +115,8 @@ function displayResults(resultsArray){
 
                     
                     //Make outer div 
-                    var containerDiv = $("<div class='col-xs-6 col-sm-4 animated zoomIn'>");
+                    var containerDiv = $("<div class='col-xs-6 col-sm-4 animated zoomIn product'>");
+                    containerDiv.addClass(resultsArray[i].storeName);
                     
                     //make  inner div
                     var divItem = $("<div class='col-xs-12 well item'>");
@@ -246,6 +174,24 @@ function displayResults(resultsArray){
                 }
 
 }
+$(document).on('click', '.store', function(){
+
+            console.log("Inside store click sort" + $(this).attr('data-store'));
+
+            var store = $(this).attr('data-store');
+            console.log(store);
+
+            if (store == 'walmart'){
+
+                $(".product").fadeOut(); 
+                $(".product.walmart").fadeIn("slow");
+
+            }else if (store == 'bestbuy'){
+                $(".product").fadeOut();
+                $(".product.bestbuy").fadeIn("slow");               
+            }
+            
+        });
 
 
 
