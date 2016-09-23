@@ -22,6 +22,8 @@ $(document).ready(function(){
 
 // GLOBAL VARIABLES
 // ================================================================================================== //
+  var walmartItems = [];
+  var bestBuyItems = [];
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
@@ -31,30 +33,78 @@ $(document).ready(function(){
 
 
 
-// AJAX CALL FOR APIs BELOW
+// AJAX CALL FUNCTIONS FOR APIs BELOW
 // ================================================================================================== //
- // var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + p;
+  function walmart(product){
 
-        // $.ajax({
-        //         url: queryURL,
-        //         method: 'GET',
-        //         crossDomain: true,
-        //         dataType: 'jsonp'
-        //     })
-        //     .done(function(response) {
+    var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
 
-        //       }
-        //     });
+console.log(queryURL);
 
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      crossDomain: true,
+      dataType: 'jsonp'
+    })
+    .done(function(response) {
+      var results = response.items;
 
+      for (var i = 0; i < 2; i++){
 
+        var item = {
+          name: results[i].name,
+          price: results[i].salePrice,
+          mdImage: results[i].mediumImage,
+          lgImage: results[i].largeImage,
+          rating: results[i].customerRating
+        };
+      
+        walmartItems.push(item);
 
+      };
 
+    });
+  
+  };
+   
+  function bestBuy(product){
 
+    var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&format=json";
 
+console.log(queryURL);
 
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      cache: true,
+      crossDomain: true,
+      dataType: 'jsonp'
+    })
+    .done(function(response) {
+        var results = response.products;
 
+              for (var i = 0; i < 2; i++){
 
+        var item = {
+          name: results[i].name,
+          price: results[i].salePrice,
+          mdImage: results[i].mediumImage,
+          lgImage: results[i].largeImage,
+          rating: results[i].customerRating
+        };
+      
+        bestBuyItems.push(item);
+        console.log(bestBuyItems);
+
+      };                
+      console.log(walmartItems);
+      });
+    
+    };    
+
+walmart("laptop");
+bestBuy("tv");
 
 // ================================================================================================== //
 
