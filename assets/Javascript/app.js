@@ -210,13 +210,10 @@ $('#wishlist').on('click', function(){
 
 // ================================================================================================== //
 
-featuredProducts(page1, page2, page3, page4){
+function featuredProducts(page1, page2, page3, page4){
   var pages = [page1, page2, page3, page4];
-    for (var i = 0; i <= categories.length; i++ ){
-      walmartFeaturedSearch(i);
-      bestbuyFeaturedSearch(i);
-      searsFeaturedSearch(i);
-      ebayFeaturedSearch(i);
+    for (var i = 0; i <= pages.length; i++ ){
+      //walmartFeaturedSearch(i);
 
     };
 };
