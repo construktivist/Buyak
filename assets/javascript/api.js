@@ -160,7 +160,7 @@ function displayResults(resultsArray){
                     divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");  
                      
 
-                    var buttonWishList = $("<button>");
+                    var buttonWishList = $("<button id='addItem'>");
                     buttonWishList.attr("type", "submit");
                     var spanBtn = $("<i class='fa fa-heart'>");
                     spanBtn.text(" List ");
