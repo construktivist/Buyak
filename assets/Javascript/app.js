@@ -35,12 +35,88 @@ $(document).ready(function(){
 //featuredProducts("tv", "phone", "ipod", "hdmi cable")
 
 
-// AJAX CALL FUNCTIONS FOR APIs BELOW
+// AJAX CALL FUNCTIONS FOR APIs BELOW -- ON PRODUCT SEARCH
 // ================================================================================================== //
-  function walmart(product){
+//   function walmart(product){
 
-    var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
+//     var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
 
+// console.log(queryURL);
+
+//     $.ajax({
+//       url: queryURL,
+//       method: 'GET',
+//       crossDomain: true,
+//       dataType: 'jsonp'
+//     })
+//     .done(function(response) {
+//       var results = response.items;
+
+//       for (var i = 0; i < 2; i++){
+
+//         var item = {
+//           name: results[i].name,
+//           price: results[i].salePrice,
+//           mdImage: results[i].mediumImage,
+//           lgImage: results[i].largeImage,
+//           rating: results[i].customerRating
+//         };
+      
+//         walmartItems.push(item);
+
+//       };
+
+//     });
+  
+//   };
+   
+//   function bestBuy(product){
+
+//     var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&format=json";
+
+// console.log(queryURL);
+
+//     $.ajax({
+//       url: queryURL,
+//       method: 'GET',
+//       cache: true,
+//       crossDomain: true,
+//       dataType: 'jsonp'
+//     })
+//     .done(function(response) {
+//         var results = response.products;
+
+//               for (var i = 0; i < 2; i++){
+
+//         var item = {
+//           name: results[i].name,
+//           price: results[i].salePrice,
+//           mdImage: results[i].mediumImage,
+//           lgImage: results[i].largeImage,
+//           rating: results[i].customerRating
+//         };
+      
+//         bestBuyItems.push(item);
+//         console.log(bestBuyItems);
+
+//       };                
+//       console.log(walmartItems);
+//       });
+    
+//     };    
+
+// walmart("laptop");
+// bestBuy("tv");
+
+// ================================================================================================== //
+
+// AJAX CALL FUNCTIONS FOR APIs BELOW -- ON PRODUCT SEARCH
+
+//Walmart featured products
+
+function walmart(featuredProduct){
+
+    var queryURL = "http://api.walmartlabs.com/v1/trends?format=json&apiKey=bs4qexhbfxu9xaee8f53bhyr"
 console.log(queryURL);
 
     $.ajax({
@@ -69,44 +145,11 @@ console.log(queryURL);
     });
   
   };
-   
-  function bestBuy(product){
 
-    var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&format=json";
 
-console.log(queryURL);
+  //Best Buy featured products
 
-    $.ajax({
-      url: queryURL,
-      method: 'GET',
-      cache: true,
-      crossDomain: true,
-      dataType: 'jsonp'
-    })
-    .done(function(response) {
-        var results = response.products;
 
-              for (var i = 0; i < 2; i++){
-
-        var item = {
-          name: results[i].name,
-          price: results[i].salePrice,
-          mdImage: results[i].mediumImage,
-          lgImage: results[i].largeImage,
-          rating: results[i].customerRating
-        };
-      
-        bestBuyItems.push(item);
-        console.log(bestBuyItems);
-
-      };                
-      console.log(walmartItems);
-      });
-    
-    };    
-
-walmart("laptop");
-bestBuy("tv");
 
 // ================================================================================================== //
 
@@ -167,8 +210,8 @@ $('#wishlist').on('click', function(){
 
 // ================================================================================================== //
 
-featuredProducts(category1, category2, category3 category4){
-  var categories = [category1, category2, category3 category4];
+featuredProducts(page1, page2, page3, page4){
+  var pages = [page1, page2, page3, page4];
     for (var i = 0; i <= categories.length; i++ ){
       walmartFeaturedSearch(i);
       bestbuyFeaturedSearch(i);
