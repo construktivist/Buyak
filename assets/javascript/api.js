@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+$(document).ready(function(){
+
+    $('[data-toggle="tooltip"]').tooltip;   
+=======
 
 
 
 
+>>>>>>> a0b0ff8d252b1701af7d10216dea4a2fae95f9ea
 
 var searchResults = [];
 $("#storeSortBtnList").empty();
@@ -47,7 +53,7 @@ $("body").on("click", "#searchProduct", function() {
                             }else{
                                 // Then dynamicaly generates button store
                                 var storeBtn = $("<button>") 
-                                storeBtn.addClass("btn btn-default animated swing store"); // Added a class 
+                                storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class 
                                 storeBtn.attr('id', "walmart");
                                 storeBtn.attr('data-store', "walmart"); // Added a data-attribute
                                 storeBtn.text("Walmart"); // Provided the initial button text
@@ -92,7 +98,7 @@ $("body").on("click", "#searchProduct", function() {
                             }else{
                                 // Then dynamicaly generates button store
                                 var storeBtn = $("<button>") 
-                                storeBtn.addClass("btn btn-default animated swing store"); // Added a class
+                                storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class
                                 storeBtn.attr("id", "bestbuy");
                                 storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
                                 storeBtn.text("Best Buy"); // Provided the initial button text
@@ -177,17 +183,30 @@ function displayResults(resultsArray){
 
                     var buttonWishList = $("<button id='addItem'>");
                     buttonWishList.attr("type", "submit");
-                    var spanBtn = $("<i class='fa fa-heart'>");
-                    spanBtn.text(" List ");
+                    buttonWishList.attr("data-toggle", "tooltip");
+                    buttonWishList.attr("title", "Add To Wishlist")
+                    buttonWishList.addClass("addToWishlist");
+                    var spanBtn = $("<i class='fa fa-plus-circle'>");
+                    spanBtn.text("");
                     buttonWishList.addClass("btn btn-default");
                     buttonWishList.append(spanBtn);
 
+                    var buttonRemove = $("<button>");
+                    buttonRemove.attr("type", "submit");
+                    buttonRemove.attr("data-toggle", "tooltip");
+                    buttonRemove.attr("title", "Remove Item From Search displayResults")
+                    buttonRemove.addClass("removeItem");
+                    var spanRBtn = $("<i class='fa fa-minus-circle'>");
+                    spanRBtn.text("");
+                    buttonRemove.addClass("btn btn-default");
+                    buttonRemove.append(spanRBtn);
+
                     divInfo.append(buttonWishList);
+                    divInfo.append(buttonRemove);
                     colproductDiv.append(divInfo);
 
                     rowProductDiv.append(colproductDiv); 
-                    divItem.append(rowProductDiv);  
-                    
+                    divItem.append(rowProductDiv);                      
                     
                     containerDiv.prepend(divItem);
                     $('#productList').prepend(containerDiv);
@@ -213,7 +232,7 @@ $(document).on('click', '.store', function(){
             
         });
 
-
+});
 
 
 // Pseudo Code
