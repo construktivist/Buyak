@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip;   
+=======
+
+
+
+
+>>>>>>> a0b0ff8d252b1701af7d10216dea4a2fae95f9ea
 
 var searchResults = [];
 $("#storeSortBtnList").empty();
@@ -53,7 +60,7 @@ $("body").on("click", "#searchProduct", function() {
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
                             }
     
-                    // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
+// Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                     var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
@@ -174,7 +181,7 @@ function displayResults(resultsArray){
                     divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");  
                      
 
-                    var buttonWishList = $("<button>");
+                    var buttonWishList = $("<button id='addItem'>");
                     buttonWishList.attr("type", "submit");
                     buttonWishList.attr("data-toggle", "tooltip");
                     buttonWishList.attr("title", "Add To Wishlist")
@@ -251,5 +258,16 @@ $(document).on('click', '.store', function(){
 // identify properties container by #ID 
 // Populate first slide of carousal with item one from array 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
 
