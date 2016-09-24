@@ -53,6 +53,10 @@ input {
 
 /*CONTENT SECTION CSS --------------------------------------------------------------------------*/
 
+.walmart, .ebay, .bestbuy, .sears {
+	position: relative;
+	height: 300px;
+}
 
 #walmart, #ebay, #bestbuy, #sears {
 	position: relative;
@@ -76,30 +80,42 @@ input {
 
 /*PRODUCT MODAL CSS --------------------------------------------------------------------------*/
 
-.modal-content {
-	height: 100%;
+.panel {
+	/*height: 100%;*/
 	width: 100%;
-	border-radius: 0;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 20px;
+	color: #fff;
+	border-radius: 5px;
+	border-style: none;
+	padding: 15px;
+	background-color: rgba(255, 255, 255, 0.3);
 }
 
-.panel {
-	height: 100%;
-	width: 100%;
-	border-radius: 0;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 20px;
+.panel-footer {
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 0 0 5px 5px;
 }
+
+.row-1, .row-2 {
+	margin-bottom: 20px;
+}
+
 
 .btn {
 	background-color: #31C8C8;
 	color: #fff;
 	margin-top: 20px;
+	border-style: none;
 }
 
 .product-image {
-	height: 150px;
+	size: 100%;
+	margin-left: -15px;
+}
+
+.panel p {
+	margin-left: -15px;
 }
 
 
