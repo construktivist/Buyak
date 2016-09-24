@@ -1,3 +1,8 @@
+
+
+
+
+
 var searchResults = [];
 $("#storeSortBtnList").empty();
 
@@ -41,7 +46,7 @@ $("body").on("click", "#searchProduct", function() {
                         storeBtn.text("Walmart"); // Provided the initial button text
                         $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
     
-                    // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
+// Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                     var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
@@ -184,11 +189,11 @@ $(document).on('click', '.store', function(){
             if (store == 'walmart'){
 
                 $(".product").fadeOut(); 
-                $(".product.walmart").fadeIn("slow");
+                $(".product.walmart").fadeIn();
 
             }else if (store == 'bestbuy'){
                 $(".product").fadeOut();
-                $(".product.bestbuy").fadeIn("slow");               
+                $(".product.bestbuy").fadeIn();               
             }
             
         });
@@ -219,5 +224,16 @@ $(document).on('click', '.store', function(){
 // identify properties container by #ID 
 // Populate first slide of carousal with item one from array 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
 
