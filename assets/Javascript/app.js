@@ -24,6 +24,8 @@ $(document).ready(function(){
 // ================================================================================================== //
   var walmartItems = [];
   var bestBuyItems = [];
+  var ebayItems = [];
+  var searsItems = [];
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
@@ -138,15 +140,14 @@ $('#wishlist').on('click', function(){
 
 
 //Calls addItem function when Add Item button is clicked
-  $("#addItem").click(function(){
-      addItem(testProduct);
+  $("#addItem").on("click", function(this){
+      addItem(this);
       wishItemCount++
   });
 
   //Add Item to wishlist function
-  function addItem(productItem){``  
-    var wishItem = productItem;
-    console.log(wishItem);
+  function addItem(item){  
+    var wishItem = item;
     wishArray.push(wishItem);
     localStorage.setItem("localWishlist", wishArray)
   };
