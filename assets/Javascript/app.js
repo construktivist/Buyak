@@ -117,7 +117,7 @@ $('.carousel').carousel({
 
 //WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
 //WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
-$('#submit').on('click', function(){
+$('#searchProduct').on('click', function(){
   $('#contentSection').removeClass('hidden');
   $('#contentSectionFeatured').addClass('hidden');
   $('#search').val("");
