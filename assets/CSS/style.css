@@ -214,10 +214,8 @@ section h3.section-subheading {
     font-size: 11px;
     font-weight: 700;
     line-height: 1;
-    color: #fff;
-    
-    white-space: nowrap;
-    
+    color: #fff;    
+    white-space: nowrap;    
     background-color: #30c7c7;
     border-radius: 5px;
     margin-top: 5px;
@@ -226,15 +224,20 @@ section h3.section-subheading {
     background-color: #31C8C8;
     color: #fff;
 }
-.store{
-    font-size: 16px;
-    font-weight: 700;
-    padding: 10px;
+.store{   
+    padding: 5px 25px;
     width: auto;
     height: 50px;
     background-color: #31C8C8;
-    margin: 10px
+    margin: 10px;
 }
+.removeItem{
+   background-color: red;
+   margin-left: 5px;
+}
+
+
+
 /*--------------------------------------------------------------------------------------*/
 
 
