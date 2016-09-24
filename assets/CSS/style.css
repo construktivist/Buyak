@@ -105,7 +105,7 @@ input {
 .btn {
 	background-color: #31C8C8;
 	color: #fff;
-	margin-top: 20px;
+	//margin-top: 20px;
 	border-style: none;
 }
 
@@ -143,8 +143,7 @@ input {
 p {
     font-size: 15px;
     line-height: 1.0;
-    color: grey;
-}
+ }
 
 p.large {
     font-size: 16px;
