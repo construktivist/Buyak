@@ -1,3 +1,8 @@
+
+
+
+
+
 var searchResults = [];
 $("#storeSortBtnList").empty();
 
@@ -5,6 +10,7 @@ $("body").on("click", "#searchProduct", function() {
         
         var searchFor = $("#productSearch").val().trim();
         console.log("Value of P : " + searchFor);
+        $("#productSearch").val("");
 
         // CALL WALMART API FOR BEST SELLER PRODUCTS
         var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + searchFor +"&sort=bestseller&responseGroup=full"
@@ -34,14 +40,21 @@ $("body").on("click", "#searchProduct", function() {
                         searchResults.push(item);
                     }
 
-                    // Then dynamicaly generates button store
-                        var storeBtn = $("<button>") 
-                        storeBtn.addClass("btn btn-default animated swing store"); // Added a class 
-                        storeBtn.attr('data-store', "walmart"); // Added a data-attribute
-                        storeBtn.text("Walmart"); // Provided the initial button text
-                        $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+                            if($('#walmart').length )  
+                            {
+                                 console.log("Best Buy Button Exist!!!");
+                                 
+                            }else{
+                                // Then dynamicaly generates button store
+                                var storeBtn = $("<button>") 
+                                storeBtn.addClass("btn btn-default animated swing store"); // Added a class 
+                                storeBtn.attr('id', "walmart");
+                                storeBtn.attr('data-store', "walmart"); // Added a data-attribute
+                                storeBtn.text("Walmart"); // Provided the initial button text
+                                $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+                            }
     
-                    // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
+// Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                     var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
@@ -71,13 +84,20 @@ $("body").on("click", "#searchProduct", function() {
                             searchResults.push(item);
                             
                           }  
-
-                          // Then dynamicaly generates button store
-                            var storeBtn = $("<button>") 
-                            storeBtn.addClass("btn btn-default animated swing store"); // Added a class 
-                            storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
-                            storeBtn.text("Best Buy"); // Provided the initial button text
-                            $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+                            //Check if button already exist and if doesnot exist then only create a new button
+                           if($('#bestbuy').length )  
+                            {
+                                 console.log("Best Buy Button Exist!!!");
+                                 
+                            }else{
+                                // Then dynamicaly generates button store
+                                var storeBtn = $("<button>") 
+                                storeBtn.addClass("btn btn-default animated swing store"); // Added a class
+                                storeBtn.attr("id", "bestbuy");
+                                storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
+                                storeBtn.text("Best Buy"); // Provided the initial button text
+                                $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+                            }                        
 
                            displayResults(searchResults);           
                         });
@@ -155,7 +175,7 @@ function displayResults(resultsArray){
                     divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");  
                      
 
-                    var buttonWishList = $("<button>");
+                    var buttonWishList = $("<button id='addItem'>");
                     buttonWishList.attr("type", "submit");
                     var spanBtn = $("<i class='fa fa-heart'>");
                     spanBtn.text(" List ");
@@ -169,8 +189,8 @@ function displayResults(resultsArray){
                     divItem.append(rowProductDiv);  
                     
                     
-                    containerDiv.append(divItem);
-                    $('#productList').append(containerDiv);
+                    containerDiv.prepend(divItem);
+                    $('#productList').prepend(containerDiv);
                 }
 
 }
@@ -184,11 +204,11 @@ $(document).on('click', '.store', function(){
             if (store == 'walmart'){
 
                 $(".product").fadeOut(); 
-                $(".product.walmart").fadeIn("slow");
+                $(".product.walmart").fadeIn();
 
             }else if (store == 'bestbuy'){
                 $(".product").fadeOut();
-                $(".product.bestbuy").fadeIn("slow");               
+                $(".product.bestbuy").fadeIn();               
             }
             
         });
@@ -219,5 +239,16 @@ $(document).on('click', '.store', function(){
 // identify properties container by #ID 
 // Populate first slide of carousal with item one from array 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -29,7 +29,7 @@ input {
 	width:75%;
 }
 
-#submit {
+#searchProduct {
 	background-color: #31C8C8;
 	color: #fff;
 	border-radius: 5px;
@@ -37,7 +37,7 @@ input {
 }
 
 #wishlist {
-	margin-top: 25px;
+	margin-top: 20px;
 	font-family:'Open Sans', sans-serif;
 	font-size: 15px;
 	background-color: #31C8C8;
@@ -55,7 +55,7 @@ input {
 
 .walmart, .ebay, .bestbuy, .sears {
 	position: relative;
-	height: 300px;
+	height: 100%;
 }
 
 #walmart, #ebay, #bestbuy, #sears {
@@ -97,15 +97,15 @@ input {
 	border-radius: 0 0 5px 5px;
 }
 
-.row-1, .row-2 {
+/*.row-1, .row-2 {
 	margin-bottom: 20px;
-}
+}*/
 
 
 .btn {
 	background-color: #31C8C8;
 	color: #fff;
-	margin-top: 20px;
+	//margin-top: 20px;
 	border-style: none;
 }
 
@@ -124,7 +124,7 @@ input {
 /*WISHLIST SECTION CSS --------------------------------------------------------------------------*/
 
 #wishListGrid {
-	margin-top: 80px;
+	margin-top: 20px;
 	font-family:'Open Sans', sans-serif;
 }
 
@@ -139,7 +139,105 @@ input {
 
 
 /*--------------------------------------------------------------------------*/
+/*---------------Added from : stylelanding.css---------------------------------------*/
+p {
+    font-size: 15px;
+    line-height: 1.0;
+    color: #fff;
+}
 
+
+p.large {
+    font-size: 16px;
+}
+
+
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+}
+
+a {
+    color: #fed136;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #fec503;
+}
+label {
+     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #31C8C8;
+}
+section {
+    padding: 100px 0;
+}
+
+section h2.section-heading {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 40px;
+}
+section h3.section-subheading {
+    margin-bottom: 75px;
+    text-transform: none;
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+}
+/*.item{
+    margin: 10px auto;
+    height: 210px;
+}*/
+.titleProduct{
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px;
+    text-align: center;
+}
+.well{
+    background-color: #ffffff;
+}
+.salePrice{
+    font-size: 18px;
+    font-weight: 500;
+}
+.badge{     
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    
+    white-space: nowrap;
+    
+    background-color: #30c7c7;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.btn {
+    background-color: #31C8C8;
+    color: #fff;
+}
+.store{
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px;
+    width: auto;
+    height: 50px;
+    background-color: #31C8C8;
+    margin: 10px
+}
+/*--------------------------------------------------------------------------------------*/
 
 
 
