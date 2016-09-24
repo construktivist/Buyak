@@ -140,39 +140,32 @@ $('#wishlist').on('click', function(){
 
 
 //Calls addItem function when Add Item button is clicked
-  $("#addItem").on("click", function(this){
-       addItem(this);
-       wishItemCount++
-  });
+  // $("#addItem").on("click", function(this){
+  //      addItem(this);
+  //      wishItemCount++
+  // });
 
-  //Add Item to wishlist function
-   function addItem(item){  
-     var wishItem = item;
-     wishArray.push(wishItem);
-     localStorage.setItem("localWishlist", wishArray)
-    };
-
+  // //Add Item to wishlist function
+  //  function addItem(item){  
+  //    var wishItem = item;
+  //    wishArray.push(wishItem);
+  //    localStorage.setItem("localWishlist", wishArray)
+  //   };
 //Delivers wishlist to DOM from Local Storage
   // console.log(localStorage.getItem("localWishlist"));
 // ================================================================================================== //
 
+//BELOW SECTION FOR REMOTE STORAGE OF WISHLIST
+// ================================================================================================== //
+// $("#saveList").on("click", function(){
+//   database.ref().set({
+//     wishlist: wishArray;
+  
+//   });
 
+// });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ================================================================================================== //
 
 
 });//End jQuery
