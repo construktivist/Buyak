@@ -24,13 +24,15 @@ $(document).ready(function(){
 // ================================================================================================== //
   var walmartItems = [];
   var bestBuyItems = [];
+  var ebayItems = [];
+  var searsItems = [];
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
 
 // ================================================================================================== //
 
-
+//featuredProducts("tv", "phone", "ipod", "hdmi cable")
 
 
 // AJAX CALL FUNCTIONS FOR APIs BELOW
@@ -117,7 +119,7 @@ $('.carousel').carousel({
 
 //WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
 //WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
-$('#submit').on('click', function(){
+$('#searchProduct').on('click', function(){
   $('#contentSection').removeClass('hidden');
   $('#contentSectionFeatured').addClass('hidden');
   $('#search').val("");
@@ -138,40 +140,43 @@ $('#wishlist').on('click', function(){
 
 
 //Calls addItem function when Add Item button is clicked
-  $("#addItem").click(function(){
-      addItem(testProduct);
-      wishItemCount++
-  });
+  // $("#addItem").on("click", function(this){
+  //      addItem(this);
+  //      wishItemCount++
+  // });
 
-  //Add Item to wishlist function
-  function addItem(productItem){``  
-    var wishItem = productItem;
-    console.log(wishItem);
-    wishArray.push(wishItem);
-    localStorage.setItem("localWishlist", wishArray)
-  };
-
+  // //Add Item to wishlist function
+  //  function addItem(item){  
+  //    var wishItem = item;
+  //    wishArray.push(wishItem);
+  //    localStorage.setItem("localWishlist", wishArray)
+  //   };
 //Delivers wishlist to DOM from Local Storage
-  console.log(localStorage.getItem("localWishlist"));
+  // console.log(localStorage.getItem("localWishlist"));
 // ================================================================================================== //
 
+//BELOW SECTION FOR REMOTE STORAGE OF WISHLIST
+// ================================================================================================== //
+// $("#saveList").on("click", function(){
+//   database.ref().set({
+//     wishlist: wishArray;
+  
+//   });
 
+// });
 
+// ================================================================================================== //
 
+featuredProducts(category1, category2, category3 category4){
+  var categories = [category1, category2, category3 category4];
+    for (var i = 0; i <= categories.length; i++ ){
+      walmartFeaturedSearch(i);
+      bestbuyFeaturedSearch(i);
+      searsFeaturedSearch(i);
+      ebayFeaturedSearch(i);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    };
+};
 
 
 });//End jQuery
