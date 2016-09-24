@@ -184,11 +184,11 @@ $(document).on('click', '.store', function(){
             if (store == 'walmart'){
 
                 $(".product").fadeOut(); 
-                $(".product.walmart").fadeIn("slow");
+                $(".product.walmart").fadeIn();
 
             }else if (store == 'bestbuy'){
                 $(".product").fadeOut();
-                $(".product.bestbuy").fadeIn("slow");               
+                $(".product.bestbuy").fadeIn();               
             }
             
         });
