@@ -141,19 +141,19 @@ $('#wishlist').on('click', function(){
 
 //Calls addItem function when Add Item button is clicked
   $("#addItem").on("click", function(this){
-      addItem(this);
-      wishItemCount++
+       addItem(this);
+       wishItemCount++
   });
 
   //Add Item to wishlist function
-  function addItem(item){  
-    var wishItem = item;
-    wishArray.push(wishItem);
-    localStorage.setItem("localWishlist", wishArray)
-  };
+   function addItem(item){  
+     var wishItem = item;
+     wishArray.push(wishItem);
+     localStorage.setItem("localWishlist", wishArray)
+    };
 
 //Delivers wishlist to DOM from Local Storage
-  console.log(localStorage.getItem("localWishlist"));
+  // console.log(localStorage.getItem("localWishlist"));
 // ================================================================================================== //
 
 
