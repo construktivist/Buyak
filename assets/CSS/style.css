@@ -143,14 +143,12 @@ input {
 p {
     font-size: 15px;
     line-height: 1.0;
-    color: #fff;
+    color: grey;
 }
-
 
 p.large {
     font-size: 16px;
 }
-
 
 a,
 a:hover,
@@ -205,6 +203,7 @@ section h3.section-subheading {
 }
 .well{
     background-color: #ffffff;
+    color: grey;
 }
 .salePrice{
     font-size: 18px;

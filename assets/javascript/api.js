@@ -1,19 +1,17 @@
-<<<<<<< HEAD
 $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip;   
-=======
-
-
-
-
->>>>>>> a0b0ff8d252b1701af7d10216dea4a2fae95f9ea
 
 var searchResults = [];
+var walmartProducts = [];
+var bestbuyProducts = [];
 $("#storeSortBtnList").empty();
 
 $("body").on("click", "#searchProduct", function() {
-        
+
+        $("#landingCarousal").addClass("hidden");
+        $("#searchResults").removeClass("hidden");
+
         var searchFor = $("#productSearch").val().trim();
         console.log("Value of P : " + searchFor);
         $("#productSearch").val("");
@@ -44,17 +42,17 @@ $("body").on("click", "#searchProduct", function() {
                         };
                   
                         searchResults.push(item);
+                        walmartProducts.push(item);
                     }
-
-                            if($('#walmart').length )  
+                            if($('#walmartSort').length )  
                             {
-                                 console.log("Best Buy Button Exist!!!");
+                                 console.log("Walmart Button Exist!!!");
                                  
                             }else{
                                 // Then dynamicaly generates button store
                                 var storeBtn = $("<button>") 
                                 storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class 
-                                storeBtn.attr('id', "walmart");
+                                storeBtn.attr('id', "walmartSort");
                                 storeBtn.attr('data-store', "walmart"); // Added a data-attribute
                                 storeBtn.text("Walmart"); // Provided the initial button text
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
@@ -88,10 +86,11 @@ $("body").on("click", "#searchProduct", function() {
                             };
                           
                             searchResults.push(item);
+                            bestbuyProducts.push(item);
                             
                           }  
                             //Check if button already exist and if doesnot exist then only create a new button
-                           if($('#bestbuy').length )  
+                           if($('#bestbuySort').length )  
                             {
                                  console.log("Best Buy Button Exist!!!");
                                  
@@ -99,7 +98,7 @@ $("body").on("click", "#searchProduct", function() {
                                 // Then dynamicaly generates button store
                                 var storeBtn = $("<button>") 
                                 storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class
-                                storeBtn.attr("id", "bestbuy");
+                                storeBtn.attr("id", "bestbuySort");
                                 storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
                                 storeBtn.text("Best Buy"); // Provided the initial button text
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
@@ -110,8 +109,29 @@ $("body").on("click", "#searchProduct", function() {
 
                          
             });
-            return false;
+                    return false;
     });
+
+$(document).on('click', '.store', function(){
+
+            console.log("Inside store click sort" + $(this).attr('data-store'));
+
+            var store = $(this).attr('data-store');
+            console.log(store);
+
+            if (store == 'walmart'){
+
+                $(".product").fadeOut(); 
+                $(".product.walmart").fadeIn();
+
+            }else if (store == 'bestbuy'){
+                $(".product").fadeOut();
+                $(".product.bestbuy").fadeIn();               
+            }
+            
+        });
+
+});
 function displayResults(resultsArray){
 
                 for (var i = 0; i < resultsArray.length; i++) {
@@ -213,26 +233,7 @@ function displayResults(resultsArray){
                 }
 
 }
-$(document).on('click', '.store', function(){
 
-            console.log("Inside store click sort" + $(this).attr('data-store'));
-
-            var store = $(this).attr('data-store');
-            console.log(store);
-
-            if (store == 'walmart'){
-
-                $(".product").fadeOut(); 
-                $(".product.walmart").fadeIn();
-
-            }else if (store == 'bestbuy'){
-                $(".product").fadeOut();
-                $(".product.bestbuy").fadeIn();               
-            }
-            
-        });
-
-});
 
 
 // Pseudo Code
