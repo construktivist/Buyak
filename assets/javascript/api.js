@@ -1,16 +1,20 @@
+var walmartProducts = [];
+var bestbuyProducts = [];
+
 $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip;   
 
 
-
-// a0b0ff8d252b1701af7d10216dea4a2fae95f9ea
-
 var searchResults = [];
+
 $("#storeSortBtnList").empty();
 
 $("body").on("click", "#searchProduct", function() {
-        
+
+        $("#landingCarousal").addClass("hidden");
+        $("#searchResults").removeClass("hidden");
+
         var searchFor = $("#productSearch").val().trim();
         console.log("Value of P : " + searchFor);
         $("#productSearch").val("");
@@ -41,23 +45,23 @@ $("body").on("click", "#searchProduct", function() {
                         };
                   
                         searchResults.push(item);
+                        walmartProducts.push(item);
                     }
-
-                            if($('#walmart').length )  
+                            if($('#walmartSort').length )  
                             {
-                                 console.log("Best Buy Button Exist!!!");
+                                 console.log("Walmart Button Exist!!!");
                                  
                             }else{
                                 // Then dynamicaly generates button store
                                 var storeBtn = $("<button>") 
                                 storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class 
-                                storeBtn.attr('id', "walmart");
+                                storeBtn.attr('id', "walmartSort");
                                 storeBtn.attr('data-store', "walmart"); // Added a data-attribute
                                 storeBtn.text("Walmart"); // Provided the initial button text
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
                             }
     
-// Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
+                    // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                     var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
@@ -85,10 +89,11 @@ $("body").on("click", "#searchProduct", function() {
                             };
                           
                             searchResults.push(item);
+                            bestbuyProducts.push(item);
                             
                           }  
                             //Check if button already exist and if doesnot exist then only create a new button
-                           if($('#bestbuy').length )  
+                           if($('#bestbuySort').length )  
                             {
                                  console.log("Best Buy Button Exist!!!");
                                  
@@ -96,19 +101,41 @@ $("body").on("click", "#searchProduct", function() {
                                 // Then dynamicaly generates button store
                                 var storeBtn = $("<button>") 
                                 storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class
-                                storeBtn.attr("id", "bestbuy");
+                                storeBtn.attr("id", "bestbuySort");
                                 storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
                                 storeBtn.text("Best Buy"); // Provided the initial button text
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
                             }                        
 
-                           displayResults(searchResults);           
+                           displayResults(searchResults);   
+                           carousalDisplay();        
                         });
 
                          
             });
-            return false;
+                    return false;
     });
+
+$(document).on('click', '.store', function(){
+
+            console.log("Inside store click sort" + $(this).attr('data-store'));
+
+            var store = $(this).attr('data-store');
+            console.log(store);
+
+            if (store == 'walmart'){
+
+                $(".product").fadeOut(); 
+                $(".product.walmart").fadeIn();
+
+            }else if (store == 'bestbuy'){
+                $(".product").fadeOut();
+                $(".product.bestbuy").fadeIn();               
+            }
+            
+        });
+
+});
 function displayResults(resultsArray){
 
                 for (var i = 0; i < resultsArray.length; i++) {
@@ -210,26 +237,102 @@ function displayResults(resultsArray){
                 }
 
 }
-$(document).on('click', '.store', function(){
 
-            console.log("Inside store click sort" + $(this).attr('data-store'));
+function carousalDisplay(){
+    console.log(walmartProducts);
+    console.log(bestbuyProducts);
 
-            var store = $(this).attr('data-store');
-            console.log(store);
+    var numSlides = walmartProducts.length;
+    console.log(numSlides);
 
-            if (store == 'walmart'){
+    //Create carousal div
+    var divCarousal = $("<div id='myCarousel' class='carousel slide' data-ride='carousel'>");
+    // Indicators ol list
+    var olDiv = $("<ol class='carousel-indicators'>");
 
-                $(".product").fadeOut(); 
-                $(".product.walmart").fadeIn();
+    for (var i = 0; i < numSlides; i++) {        
+        var liSlide = $("<li data-target='#myCarousel' data-slide-to='" + i + "' class='active'></li>");
+        olDiv.append(liSlide);
+    }
 
-            }else if (store == 'bestbuy'){
-                $(".product").fadeOut();
-                $(".product.bestbuy").fadeIn();               
-            }
+    divCarousal.append(olDiv);
+
+    var divCarousalInner = $("<div class='carousel-inner'>");
+
+    for (var slideCount = 0; slideCount < numSlides; slideCount++) {      
+    
+        var divItem = $("<div class='item'>");
+        //=========Create active item for the first slide
+         if(slideCount==0){
+            divItem.addClass("active");
+         }
+         //=====================This block of code repeats for number of stores================
+        for (var i = 0; i < 2; i++) {          
+
+            var colItem =$("<div class='col-xs-12 col-sm-6'>");
+
+            var panelItem = $("<div class='panel panel-default'>");
+
+            var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>Panel Heading Title Here</h4>");
+
             
-        });
 
-});
+            if(i==0){
+                console.log("FOR WALMART PRODUCT TITLE" + walmartProducts[slideCount].name);
+                var shortItemName = jQuery.trim(walmartProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
+
+                var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
+            }else if(i==1){
+                console.log("FOR BESTBUY PRODUCT TITLE" + bestbuyProducts[slideCount].name);
+                 var shortItemName = jQuery.trim(bestbuyProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
+                var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
+
+            }
+
+            panelItem.append(panelHeadingItem);
+
+            var panelBodyItem = $("<div class='panel-body'>");
+
+            panelItem.append(panelBodyItem);
+
+            var panelFooterItem = $("<div class='panel-footer'>").html("<h4>Panel Footer Goes Here</h4)");
+
+            panelItem.append(panelFooterItem);
+
+            colItem.append(panelItem);
+            
+            divItem.append(colItem);
+        }
+    //=================This block repeats for number of stores==========================================
+
+        divCarousalInner.append(divItem);
+    }
+    
+
+    divCarousal.append(divCarousalInner);
+
+
+
+
+
+
+
+
+
+    // for (var i = 0; i<3; i++) {
+    //     Things[i]
+    // }
+
+
+
+
+
+
+
+    $("#testCarousal").append(divCarousal);
+
+}
+
 
 
 // Pseudo Code
