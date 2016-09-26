@@ -78,6 +78,11 @@
     <header>
         <div class="container-fluid hidden" id="searchResults">
 		<section>
+			  <div class="container">
+		         <div class="col-xs-12" id="testCarousal">
+		         	
+		         </div>        	
+		        </div>
 		      <div class="container">
 		      <div class="row">
 			        <div class="col-md-12 text-center" id="storeSortBtnList">
@@ -92,14 +97,16 @@
 			  </div>
 		 </section>		 
         </div>
+       
         <div class="container-fluid" id="landingCarousal">
 			<section>		      
 		      <div class="container">
 			    <div class="row"><!--Begin row for results-->
 				      <div class="col-md-12" id="productListCarousal"><!--Begin columns for results-->
-							    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+							<div id="myCarousel" class="carousel slide" data-ride="carousel">
 									<!-- Indicators -->
 										  <ol class="carousel-indicators">
+										  //create list items for numOfSlides equal to length of array and set slide one to active
 										    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 										    <li data-target="#myCarousel" data-slide-to="1"></li>
 										    <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -107,11 +114,16 @@
 										  </ol>
 									<!-- Wrapper for slides -->
 									  	<div class="carousel-inner">
+									  	
 										    <div class="item active">
-												<div id="walmart" class = "col-xs-12 col-sm-6"><!--First store-->
-													<!-- Product Panel content-->
+										    
+												<div class="col-xs-12 col-sm-6 walmartProduct">
+													
+													
 													   	<div class="panel panel-default"><!--begin panel-->
-													   		<div class="panel-heading">				   		
+													   	
+													   		<div class="panel-heading">		
+
 													   		    <h4 id="walmartProductTitle">Product Title</h4>								   		
 													   		</div>
 													   		<!--End Panel header-->
@@ -657,7 +669,7 @@
 									    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 									    <span class="sr-only">Next</span>
 									  </a>
-							   </div>			    	            
+							</div>			    	            
 				     </div>   		
 			    </div>
 			  </div>

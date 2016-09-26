@@ -1,10 +1,11 @@
+var walmartProducts = [];
+var bestbuyProducts = [];
 $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip;   
 
 var searchResults = [];
-var walmartProducts = [];
-var bestbuyProducts = [];
+
 $("#storeSortBtnList").empty();
 
 $("body").on("click", "#searchProduct", function() {
@@ -58,7 +59,7 @@ $("body").on("click", "#searchProduct", function() {
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
                             }
     
-// Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
+                    // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                     var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
@@ -104,7 +105,8 @@ $("body").on("click", "#searchProduct", function() {
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
                             }                        
 
-                           displayResults(searchResults);           
+                           displayResults(searchResults);   
+                           carousalDisplay();        
                         });
 
                          
@@ -231,6 +233,81 @@ function displayResults(resultsArray){
                     containerDiv.prepend(divItem);
                     $('#productList').prepend(containerDiv);
                 }
+
+}
+
+function carousalDisplay(){
+    console.log(walmartProducts);
+    console.log(bestbuyProducts);
+
+    var numSlides = walmartProducts.length;
+    console.log(numSlides);
+
+    //Create carousal div
+    var divCarousal = $("<div id='myCarousel' class='carousel slide' data-ride='carousel'>");
+    // Indicators ol list
+    var olDiv = $("<ol class='carousel-indicators'>");
+
+    for (var i = 0; i < numSlides; i++) {        
+        var liSlide = $("<li data-target='#myCarousel' data-slide-to='" + i + "' class='active'></li>");
+        olDiv.append(liSlide);
+    }
+
+    divCarousal.append(olDiv);
+
+    var divCarousalInner = $("<div class='carousel-inner'>");
+    
+    var divItem = $("<div class='item active'>");
+
+    //=====================This block of code repeats for number of stores================
+        for (var i = 0; i < 4; i++) {
+          
+            var colItem =$("<div class='col-xs-12 col-sm-6'>");
+
+            var panelItem = $("<div class='panel panel-default'>");
+
+            var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>Panel Heading Title Here</h4>");
+
+            panelItem.append(panelHeadingItem);
+
+            var panelBodyItem = $("<div class='panel-body'>");
+
+            panelItem.append(panelBodyItem);
+
+            var panelFooterItem = $("<div class='panel-footer'>").html("<h4>Panel Footer Goes Here</h4)");
+
+            panelItem.append(panelFooterItem);
+
+            colItem.append(panelItem);
+            
+            divItem.append(colItem);
+        }
+    //=================This block repeats for number of stores==========================================
+
+    divCarousalInner.append(divItem);
+    
+
+    divCarousal.append(divCarousalInner);
+
+
+
+
+
+
+
+
+
+    // for (var i = 0; i<3; i++) {
+    //     Things[i]
+    // }
+
+
+
+
+
+
+
+    $("#testCarousal").append(divCarousal);
 
 }
 
