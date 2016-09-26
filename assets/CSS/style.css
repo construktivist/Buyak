@@ -26,14 +26,12 @@ input {
 	color: #909996;
 	border-radius: 5px;
 	border-style: none;
-	width:75%;
 }
 
 #searchProduct {
 	background-color: #31C8C8;
 	color: #fff;
 	border-radius: 5px;
-	width: 20%;
 }
 
 #wishlist {
