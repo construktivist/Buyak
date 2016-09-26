@@ -114,21 +114,21 @@ $(document).ready(function(){
 
 //Walmart featured products
 
-function walmart(featuredProduct){
+function walmart(){
 
-    var queryURL = "http://api.walmartlabs.com/v1/trends?format=json&apiKey=bs4qexhbfxu9xaee8f53bhyr"
-console.log(queryURL);
+    var walmartQueryURL = "http://api.walmartlabs.com/v1/trends?format=json&apiKey=bs4qexhbfxu9xaee8f53bhyr"
+console.log(walmartQueryURL);
 
     $.ajax({
-      url: queryURL,
+      url: walmartQueryURL,
       method: 'GET',
       crossDomain: true,
-      dataType: 'jsonp'
+      dataType: 'json',
     })
     .done(function(response) {
       var results = response.items;
 
-      for (var i = 0; i < 2; i++){
+      for (var i = 0; i < 4; i++){
 
         var item = {
           name: results[i].name,
@@ -146,8 +146,50 @@ console.log(queryURL);
   
   };
 
+  walmart();
+
+
 
   //Best Buy featured products
+
+  function bestbuy() {
+    var bestbuyQueryURL = "http://api.bestbuy.com/beta/products/trendingViewed(categoryId=abcat0400000)?apiKey=sdauhdkcw3m5f8rm3mdrqk9g";
+    console.log(bestbuyQueryURL);
+
+    $.ajax({
+      url: bestbuyQueryURL,
+      dataType: 'jsonp',
+      jsonpCallback: 'callback',
+      method: 'GET',
+      crossDomain: true,    
+    })
+    .done(function(response) {
+      var results = response.results;
+
+      for (var i = 0; i < 4; i++){
+
+        var item = {
+          name: results[i].names.title,
+          price: results[i].prices.current,
+          mdImage: results[i].images.standard,
+          rating: results[i].customerReviews.averageScore
+        };
+      
+        bestBuyItems.push(item);
+
+      };
+
+    });
+
+  }
+  
+
+  bestbuy();
+
+
+
+  console.log(bestBuyItems);
+  console.log(walmartItems);
 
 
 
@@ -210,13 +252,6 @@ $('#wishlist').on('click', function(){
 
 // ================================================================================================== //
 
-function featuredProducts(page1, page2, page3, page4){
-  var pages = [page1, page2, page3, page4];
-    for (var i = 0; i <= pages.length; i++ ){
-      //walmartFeaturedSearch(i);
-
-    };
-};
 
 
 });//End jQuery
