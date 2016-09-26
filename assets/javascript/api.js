@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip;   
-=======
 
 
 
-
->>>>>>> a0b0ff8d252b1701af7d10216dea4a2fae95f9ea
+// a0b0ff8d252b1701af7d10216dea4a2fae95f9ea
 
 var searchResults = [];
 $("#storeSortBtnList").empty();
@@ -141,7 +138,7 @@ function displayResults(resultsArray){
 
                     
                     //Make outer div 
-                    var containerDiv = $("<div class='col-xs-6 col-sm-4 animated zoomIn product'>");
+                    var containerDiv = $("<div class='col-xs-12 col-sm-6 col-md-4 animated zoomIn product'>");
                     containerDiv.addClass(resultsArray[i].storeName);
                     
                     //make  inner div
