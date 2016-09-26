@@ -57,16 +57,16 @@ console.log(walmartQueryURL);
       for (var i = 0; i < 4; i++){
 
         var item = {
-          name: results[i].name,
-          price: results[i].salePrice,
-          mdImage: results[i].mediumImage,
-          lgImage: results[i].largeImage,
-          rating: results[i].customerRating
+          name: results[i].items.name,
+          price: results[i].items.salePrice,
+          mdImage: results[i].items.mediumImage,
+          lgImage: results[i].items.largeImage,
+          rating: results[i].items.customerRating
         };
       
         walmartItems.push(item);
 
-      };
+      }
 
     });
   
