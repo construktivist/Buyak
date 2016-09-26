@@ -208,7 +208,7 @@ function displayResults(resultsArray){
                     var buttonWishList = $("<button id='addItem'>");
                     buttonWishList.attr("type", "submit");
                     buttonWishList.attr("data-toggle", "tooltip");
-                    buttonWishList.attr("title", "Add To Wishlist")
+                    buttonWishList.attr("title", "Add To Wishlist");
                     buttonWishList.addClass("addToWishlist");
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
                     spanBtn.text("");
@@ -218,7 +218,7 @@ function displayResults(resultsArray){
                     var buttonRemove = $("<button>");
                     buttonRemove.attr("type", "submit");
                     buttonRemove.attr("data-toggle", "tooltip");
-                    buttonRemove.attr("title", "Remove Item From Search displayResults")
+                    buttonRemove.attr("title", "Remove Item From Search displayResults");
                     buttonRemove.addClass("removeItem");
                     var spanRBtn = $("<i class='fa fa-minus-circle'>");
                     spanRBtn.text("");
@@ -293,9 +293,82 @@ function carousalDisplay(){
 
             var panelBodyItem = $("<div class='panel-body'>");
 
+            var bodyRow = $("<div class='row'>");
+            var bodyCol = $("<div class='col-sm-12'>");
+
+            if(i==0){
+                console.log("FOR WALMART PRODUCT Image");
+                var panelBodyImageCol = $("<div class='col-sm-6'>").html("<img src='" + walmartProducts[slideCount].mdImage + "' class='img-responsive'>");
+                bodyCol.append(panelBodyImageCol);
+            }else if(i==1){
+                console.log("FOR BESTBUY PRODUCT Image");
+                var panelBodyImageCol = $("<div class='col-sm-6'>").html("<img src='" + bestbuyProducts[slideCount].lgImage + "' class='img-responsive'>");
+                bodyCol.append(panelBodyImageCol);
+            }
+
+            //Product Information column here
+            if(i==0){
+                console.log("FOR WALMART PRODUCT Info");
+                var panelBodyInfoCol = $("<div class='col-sm-6'>");
+                panelBodyInfoCol.append("<p class='salePrice'> $" + walmartProducts[slideCount].price + "</p>");
+                panelBodyInfoCol.append("<p> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + walmartProducts[slideCount].rating + "</span></p>");
+               
+                var buttonWishList = $("<button>");
+                    buttonWishList.attr("type", "submit");
+                    buttonWishList.attr("data-toggle", "tooltip");
+                    buttonWishList.attr("title", "Add To Wishlist");
+                    buttonWishList.addClass("btn btn-default");
+                    buttonWishList.addClass("addToWishlist");
+                    var spanBtn = $("<i class='fa fa-plus-circle'>");
+                    spanBtn.text("Add to Wishlist");
+                    buttonWishList.append(spanBtn);
+
+                    panelBodyInfoCol.append(buttonWishList);
+                bodyCol.append(panelBodyInfoCol);
+
+                    
+
+            }else if(i==1){
+                console.log("FOR BESTBUY PRODUCT Info");
+                 var panelBodyInfoCol = $("<div class='col-sm-6'>");
+                panelBodyInfoCol.append("<p class='salePrice'> $" + bestbuyProducts[slideCount].price + "</p>");
+                panelBodyInfoCol.append("<p> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + bestbuyProducts[slideCount].rating + "</span></p>");
+                 
+                 var buttonWishList = $("<button>");
+                    buttonWishList.attr("type", "submit");
+                    buttonWishList.attr("data-toggle", "tooltip");
+                    buttonWishList.attr("title", "Add To Wishlist");
+                    buttonWishList.addClass("btn btn-default");
+                    buttonWishList.addClass("addToWishlist");
+                    var spanBtn = $("<i class='fa fa-plus-circle'>");
+                    spanBtn.text("Add to Wishlist");
+                    buttonWishList.append(spanBtn);
+
+                    panelBodyInfoCol.append(buttonWishList);
+                bodyCol.append(panelBodyInfoCol);
+            }
+
+
+
+            bodyRow.append(bodyCol);
+            panelBodyItem.append(bodyRow);
+
             panelItem.append(panelBodyItem);
 
-            var panelFooterItem = $("<div class='panel-footer'>").html("<h4>Panel Footer Goes Here</h4)");
+            var panelFooterItem = $("<div class='panel-footer'>");
+
+            var footerRow = $("<div class='row'>");
+            var footerCol = $("<div class='col-xs-3 col-xs-offset-9'>");
+
+            if(i==0){
+                footerCol.append("<img src='assets/images/Walmart_icon.png' class='img-responsive img-logo-panel-heading'>");
+                footerRow.append(footerCol);
+            }else if(i==1){
+                footerCol.append("<img src='assets/images/BB_Icon.png' class='img-responsive img-logo-panel-heading'>");
+                footerRow.append(footerCol);
+            }
+
+            panelFooterItem.append(footerRow);
 
             panelItem.append(panelFooterItem);
 
@@ -311,25 +384,20 @@ function carousalDisplay(){
 
     divCarousal.append(divCarousalInner);
 
+    var carousalNavPrev = $("<a class='left carousel-control' href='#myCarousel' role='button' data-slide='prev'>");
+    carousalNavPrev.append("<span class='glyphicon glyphicon-chevron-left' aria-hidden='true'>");
+    carousalNavPrev.append("<span class='sr-only'>Previous</span>");
 
+    divCarousal.append(carousalNavPrev);
 
+    var carousalNavNext = $("<a class='right carousel-control' href='#myCarousel' role='button' data-slide='next'>");
+    carousalNavNext.append("<span class='glyphicon glyphicon-chevron-right' aria-hidden='true'></span>");
+    carousalNavNext.append("<span class='sr-only'>Next</span>");
 
+    divCarousal.append(carousalNavNext);
 
-
-
-
-
-    // for (var i = 0; i<3; i++) {
-    //     Things[i]
-    // }
-
-
-
-
-
-
-
-    $("#testCarousal").append(divCarousal);
+    $("#landingCarousal").append(divCarousal);
+    $("#landingCarousal").removeClass("hidden");
 
 }
 
