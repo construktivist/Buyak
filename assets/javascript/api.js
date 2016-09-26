@@ -256,17 +256,36 @@ function carousalDisplay(){
     divCarousal.append(olDiv);
 
     var divCarousalInner = $("<div class='carousel-inner'>");
-    
-    var divItem = $("<div class='item active'>");
 
-    //=====================This block of code repeats for number of stores================
-        for (var i = 0; i < 4; i++) {
-          
+    for (var slideCount = 0; slideCount < numSlides; slideCount++) {      
+    
+        var divItem = $("<div class='item'>");
+        //=========Create active item for the first slide
+         if(slideCount==0){
+            divItem.addClass("active");
+         }
+         //=====================This block of code repeats for number of stores================
+        for (var i = 0; i < 2; i++) {          
+
             var colItem =$("<div class='col-xs-12 col-sm-6'>");
 
             var panelItem = $("<div class='panel panel-default'>");
 
             var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>Panel Heading Title Here</h4>");
+
+            
+
+            if(i==0){
+                console.log("FOR WALMART PRODUCT TITLE" + walmartProducts[slideCount].name);
+                var shortItemName = jQuery.trim(walmartProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
+
+                var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
+            }else if(i==1){
+                console.log("FOR BESTBUY PRODUCT TITLE" + bestbuyProducts[slideCount].name);
+                 var shortItemName = jQuery.trim(bestbuyProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
+                var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
+
+            }
 
             panelItem.append(panelHeadingItem);
 
@@ -284,7 +303,8 @@ function carousalDisplay(){
         }
     //=================This block repeats for number of stores==========================================
 
-    divCarousalInner.append(divItem);
+        divCarousalInner.append(divItem);
+    }
     
 
     divCarousal.append(divCarousalInner);
