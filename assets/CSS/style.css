@@ -106,6 +106,10 @@ input {
 	border-style: none;
 }
 
+#addToWishlist {
+    margin-top: 15px;
+}
+
 .product-image {
 	size: 100%;
 	margin-left: -15px;
@@ -203,7 +207,7 @@ section h3.section-subheading {
 }
 
 /*comparison buttons*/
-#walmart, #ebay, #bestbuy, #sears {
+#walmartSort, #ebaySort, #bestbuySort, #searsSort {
     margin-top: -160px;
 }
 
