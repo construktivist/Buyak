@@ -27,6 +27,7 @@ $(document).ready(function(){
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
+  var testStoreArray = [];
 
 // ================================================================================================== //
 
@@ -39,7 +40,7 @@ $(document).ready(function(){
 
     var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
 
-console.log(queryURL);
+//console.log(queryURL);
 
     $.ajax({
       url: queryURL,
@@ -72,7 +73,7 @@ console.log(queryURL);
 
     var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&format=json";
 
-console.log(queryURL);
+//console.log(queryURL);
 
     $.ajax({
       url: queryURL,
@@ -95,10 +96,10 @@ console.log(queryURL);
         };
       
         bestBuyItems.push(item);
-        console.log(bestBuyItems);
+      //  console.log(bestBuyItems);
 
       };                
-      console.log(walmartItems);
+     // console.log(walmartItems);
       });
     
     };    
@@ -137,22 +138,66 @@ $('#wishlist').on('click', function(){
 });
 
 
+
+var testItem = {
+  name: "Test Item",
+  price: 300,
+};
+
+var testItem1 = {
+  name: "Test Item One",
+  price: 600,
+};
+
+var testItem2 = {
+  name: "Test Item Two",
+  price: 900,
+};
+
+testStoreArray.push(testItem);
+testStoreArray.push(testItem1);
+testStoreArray.push(testItem2);
+console.log(testStoreArray);
+
+for (var i = 0; i < testStoreArray.length; i++){
+  var iname = testStoreArray[i].name;
+  console.log(iname);
+  var itemName = $("<p>" + iname + "</p>")
+
+  var iprice = testStoreArray[i].price;
+  console.log(iprice);
+  var itemPrice = $("<p>" + iprice + "</p>")
+  
+  var button = $("<button>");
+  button.html("Add to Wishlist");
+  button.addClass("addItem btn btn-primary");
+
+  var itemDiv = $("<div>");
+  itemDiv.append(button);
+  itemDiv.append(itemName);
+  itemDiv.append(itemPrice);
+  $("#wishListItems").append(itemDiv);
+}
+
 //Calls addItem function when Add Item button is clicked
-  $("#addItem").click(function(){
-      addItem(testProduct);
+  $(".addItem").on("click", function(){
+      addItem(this);
+      console.log(this.name)
       wishItemCount++
   });
 
   //Add Item to wishlist function
-  function addItem(productItem){``  
-    var wishItem = productItem;
-    console.log(wishItem);
+  function addItem(productItem){  
+    var wishItem = "psh";
     wishArray.push(wishItem);
     localStorage.setItem("localWishlist", wishArray)
   };
 
 //Delivers wishlist to DOM from Local Storage
-  console.log(localStorage.getItem("localWishlist"));
+  //console.log(localStorage.getItem("localWishlist"));
+
+
+
 // ================================================================================================== //
 
 
