@@ -24,6 +24,8 @@ $(document).ready(function(){
 // ================================================================================================== //
   var walmartItems = [];
   var bestBuyItems = [];
+  var ebayItems = [];
+  var searsItems = [];
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
@@ -33,79 +35,103 @@ $(document).ready(function(){
 
 
 
-
-// AJAX CALL FUNCTIONS FOR APIs BELOW
 // ================================================================================================== //
-  function walmart(product){
 
-    var queryURL = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + product;
+// AJAX CALL FUNCTIONS FOR APIs BELOW -- ON PRODUCT SEARCH
 
+//Walmart featured products
+
+function walmart(){
+
+<<<<<<< HEAD
 //console.log(queryURL);
+=======
+    var walmartQueryURL = "http://api.walmartlabs.com/v1/trends?format=json&apiKey=bs4qexhbfxu9xaee8f53bhyr"
+console.log(walmartQueryURL);
+>>>>>>> e9f8022a412cb63b9527281e5fec2129f688b35d
 
     $.ajax({
-      url: queryURL,
+      url: walmartQueryURL,
       method: 'GET',
       crossDomain: true,
-      dataType: 'jsonp'
+      dataType: 'json',
     })
     .done(function(response) {
       var results = response.items;
 
-      for (var i = 0; i < 2; i++){
+      for (var i = 0; i < 4; i++){
 
         var item = {
-          name: results[i].name,
-          price: results[i].salePrice,
-          mdImage: results[i].mediumImage,
-          lgImage: results[i].largeImage,
-          rating: results[i].customerRating
+          name: results[i].items.name,
+          price: results[i].items.salePrice,
+          mdImage: results[i].items.mediumImage,
+          lgImage: results[i].items.largeImage,
+          rating: results[i].items.customerRating
         };
       
         walmartItems.push(item);
 
-      };
+      }
 
     });
   
   };
-   
-  function bestBuy(product){
 
-    var queryURL = "https://api.bestbuy.com/v1/products((search=" + product + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&format=json";
+  walmart();
 
-//console.log(queryURL);
+
+console.log(queryURL);
+
+  //Best Buy featured products
+
+  function bestbuy() {
+    var bestbuyQueryURL = "http://api.bestbuy.com/beta/products/trendingViewed(categoryId=abcat0400000)?apiKey=sdauhdkcw3m5f8rm3mdrqk9g";
+    console.log(bestbuyQueryURL);
 
     $.ajax({
-      url: queryURL,
+      url: bestbuyQueryURL,
+      dataType: 'jsonp',
+      jsonpCallback: 'callback',
       method: 'GET',
-      cache: true,
-      crossDomain: true,
-      dataType: 'jsonp'
+      crossDomain: true,    
     })
     .done(function(response) {
-        var results = response.products;
+      var results = response.results;
 
-              for (var i = 0; i < 2; i++){
+      for (var i = 0; i < 4; i++){
 
         var item = {
-          name: results[i].name,
-          price: results[i].salePrice,
-          mdImage: results[i].mediumImage,
-          lgImage: results[i].largeImage,
-          rating: results[i].customerRating
+          name: results[i].names.title,
+          price: results[i].prices.current,
+          mdImage: results[i].images.standard,
+          rating: results[i].customerReviews.averageScore
         };
       
         bestBuyItems.push(item);
-      //  console.log(bestBuyItems);
+
+      console.log(bestBuyItems);
 
       };                
-     // console.log(walmartItems);
+      console.log(walmartItems);
       });
     
     };    
 
-walmart("laptop");
-bestBuy("tv");
+      };
+
+    });
+
+  }
+  
+
+  bestbuy();
+
+
+
+  console.log(bestBuyItems);
+  console.log(walmartItems);
+
+
 
 // ================================================================================================== //
 
@@ -118,7 +144,7 @@ $('.carousel').carousel({
 
 //WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
 //WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
-$('#submit').on('click', function(){
+$('#searchProduct').on('click', function(){
   $('#contentSection').removeClass('hidden');
   $('#contentSectionFeatured').addClass('hidden');
   $('#search').val("");
@@ -202,24 +228,33 @@ for (var i = 0; i < testStoreArray.length; i++){
 
 
 
+
+  // $("#addItem").on("click", function(this){
+  //      addItem(this);
+  //      wishItemCount++
+  // });
+
+  // //Add Item to wishlist function
+  //  function addItem(item){  
+  //    var wishItem = item;
+  //    wishArray.push(wishItem);
+  //    localStorage.setItem("localWishlist", wishArray)
+  //   };
+//Delivers wishlist to DOM from Local Storage
+  // console.log(localStorage.getItem("localWishlist"));
 // ================================================================================================== //
 
+//BELOW SECTION FOR REMOTE STORAGE OF WISHLIST
+// ================================================================================================== //
+// $("#saveList").on("click", function(){
+//   database.ref().set({
+//     wishlist: wishArray;
+  
+//   });
 
+// });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ================================================================================================== //
 
 
 

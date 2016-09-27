@@ -7,6 +7,8 @@
 
 	<!--CSS & Bootstrap Links-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- Custom Styles -->
 	<link rel=StyleSheet href="assets/css/style.css" type="text/css" media=screen>
 
 	<!--Google Fonts-->
@@ -17,6 +19,9 @@
 	<script src="assets/javascript/app.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+	 <!-- Fontawesome Icon CDN -->
+    <script src="https://use.fontawesome.com/44665284cb.js"></script> 
 
 </head>
 
@@ -33,9 +38,16 @@
 
 			<span class="col-xs-12 col-sm-5">
 
-				What can we help you find?<br>
-				<input id="search" type="text" name="Search">
-				<input id="submit" type="submit" name="Submit"> 
+				 <form class="form-inline">
+					<div class="form-group">
+						<label for="productSearch">What can we help you find?</label><br>
+						<input class="form-control" id="productSearch" type="text" placeholder="Search Your Product">
+						<button type="submit" class="btn btn-info" id="searchProduct">Search</button>
+					</div>						
+				</form>
+
+				<!-- <input id="productSearch" type="text" name="Search">
+				<input id="searchProduct" type="submit" name="Submit">  -->
 
 			</span>
 
@@ -70,7 +82,7 @@
 					    <div class="item active"> <!-- PLACE SLIDE IN HERE-->
 					      	<div class = "row row-1"><!--First row of content-->
 
-				<div class = "walmart col-xs-12 col-sm-6"><!--First store-->
+				<div id="walmart-1" class = "walmart col-xs-12 col-sm-6 clearfix"><!--First store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -87,14 +99,14 @@
 				            <div class="col-sm-12">
 				              <div class="row">
 				                <div class="col-xs-6">
-				                  <img src="assets/images/portfolio/dreams.png" class="img-responsive img-rounded product-image">
+				                  <img src="assets/images/portfolio/dreams.png" class="img-responsive img-rounded product-image walmartProductImage">
 				                </div>
 				                <div class="col-xs-6">
 				                  <p class="walmartFeaturedProductPrice">Product Price</p>
 				                  <p class="walmartFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -121,7 +133,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "ebay col-xs-12 col-sm-6"><!--Second store-->
+				<div id="ebay-1" class = "ebay col-xs-12 col-sm-6 clearfix"><!--Second store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -145,7 +157,7 @@
 				                  <p class="ebayFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -171,12 +183,8 @@
 				</div><!--End second store-->
 
 				<!-- =============================================================================== -->
-				
-			</div><!--End first row of content-->
-
-			<div class = "row row-2"><!-- Second row of content-->
 			
-				<div class = "bestbuy col-xs-12 col-sm-6"><!--Third store-->
+				<div id="bestbuy-1" class = "bestbuy col-xs-12 col-sm-6 clearfix"><!--Third store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -200,7 +208,7 @@
 				                  <p class="bestbuyFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -227,7 +235,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "sears col-xs-12 col-sm-6"><!--Fourth store-->
+				<div id="sears-1" class = "sears col-xs-12 col-sm-6 clearfix"><!--Fourth store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -251,7 +259,7 @@
 				                  <p class="searsFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -278,14 +286,14 @@
 
 				<!-- =============================================================================== -->
 				
-			</div><!--End Second row of content-->
+			</div><!--End row of content-->
 
 					    </div><!--End item-->
 
 					    <div class="item"> <!-- PLACE SLIDE IN HERE-->
 					      	<div class = "row row-1"><!--First row of content-->
 
-				<div class = "walmart col-xs-12 col-sm-6"><!--First store-->
+				<div id="walmart-1" class = "walmart col-xs-12 col-sm-6 clearfix"><!--First store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -309,7 +317,7 @@
 				                  <p class="walmartFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -336,7 +344,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "ebay col-xs-12 col-sm-6"><!--Second store-->
+				<div class = "ebay col-xs-12 col-sm-6 clearfix"><!--Second store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -360,7 +368,7 @@
 				                  <p class="ebayFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -386,12 +394,8 @@
 				</div><!--End second store-->
 
 				<!-- =============================================================================== -->
-				
-			</div><!--End first row of content-->
-
-			<div class = "row row-2"><!-- Second row of content-->
 			
-				<div class = "bestbuy col-xs-12 col-sm-6"><!--Third store-->
+				<div class = "bestbuy col-xs-12 col-sm-6 clearfix"><!--Third store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -415,7 +419,7 @@
 				                  <p class="bestbuyFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -443,7 +447,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "sears col-xs-12 col-sm-6"><!--Fourth store-->
+				<div class = "sears col-xs-12 col-sm-6 clearfix"><!--Fourth store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -467,7 +471,7 @@
 				                  <p class="searsFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -494,14 +498,14 @@
 
 				<!-- =============================================================================== -->
 				
-			</div><!--End Second row of content-->
+			</div><!--End row of content-->
 
 					    </div><!--End item-->
 
 					    <div class="item"> <!-- PLACE SLIDE IN HERE-->
 					      	<div class = "row row-1"><!--First row of content-->
 
-				<div class = "walmart col-xs-12 col-sm-6"><!--First store-->
+				<div class = "walmart col-xs-12 col-sm-6 clearfix"><!--First store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -525,7 +529,7 @@
 				                  <p class="walmartFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -552,7 +556,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "ebay col-xs-12 col-sm-6"><!--Second store-->
+				<div class = "ebay col-xs-12 col-sm-6 clearfix"><!--Second store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -576,7 +580,7 @@
 				                  <p class="ebayFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -602,12 +606,8 @@
 				</div><!--End second store-->
 
 				<!-- =============================================================================== -->
-				
-			</div><!--End first row of content-->
-
-			<div class = "row row-2"><!-- Second row of content-->
 			
-				<div class = "bestbuy col-xs-12 col-sm-6"><!--Third store-->
+				<div class = "bestbuy col-xs-12 col-sm-6 clearfix"><!--Third store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -631,7 +631,7 @@
 				                  <p class="bestbuyFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -658,7 +658,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "sears col-xs-12 col-sm-6"><!--Fourth store-->
+				<div class = "sears col-xs-12 col-sm-6 clearfix"><!--Fourth store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -682,7 +682,7 @@
 				                  <p class="searsFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -709,14 +709,14 @@
 
 				<!-- =============================================================================== -->
 				
-			</div><!--End Second row of content-->
+			</div><!--End row of content-->
 
 					    </div><!--End item-->
 
 					    <div class="item"> <!-- PLACE SLIDE IN HERE-->
 					       	<div class = "row row-1"><!--First row of content-->
 
-				<div class = "walmart col-xs-12 col-sm-6"><!--First store-->
+				<div class = "walmart col-xs-12 col-sm-6 clearfix"><!--First store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -740,7 +740,7 @@
 				                  <p class="walmartFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -767,7 +767,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "ebay col-xs-12 col-sm-6"><!--Second store-->
+				<div class = "ebay col-xs-12 col-sm-6 clearfix"><!--Second store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -791,7 +791,7 @@
 				                  <p class="ebayProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -818,11 +818,8 @@
 
 				<!-- =============================================================================== -->
 				
-			</div><!--End first row of content-->
-
-			<div class = "row row-2"><!-- Second row of content-->
 			
-				<div class = "bestbuy col-xs-12 col-sm-6"><!--Third store-->
+				<div class = "bestbuy col-xs-12 col-sm-6 clearfix"><!--Third store-->
 
 				<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -846,7 +843,7 @@
 				                  <p class="bestbuyFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -873,7 +870,7 @@
 
 				<!-- =============================================================================== -->
 
-				<div class = "sears col-xs-12 col-sm-6"><!--Fourth store-->
+				<div class = "sears col-xs-12 col-sm-6 clearfix"><!--Fourth store-->
 
 					<!-- Product Panel content-->
 				   	<div class="panel panel-default"><!--begin panel-->
@@ -897,7 +894,7 @@
 				                  <p id="searsFeaturedProductRating">Customer Rating</p>
 				                </div>
 				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
+				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3" id="addToWishlist">Add to Wishlist</button>
 				        		</div>
 				              </div>
 				            </div>
@@ -924,7 +921,7 @@
 
 				<!-- =============================================================================== -->
 				
-			</div><!--End Second row of content-->
+			</div><!--End row of content-->
 
 					    </div><!--End Item-->
 				  	</div><!--End carousel inner-->
@@ -944,223 +941,27 @@
 
 
 
+
 <!-- ===== CONTENT SECTION =================================================================================== -->
 
 	<div id="contentSection" class="row one-edge-shadow-1 hidden"><!--Begin row for results-->
 		
 		<div class="col-xs-12"><!--Begin columns for results-->
 
-			<div class = "row row-1"><!--First row of content-->
-
-				<div id="walmart" class = "col-xs-12 col-sm-6"><!--First store-->
-
-				<!-- Product Panel content-->
-				   	<div class="panel panel-default"><!--begin panel-->
-
-				   		<div class="panel-header"><!--End panel header-->
-
-				   			<h4 class="panel-title">Product Title</h4><!--CHANGE TO LOGO-->
-
-				   		</div><!--End Panel header-->
-
-				   		<div class="panel-body"><!--Panel-body-->
-
-				          <div class="row">
-				            <div class="col-sm-12">
-				              <div class="row">
-				                <div class="col-xs-6">
-				                  <img src="assets/images/portfolio/dreams.png" class="img-responsive img-rounded product-image">
-				                </div>
-				                <div class="col-xs-6">
-				                  <p id="walmartProductPrice">Product Price</p>
-				                  <p id="walmartProductRating">Customer Rating</p>
-				                </div>
-				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
-				        		</div>
-				              </div>
-				            </div>
-				          </div>
-
-				   		</div><!--End Panel body-->
-				   			<div class="panel-footer">
-								<div class="row">
-									<div class="col-xs-3 col-xs-offset-9">
-										<img src="assets/images/Walmart_Icon.png" class="img-responsive img-logo-panel-heading">
-									</div>
-								</div>
-							</div>
-				   		
-				   	</div><!--End panel-->
-
-					<span class = "col-xs-3"></span>
-					
-					<img class="logo hidden col-xs-6" src="assets/images/walmart-white.png"><!--Walmart logo-->
-
-					<span class = "col-xs-3"></span>
-
-				</div><!--End first store-->
-
-				<!-- =============================================================================== -->
-
-				<div id="ebay" class = "col-xs-12 col-sm-6"><!--Second store-->
-
-					<!-- Product Panel content-->
-				   	<div class="panel panel-default"><!--begin panel-->
-
-				   		<div class="panel-header"><!--End panel header-->
-
-				   			<h4 class="panel-title">Product Title</h4><!--CHANGE TO LOGO-->
-
-				   		</div><!--End Panel header-->
-
-				   		<div class="panel-body"><!--Panel-body-->
-
-				          <div class="row">
-				            <div class="col-sm-12">
-				              <div class="row">
-				                <div class="col-xs-6">
-				                  <img src="assets/images/portfolio/dreams.png" class="img-responsive img-rounded product-image">
-				                </div>
-				                <div class="col-xs-6">
-				                  <p id="ebayProductPrice">Product Price</p>
-				                  <p id="ebayProductRating">Customer Rating</p>
-				                </div>
-				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
-				        		</div>
-				              </div>
-				            </div>
-				          </div>
-
-				   		</div><!--End Panel body-->
-				   			<div class="panel-footer">
-								<div class="row">
-									<div class="col-xs-3 col-xs-offset-9">
-										<img src="assets/images/ebay_Icon.png" class="img-responsive img-logo-panel-heading">
-									</div>
-								</div>
-							</div>
-				   		
-				   	</div><!--End panel-->
-
-					<span class = "col-xs-3"></span>
-					
-					<img class="logo hidden col-xs-6" src="assets/images/ebay-white.png"><!--ebay logo-->
-
-					<span class = "col-xs-3"></span>
-
-				</div><!--End second store-->
-
-				<!-- =============================================================================== -->
-				
-			</div><!--End first row of content-->
-
-			<div class = "row row-2"><!-- Second row of content-->
-			
-				<div id="bestbuy" class = "col-xs-12 col-sm-6"><!--Third store-->
-
-				<!-- Product Panel content-->
-				   	<div class="panel panel-default"><!--begin panel-->
-
-				   		<div class="panel-header"><!--End panel header-->
-
-				   			<h4 class="panel-title">Product Title</h4><!--CHANGE TO LOGO-->
-
-				   		</div><!--End Panel header-->
-
-				   		<div class="panel-body"><!--Panel-body-->
-
-				          <div class="row">
-				            <div class="col-sm-12">
-				              <div class="row">
-				                <div class="col-xs-6">
-				                  <img src="assets/images/portfolio/dreams.png" class="img-responsive img-rounded product-image">
-				                </div>
-				                <div class="col-xs-6">
-				                  <p id="bestbuyProductPrice">Product Price</p>
-				                  <p id="bestbuyProductRating">Customer Rating</p>
-				                </div>
-				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
-				        		</div>
-				              </div>
-				            </div>
-				          </div>
-
-				   		</div><!--End Panel body-->
-				   			<div class="panel-footer">
-								<div class="row">
-									<div class="col-xs-3 col-xs-offset-9">
-										<img src="assets/images/BB_Icon.png" class="img-responsive img-logo-panel-heading">
-									</div>
-								</div>
-							</div>
-				   		
-				   	</div><!--End panel-->
-
-					<span class = "col-xs-3"></span>
-					
-					<img class="logo hidden col-xs-6" src="assets/images/bestbuy-white.png"><!--Best Buy logo-->
-
-					<span class = "col-xs-3"></span>
-
-				</div><!--End third store-->
-
-				<!-- =============================================================================== -->
-
-				<div id="sears" class = "col-xs-12 col-sm-6"><!--Fourth store-->
-
-					<!-- Product Panel content-->
-				   	<div class="panel panel-default"><!--begin panel-->
-
-				   		<div class="panel-header"><!--End panel header-->
-
-				   			<h4 class="panel-title">Product Title</h4><!--CHANGE TO LOGO-->
-
-				   		</div><!--End Panel header-->
-
-				   		<div class="panel-body"><!--Panel-body-->
-
-				          <div class="row">
-				            <div class="col-sm-12">
-				              <div class="row">
-				                <div class="col-xs-6">
-				                  <img src="assets/images/portfolio/dreams.png" class="img-responsive img-rounded product-image">
-				                </div>
-				                <div class="col-xs-6">
-				                  <p id="searsProductPrice">Product Price</p>
-				                  <p id="searsProductRating">Customer Rating</p>
-				                </div>
-				                <div class="wishlist-button">
-				          			<button type="button" class="btn btn-default col-xs-12 col-sm-5 col-md-4 col-lg-3">Add to Wishlist</button>
-				        		</div>
-				              </div>
-				            </div>
-				          </div>
-
-				   		</div><!--End Panel body-->
-				   			<div class="panel-footer">
-								<div class="row">
-									<div class="col-xs-3 col-xs-offset-9">
-										<img src="assets/images/Sears_Icon.png" class="img-responsive img-logo-panel-heading">
-									</div>
-								</div>
-							</div>
-				   		
-				   	</div><!--End panel-->
-
-					<span class = "col-xs-3"></span>
-					
-					<img class="logo hidden col-xs-6" src="assets/images/sears-white.png"><!--Overstock logo-->
-
-					<span class = "col-xs-3"></span>
-
-				</div><!--End fourth store-->
-
-				<!-- =============================================================================== -->
-				
-			</div><!--End Second row of content-->
+			<section>
+		      <div class="container">
+		      <div class="row">
+			        <div class="col-md-12 text-center" id="storeSortBtnList">
+			            
+			        </div>   		
+			    </div>
+			    <div class="row">
+			        <div class="col-md-12" id="productList">
+			            
+			        </div>   		
+			    </div>
+			  </div>
+		 </section>
 			
 		</div><!--Endcolumns for results-->
 
@@ -1179,7 +980,7 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <h2 class="section-heading">Wish List</h2>
-                    <h3 class="section-subheading text-muted">You know you want them.</h3>
+                    <h3 class="section-subheading text-muted">You know you want them. Because you're the one who clicked on them.</h3>
                 </div>
             </div>
             <!-- Modal Grid Items -->
@@ -1304,6 +1105,7 @@
  <!--JavaScript & jQuery Links-->
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
+	<script type="text/javascript" src="assets/javascript/api.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
