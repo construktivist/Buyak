@@ -137,7 +137,7 @@ $('#wishlist').on('click', function(){
   $('#wishListGrid').removeClass('hidden');
 });
 
-
+var indexCount = 0;
 
 var testItem = {
   name: "Test Item",
@@ -171,30 +171,34 @@ for (var i = 0; i < testStoreArray.length; i++){
   var button = $("<button>");
   button.html("Add to Wishlist");
   button.addClass("addItem btn btn-primary");
+  button.attr("data-index", indexCount)
 
   var itemDiv = $("<div>");
   itemDiv.append(button);
   itemDiv.append(itemName);
   itemDiv.append(itemPrice);
   $("#wishListItems").append(itemDiv);
+
+  indexCount++;
 }
 
 //Calls addItem function when Add Item button is clicked
   $(".addItem").on("click", function(){
-      addItem(this);
-      console.log(this.name)
+    addItem(this);
       wishItemCount++
   });
 
   //Add Item to wishlist function
-  function addItem(productItem){  
+  function addItem(item){ 
+    var index = $(item).data("index");
+    console.log(index);
     var wishItem = "psh";
     wishArray.push(wishItem);
     localStorage.setItem("localWishlist", wishArray)
   };
 
 //Delivers wishlist to DOM from Local Storage
-  //console.log(localStorage.getItem("localWishlist"));
+  console.log(localStorage.getItem("localWishlist"));
 
 
 
