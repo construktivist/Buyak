@@ -34,7 +34,10 @@
         <div id="buttons">
             <button data-person="TV">Search Your Fav TV</button>
             <button data-person="Ipod">Search Your Fav IPOD</button>
-            <button data-person="Mixer and Grinder">Get Kitchen Gadgets</button>
+            <button data-person="Kitchen">Get Kitchen Gadgets</button>
+            <button data-person="laptops">Get Laptops</button>
+            <button data-person="DVD Player">Get DVD Player</button>
+
         </div>
       </div>
  </div>
@@ -52,18 +55,35 @@
     $('button').on('click', function() {
         var p = $(this).data('person');
         console.log("Value of P : " +p);
-        var queryURLBB = "https://api.bestbuy.com/v1/products((search=65&search=inch&search=TV)&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=2&callback=JSON_CALLBACK&format=json";
-        $.ajax({
-                url: queryURLBB,
-                method: 'GET',
-                cache: true,
-                crossDomain: true,
-                dataType: 'jsonp'
-            })
-            .done(function(response) {
-                var results = response;
-                console.log("Results Name: " + results.products[0].name);                
-            });
+         var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + p + ")&customerReviewAverage=4.0&(categoryPath.id=abcat0101001))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&pageSize=10&format=json";
+         console.log(queryURLBB);
+
+                    $.ajax({
+                          url: queryURLBB,
+                          method: 'GET',
+                          cache: true,
+                          crossDomain: true,
+                          dataType: 'jsonp'
+                        })
+                        .done(function(responseBB) {
+                            var resultsBB = responseBB.products;
+                            console.log("Inside BB API CALL" + JSON.stringify(resultsBB));  
+                               if (resultsBB.length == 0) {
+                                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + p + ")&customerReviewAverage=4.0&(categoryPath.id=abcat0102000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&pageSize=10&format=json";
+                                    $.ajax({
+                                              url: queryURLBB,
+                                              method: 'GET',
+                                              cache: true,
+                                              crossDomain: true,
+                                              dataType: 'jsonp'
+                                            })
+                                            .done(function(responseBBB) {
+                                                var resultsBBB = responseBBB.products;
+                                                console.log("Inside BB API CALL" + JSON.stringify(resultsBBB));
+
+                                            });
+                               }                     
+                        });//ajax one call ends
     });
 </script>
 </body>

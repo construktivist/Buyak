@@ -278,12 +278,11 @@ function carousalDisplay(){
             
 
             if(i==0){
-                console.log("FOR WALMART PRODUCT TITLE" + walmartProducts[slideCount].name);
+                
                 var shortItemName = jQuery.trim(walmartProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
-
                 var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
             }else if(i==1){
-                console.log("FOR BESTBUY PRODUCT TITLE" + bestbuyProducts[slideCount].name);
+                
                  var shortItemName = jQuery.trim(bestbuyProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
                 var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
 
