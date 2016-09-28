@@ -43,12 +43,10 @@ $(document).ready(function(){
 
 function walmart(){
 
-<<<<<<< HEAD
-//console.log(queryURL);
-=======
+
     var walmartQueryURL = "http://api.walmartlabs.com/v1/trends?format=json&apiKey=bs4qexhbfxu9xaee8f53bhyr"
 console.log(walmartQueryURL);
->>>>>>> e9f8022a412cb63b9527281e5fec2129f688b35d
+
 
     $.ajax({
       url: walmartQueryURL,
@@ -79,8 +77,6 @@ console.log(walmartQueryURL);
 
   walmart();
 
-
-console.log(queryURL);
 
   //Best Buy featured products
 
@@ -116,12 +112,6 @@ console.log(queryURL);
       });
     
     };    
-
-      };
-
-    });
-
-  }
   
 
   bestbuy();
@@ -163,50 +153,6 @@ $('#wishlist').on('click', function(){
   $('#wishListGrid').removeClass('hidden');
 });
 
-var indexCount = 0;
-
-var testItem = {
-  name: "Test Item",
-  price: 300,
-};
-
-var testItem1 = {
-  name: "Test Item One",
-  price: 600,
-};
-
-var testItem2 = {
-  name: "Test Item Two",
-  price: 900,
-};
-
-testStoreArray.push(testItem);
-testStoreArray.push(testItem1);
-testStoreArray.push(testItem2);
-console.log(testStoreArray);
-
-for (var i = 0; i < testStoreArray.length; i++){
-  var iname = testStoreArray[i].name;
-  console.log(iname);
-  var itemName = $("<p>" + iname + "</p>")
-
-  var iprice = testStoreArray[i].price;
-  console.log(iprice);
-  var itemPrice = $("<p>" + iprice + "</p>")
-  
-  var button = $("<button>");
-  button.html("Add to Wishlist");
-  button.addClass("addItem btn btn-primary");
-  button.attr("data-index", indexCount)
-
-  var itemDiv = $("<div>");
-  itemDiv.append(button);
-  itemDiv.append(itemName);
-  itemDiv.append(itemPrice);
-  $("#wishListItems").append(itemDiv);
-
-  indexCount++;
-}
 
 //Calls addItem function when Add Item button is clicked
   $(".addItem").on("click", function(){
@@ -217,31 +163,39 @@ for (var i = 0; i < testStoreArray.length; i++){
   //Add Item to wishlist function
   function addItem(item){ 
     var index = $(item).data("index");
-    console.log(index);
-    var wishItem = "psh";
+    var store = $(item).data("storename");
+    console.log(store);
+
+    //This one is for Search array
+    if (store === "walmart"){
+       var storeArray = walmartProduct;
+    }
+
+    //This one is for Carousel array
+    else if (store === "walmart"){
+      var storeArray = walmartItems;
+    }
+
+    //This one is for Search array
+    else if (store === "bestbuy"){
+      var storeArray = bestBuyProduct;
+    }
+
+    //This one is for Carousel array
+    else if (store === "bestbuy"){
+      var storeArray = bestBuyItems;
+    }
+
+    //Items added to wishlist go to wishArray and are stored in localStorage.
+    var wishItem = storeArray[index];
     wishArray.push(wishItem);
     localStorage.setItem("localWishlist", wishArray)
+
   };
 
 //Delivers wishlist to DOM from Local Storage
   console.log(localStorage.getItem("localWishlist"));
 
-
-
-
-  // $("#addItem").on("click", function(this){
-  //      addItem(this);
-  //      wishItemCount++
-  // });
-
-  // //Add Item to wishlist function
-  //  function addItem(item){  
-  //    var wishItem = item;
-  //    wishArray.push(wishItem);
-  //    localStorage.setItem("localWishlist", wishArray)
-  //   };
-//Delivers wishlist to DOM from Local Storage
-  // console.log(localStorage.getItem("localWishlist"));
 // ================================================================================================== //
 
 //BELOW SECTION FOR REMOTE STORAGE OF WISHLIST
