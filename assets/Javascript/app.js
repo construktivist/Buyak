@@ -69,7 +69,7 @@ $('#wishlist').on('click', function(){
 //possibilities for featured products
 
 var searchResults = [];
-var featuredCategories = ['televison', 'ipod', 'macbook', 'headphones'];
+var featuredCategories = ['computer', 'ipod', 'macbook', 'headphones'];
 
 //loop through possible search categories to populate the features page
 for (var i =0; i < featuredCategories.length; i++){
@@ -245,8 +245,8 @@ function displayResults(resultsArray){
 
                     var divInfo = $("<div class='col-xs-6'>");                
 
-                    divInfo.append("<p class='salePrice'> $" + resultsArray[i].price + "</p>")                    
-                    divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");  
+                    divInfo.append("<p class='salePrice'> $" + resultsArray[i].price + "</p>");                    
+                    divInfo.append("<p class='reviews'> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");  
                      
 
                     var buttonWishList = $("<button id='addItem'>");
@@ -341,20 +341,20 @@ function carousalDisplay(){
 
             if(i==0){
                 console.log("FOR WALMART PRODUCT Image");
-                var panelBodyImageCol = $("<div class='col-sm-6'>").html("<img src='" + walmartProducts[slideCount].mdImage + "' class='img-responsive'>");
+                var panelBodyImageCol = $("<div class='col-xs-6 product-image'>").html("<img src='" + walmartProducts[slideCount].mdImage + "' class='img-responsive'>");
                 bodyCol.append(panelBodyImageCol);
             }else if(i==1){
                 console.log("FOR BESTBUY PRODUCT Image");
-                var panelBodyImageCol = $("<div class='col-sm-6'>").html("<img src='" + bestbuyProducts[slideCount].lgImage + "' class='img-responsive'>");
+                var panelBodyImageCol = $("<div class='col-xs-6 product-image'>").html("<img src='" + bestbuyProducts[slideCount].lgImage + "' class='img-responsive'>");
                 bodyCol.append(panelBodyImageCol);
             }
 
             //Product Information column here
             if(i==0){
                 console.log("FOR WALMART PRODUCT Info");
-                var panelBodyInfoCol = $("<div class='col-sm-6'>");
+                var panelBodyInfoCol = $("<div class='col-xs-6 product-info'>");
                 panelBodyInfoCol.append("<p class='salePrice'> $" + walmartProducts[slideCount].price + "</p>");
-                panelBodyInfoCol.append("<p> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + walmartProducts[slideCount].rating + "</span></p>");
+                panelBodyInfoCol.append("<p class='reviews'> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + walmartProducts[slideCount].rating + "</span></p>");
                
                 var buttonWishList = $("<button>");
                     buttonWishList.attr("type", "submit");
@@ -373,9 +373,9 @@ function carousalDisplay(){
 
             }else if(i==1){
                 console.log("FOR BESTBUY PRODUCT Info");
-                 var panelBodyInfoCol = $("<div class='col-sm-6'>");
+                 var panelBodyInfoCol = $("<div class='col-xs-6 product-info'>");
                 panelBodyInfoCol.append("<p class='salePrice'> $" + bestbuyProducts[slideCount].price + "</p>");
-                panelBodyInfoCol.append("<p> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + bestbuyProducts[slideCount].rating + "</span></p>");
+                panelBodyInfoCol.append("<p class='reviews'> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + bestbuyProducts[slideCount].rating + "</span></p>");
                  
                  var buttonWishList = $("<button>");
                     buttonWishList.attr("type", "submit");
@@ -404,10 +404,10 @@ function carousalDisplay(){
             var footerCol = $("<div class='col-xs-3 col-xs-offset-9'>");
 
             if(i==0){
-                footerCol.append("<img src='assets/images/Walmart_icon.png' class='img-responsive img-logo-panel-heading'>");
+                footerCol.append("<img src='assets/images/Walmart_icon.png' class='img-responsive img-logo-panel-heading icon'>");
                 footerRow.append(footerCol);
             }else if(i==1){
-                footerCol.append("<img src='assets/images/BB_Icon.png' class='img-responsive img-logo-panel-heading'>");
+                footerCol.append("<img src='assets/images/BB_Icon.png' class='img-responsive img-logo-panel-heading icon'>");
                 footerRow.append(footerCol);
             }
 
