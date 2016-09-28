@@ -1,142 +1,162 @@
-var walmartProducts = [];
-var bestbuyProducts = [];
-
 $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip;   
+    console.log("INSIDE API.js");
 
+    var walmartProductsArr= [];
+    var bestbuyProductsArr = [];
+    var searchResults = [];
+    var wishItemCount = 0;
+    var wishArray= [];
 
-var searchResults = [];
+    $("#storeSortBtnList").empty();
 
-$("#storeSortBtnList").empty();
+    $(document).on("click", "#searchProduct", function() {
 
-$("body").on("click", "#searchProduct", function() {
+            $("#landingCarousal").addClass("hidden");
+            $("#searchResults").removeClass("hidden");
 
-        $("#landingCarousal").addClass("hidden");
-        $("#searchResults").removeClass("hidden");
+            var searchFor = $("#productSearch").val().trim();
+            console.log("Value of P : " + searchFor);
+            $("#productSearch").val("");
 
-        var searchFor = $("#productSearch").val().trim();
-        console.log("Value of P : " + searchFor);
-        $("#productSearch").val("");
+            // CALL WALMART API FOR BEST SELLER PRODUCTS
+            var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + searchFor +"&sort=bestseller&responseGroup=full"
 
-        // CALL WALMART API FOR BEST SELLER PRODUCTS
-        var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + searchFor +"&sort=bestseller&responseGroup=full"
+            $.ajax({
+                    url: sortQueryURLWalmart,
+                    method: 'GET',
+                    crossDomain: true,
+                    dataType: 'jsonp'
+                })
+                .done(function(response) {
 
-        $.ajax({
-                url: sortQueryURLWalmart,
-                method: 'GET',
-                crossDomain: true,
-                dataType: 'jsonp'
-            })
-            .done(function(response) {
-
-                 var results = response.items;
-
-                  for (var i = 0; i < results.length; i++){
-
-                        var item = {
-                          name: results[i].name,
-                          price: results[i].salePrice,
-                          mdImage: results[i].mediumImage,
-                          lgImage: results[i].largeImage,
-                          rating: results[i].customerRating,
-                          numReviews: results[i].numReviews,
-                          storeName: "walmart"
-                        };
-                  
-                        searchResults.push(item);
-                        walmartProducts.push(item);
-                    }
-                            if($('#walmartSort').length )  
-                            {
-                                 console.log("Walmart Button Exist!!!");
-                                 
-                            }else{
-                                // Then dynamicaly generates button store
-                                var storeBtn = $("<button>") 
-                                storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class 
-                                storeBtn.attr('id', "walmartSort");
-                                storeBtn.attr('data-store', "walmart"); // Added a data-attribute
-                                storeBtn.text("Walmart"); // Provided the initial button text
-                                $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
-                            }
-    
-                    // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
-                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat*))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
-
-                    $.ajax({
-                          url: queryURLBB,
-                          method: 'GET',
-                          cache: true,
-                          crossDomain: true,
-                          dataType: 'jsonp'
-                        })
-                        .done(function(responseBB) {
-                            var resultsBB = responseBB.products;
-                            console.log("Inside BB API CALL");
-                              
-
-                            for (var i = 0; i < resultsBB.length; i++){
-
+                     var results = response.items;
+                      for (var i = 0; i < results.length; i++){
                             var item = {
-                              name: resultsBB[i].name,
-                              price: resultsBB[i].salePrice,
-                              mdImage: resultsBB[i].mediumImage,
-                              lgImage: resultsBB[i].largeImage,
-                              rating: resultsBB[i].customerReviewAverage,
-                              numReviews: resultsBB[i].customerReviewCount,
-                              storeName: "bestbuy"
+                              name: results[i].name,
+                              price: results[i].salePrice,
+                              mdImage: results[i].mediumImage,
+                              lgImage: results[i].largeImage,
+                              rating: results[i].customerRating,
+                              numReviews: results[i].numReviews,
+                              description: results[i].shortDescription,
+                              storeURL: results[i].productUrl,
+                              storeName: "walmart"
                             };
-                          
+                      
                             searchResults.push(item);
-                            bestbuyProducts.push(item);
-                            
-                          }  
-                            //Check if button already exist and if doesnot exist then only create a new button
-                           if($('#bestbuySort').length )  
-                            {
-                                 console.log("Best Buy Button Exist!!!");
-                                 
-                            }else{
-                                // Then dynamicaly generates button store
-                                var storeBtn = $("<button>") 
-                                storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class
-                                storeBtn.attr("id", "bestbuySort");
-                                storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
-                                storeBtn.text("Best Buy"); // Provided the initial button text
-                                $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
-                            }                        
+                            walmartProductsArr.push(item);
+                        }
+                                if($('#walmartSort').length)  
+                                {
+                                     console.log("Walmart Button Exist!!!");
+                                     
+                                }else{
+                                    // Then dynamicaly generates button store
+                                    var storeBtn = $("<button>") 
+                                    storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class 
+                                    storeBtn.attr('id', "walmartSort");
+                                    storeBtn.attr('data-store', "walmart"); // Added a data-attribute
+                                    storeBtn.text("Walmart"); // Provided the initial button text
+                                    $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+                                }
+        
+                        // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
+                        var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat*))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
-                           displayResults(searchResults);   
-                           carousalDisplay();        
-                        });
+                        $.ajax({
+                              url: queryURLBB,
+                              method: 'GET',
+                              cache: true,
+                              crossDomain: true,
+                              dataType: 'jsonp'
+                            })
+                            .done(function(responseBB) {
+                                var resultsBB = responseBB.products;
+                                console.log("Inside BB API CALL");                            
 
-                         
-            });
-                    return false;
-    });
+                                for (var i = 0; i < resultsBB.length; i++){
 
-$(document).on('click', '.store', function(){
+                                        var item = {
+                                          name: resultsBB[i].name,
+                                          price: resultsBB[i].salePrice,
+                                          mdImage: resultsBB[i].mediumImage,
+                                          lgImage: resultsBB[i].largeImage,
+                                          rating: resultsBB[i].customerReviewAverage,
+                                          numReviews: resultsBB[i].customerReviewCount,
+                                          description: results[i].longDescription,
+                                          storeURL: results[i].url,
+                                          storeName: "bestbuy"
+                                        };
+                              
+                                searchResults.push(item);
+                                bestbuyProductsArr.push(item);
+                                
+                              }  
+                                //Check if button already exist and if doesnot exist then only create a new button
+                               if($('#bestbuySort').length )  
+                                {
+                                     console.log("Best Buy Button Exist!!!");
+                                     
+                                }else{
+                                    // Then dynamicaly generates button store
+                                    var storeBtn = $("<button>") 
+                                    storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class
+                                    storeBtn.attr("id", "bestbuySort");
+                                    storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
+                                    storeBtn.text("Best Buy"); // Provided the initial button text
+                                    $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
+                                }                        
 
-            console.log("Inside store click sort" + $(this).attr('data-store'));
+                               displayResults(searchResults);   
+                               carousalDisplay(walmartProductsArr,bestbuyProductsArr);        
+                            });
 
-            var store = $(this).attr('data-store');
-            console.log(store);
+                             
+                });
+                        return false;
+    });//seachproduct onclick ends
 
-            if (store == 'walmart'){
+    $(document).on('click', '.store', function(){
 
-                $(".product").fadeOut(); 
-                $(".product.walmart").fadeIn();
+                console.log("Inside store click sort" + $(this).attr('data-store'));
 
-            }else if (store == 'bestbuy'){
-                $(".product").fadeOut();
-                $(".product.bestbuy").fadeIn();               
-            }
-            
-        });
+                var store = $(this).attr('data-store');
+                console.log(store);
 
-});
+                if (store == 'walmart'){
+
+                    $(".product").fadeOut(); 
+                    $(".product.walmart").fadeIn();
+
+                }else if (store == 'bestbuy'){
+                    $(".product").fadeOut();
+                    $(".product.bestbuy").fadeIn();               
+                }                
+    });//onclick store ends
+
+    //Calls addItem function when Add Item button is clicked
+  $(document).on('click', '.addItemToWishlist', function(){  
+
+
+     var itemIndex = $(this).data("index");
+     $(this).closest('.product').addClass("animated slideOutDown hidden");
+     console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
+
+     var arrayItem = searchResults[itemIndex];
+     console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
+
+      wishArray.push(arrayItem);
+      displayList(wishArray);
+      
+
+  });
+
+});//document.ready ends
 function displayResults(resultsArray){
+
+    //console.log(resultsArray);
 
                 for (var i = 0; i < resultsArray.length; i++) {
 
@@ -205,11 +225,13 @@ function displayResults(resultsArray){
                     divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");  
                      
 
-                    var buttonWishList = $("<button id='addItem'>");
+                    var buttonWishList = $("<button>");
                     buttonWishList.attr("type", "submit");
                     buttonWishList.attr("data-toggle", "tooltip");
+                    buttonWishList.attr("data-index", i);
+                    //buttonWishList.attr("data-store",resultsArray[i].store);
                     buttonWishList.attr("title", "Add To Wishlist");
-                    buttonWishList.addClass("addToWishlist");
+                    buttonWishList.addClass("addItemToWishlist");
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
                     spanBtn.text("");
                     buttonWishList.addClass("btn btn-default");
@@ -235,12 +257,11 @@ function displayResults(resultsArray){
                     containerDiv.prepend(divItem);
                     $('#productList').prepend(containerDiv);
                 }
+}//displayResults ends
 
-}
-
-function carousalDisplay(){
-    console.log(walmartProducts);
-    console.log(bestbuyProducts);
+function carousalDisplay(walmartProducts,bestbuyProducts){
+    //console.log(walmartProducts);
+    //console.log(bestbuyProducts);
 
     var numSlides = walmartProducts.length;
     console.log(numSlides);
@@ -277,12 +298,10 @@ function carousalDisplay(){
 
             
 
-            if(i==0){
-                
+            if(i==0){                
                 var shortItemName = jQuery.trim(walmartProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
                 var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
-            }else if(i==1){
-                
+            }else if(i==1){                
                  var shortItemName = jQuery.trim(bestbuyProducts[slideCount].name).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
                 var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
 
@@ -296,18 +315,18 @@ function carousalDisplay(){
             var bodyCol = $("<div class='col-sm-12'>");
 
             if(i==0){
-                console.log("FOR WALMART PRODUCT Image");
+                //console.log("FOR WALMART PRODUCT Image");
                 var panelBodyImageCol = $("<div class='col-sm-6'>").html("<img src='" + walmartProducts[slideCount].mdImage + "' class='img-responsive'>");
                 bodyCol.append(panelBodyImageCol);
             }else if(i==1){
-                console.log("FOR BESTBUY PRODUCT Image");
+               // console.log("FOR BESTBUY PRODUCT Image");
                 var panelBodyImageCol = $("<div class='col-sm-6'>").html("<img src='" + bestbuyProducts[slideCount].lgImage + "' class='img-responsive'>");
                 bodyCol.append(panelBodyImageCol);
             }
 
             //Product Information column here
             if(i==0){
-                console.log("FOR WALMART PRODUCT Info");
+                //console.log("FOR WALMART PRODUCT Info");
                 var panelBodyInfoCol = $("<div class='col-sm-6'>");                
                 panelBodyInfoCol.append("<p class='salePrice'> $" + walmartProducts[slideCount].price + "</p>");
                 panelBodyInfoCol.append("<p> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + walmartProducts[slideCount].rating + "</span></p>");
@@ -328,7 +347,7 @@ function carousalDisplay(){
                     
 
             }else if(i==1){
-                console.log("FOR BESTBUY PRODUCT Info");
+                //console.log("FOR BESTBUY PRODUCT Info");
                  var panelBodyInfoCol = $("<div class='col-sm-6'>");
                 panelBodyInfoCol.append("<p class='salePrice'> $" + bestbuyProducts[slideCount].price + "</p>");
                 panelBodyInfoCol.append("<p> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + bestbuyProducts[slideCount].rating + "</span></p>");
@@ -396,10 +415,29 @@ function carousalDisplay(){
     divCarousal.append(carousalNavNext);
 
     $("#landingCarousal").append(divCarousal);
-    $("#landingCarousal").removeClass("hidden");
+    //$("#landingCarousal").removeClass("hidden");
+}//carousalDisplay ends
 
+function displayList(wishListArr){
+
+    console.log("inside wishlist display function");
+
+     if($('#wishListGrid').length){
+        $("#wishListGrid").empty();
+     }
+     $("#wishListGridDisplay").removeClass("hidden");
+    for (var i = 0; i < wishListArr.length ; i++) {
+        //Create Modal Item Short List
+
+        var itemContainer = $("<div class='col-md-3 col-sm-6 portfolio-item text-center'>");
+        var imageAnchor = $("<a href='#' data-target='i' data-toggle='modal'>").html("<img src='"+ wishListArr[i].mdImage +"' class='img-responsive' alt=''>");
+        itemContainer.append(imageAnchor);
+        var shortName = jQuery.trim(wishListArr[i].name).substring(0, 100).split(" ").slice(0, -1).join(" ") + "...";
+        var itemInfoDiv = $("<div>").html("<h4>"+ shortName +"</h4><p>"+ wishListArr[i].price +"</p>");
+        itemContainer.append(itemInfoDiv);
+        $("#wishListGrid").append(itemContainer);    
+    }
 }
-
 
 
 // Pseudo Code
