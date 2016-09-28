@@ -437,8 +437,9 @@ function displayList(wishListArr){
             console.log(wishListArr[i].storeName);
              var anchorImgSrc = wishListArr[i].lgImage;
         }
+
         var itemContainer = $("<div class='col-sm-3 portfolio-item text-center'>");
-        var imageAnchor = $("<a href='#' data-target='i' data-toggle='modal'>").html("<img src='"+ anchorImgSrc  +"' class='img-responsive' alt=''>");
+        var imageAnchor = $("<a href='#' data-target='"+ i +"' data-toggle='modal'>").html("<img src='"+ anchorImgSrc  +"' class='img-responsive' alt=''>");
         itemContainer.append(imageAnchor);
         var shortName = jQuery.trim(wishListArr[i].name).substring(0, 100).split(" ").slice(0, -1).join(" ") + "...";
         var itemInfoDiv = $("<div>").html("<h4>"+ shortName +"</h4><p>"+ wishListArr[i].price +"</p>");
