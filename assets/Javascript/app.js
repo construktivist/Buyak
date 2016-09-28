@@ -29,6 +29,7 @@ $(document).ready(function(){
   var wishItemCount = 0;
   var wishArray= [];
   var testProduct = "This is a test product";
+  var testStoreArray = [];
 
 // ================================================================================================== //
 
@@ -42,8 +43,10 @@ $(document).ready(function(){
 
 function walmart(){
 
+
     var walmartQueryURL = "http://api.walmartlabs.com/v1/trends?format=json&apiKey=bs4qexhbfxu9xaee8f53bhyr"
 console.log(walmartQueryURL);
+
 
     $.ajax({
       url: walmartQueryURL,
@@ -75,7 +78,6 @@ console.log(walmartQueryURL);
   walmart();
 
 
-
   //Best Buy featured products
 
   function bestbuy() {
@@ -103,11 +105,13 @@ console.log(walmartQueryURL);
       
         bestBuyItems.push(item);
 
-      };
+      console.log(bestBuyItems);
 
-    });
-
-  }
+      };                
+      console.log(walmartItems);
+      });
+    
+    };    
   
 
   bestbuy();
@@ -151,19 +155,47 @@ $('#wishlist').on('click', function(){
 
 
 //Calls addItem function when Add Item button is clicked
-  // $("#addItem").on("click", function(this){
-  //      addItem(this);
-  //      wishItemCount++
-  // });
+  $(".addItem").on("click", function(){
+    addItem(this);
+      wishItemCount++
+  });
 
-  // //Add Item to wishlist function
-  //  function addItem(item){  
-  //    var wishItem = item;
-  //    wishArray.push(wishItem);
-  //    localStorage.setItem("localWishlist", wishArray)
-  //   };
+  //Add Item to wishlist function
+  function addItem(item){ 
+    var index = $(item).data("index");
+    var store = $(item).data("storename");
+    console.log(store);
+
+    //This one is for Search array
+    if (store === "walmart"){
+       var storeArray = walmartProduct;
+    }
+
+    //This one is for Carousel array
+    else if (store === "walmart"){
+      var storeArray = walmartItems;
+    }
+
+    //This one is for Search array
+    else if (store === "bestbuy"){
+      var storeArray = bestBuyProduct;
+    }
+
+    //This one is for Carousel array
+    else if (store === "bestbuy"){
+      var storeArray = bestBuyItems;
+    }
+
+    //Items added to wishlist go to wishArray and are stored in localStorage.
+    var wishItem = storeArray[index];
+    wishArray.push(wishItem);
+    localStorage.setItem("localWishlist", wishArray)
+
+  };
+
 //Delivers wishlist to DOM from Local Storage
-  // console.log(localStorage.getItem("localWishlist"));
+  console.log(localStorage.getItem("localWishlist"));
+
 // ================================================================================================== //
 
 //BELOW SECTION FOR REMOTE STORAGE OF WISHLIST
