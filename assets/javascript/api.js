@@ -62,7 +62,7 @@ $("body").on("click", "#searchProduct", function() {
                             }
     
                     // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
-                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage=4.8&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
+                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat*))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
                           url: queryURLBB,
@@ -308,7 +308,7 @@ function carousalDisplay(){
             //Product Information column here
             if(i==0){
                 console.log("FOR WALMART PRODUCT Info");
-                var panelBodyInfoCol = $("<div class='col-sm-6'>");
+                var panelBodyInfoCol = $("<div class='col-sm-6'>");                
                 panelBodyInfoCol.append("<p class='salePrice'> $" + walmartProducts[slideCount].price + "</p>");
                 panelBodyInfoCol.append("<p> Reviews : " + "Num Of Reviews" + "<br><span class='badge'>" + walmartProducts[slideCount].rating + "</span></p>");
                
