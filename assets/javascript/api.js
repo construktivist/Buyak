@@ -139,7 +139,6 @@ $(document).ready(function(){
     //Calls addItem function when Add Item button is clicked
   $(document).on('click', '.addItemToWishlist', function(){  
 
-
      var itemIndex = $(this).data("index");
      $(this).closest('.product').addClass("animated slideOutDown hidden");
      console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
@@ -152,6 +151,13 @@ $(document).ready(function(){
       
 
   });
+
+  $(document).on('click', '.removeItem', function(){
+
+    $(this).closest('.product').addClass("animated slideOutDown hidden");
+
+  });
+
 
 });//document.ready ends
 function displayResults(resultsArray){
@@ -229,7 +235,7 @@ function displayResults(resultsArray){
                     buttonWishList.attr("type", "submit");
                     buttonWishList.attr("data-toggle", "tooltip");
                     buttonWishList.attr("data-index", i);
-                    //buttonWishList.attr("data-store",resultsArray[i].store);
+                    
                     buttonWishList.attr("title", "Add To Wishlist");
                     buttonWishList.addClass("addItemToWishlist");
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
@@ -425,6 +431,7 @@ function displayList(wishListArr){
      if($("#wishListGrid").length){
         $("#wishListGrid").empty();
         }
+
      $("#wishListGridDisplay").removeClass("hidden");
     for (var i = 0; i < wishListArr.length ; i++){
         
@@ -438,12 +445,24 @@ function displayList(wishListArr){
              var anchorImgSrc = wishListArr[i].lgImage;
         }
 
-        var itemContainer = $("<div class='col-sm-3 portfolio-item text-center'>");
+        
+        var itemContainer = $("<div class=' col-sm-3 text-center'>");
+
+       
+        var colContainer = $("<div class='col-sm-12 well portfolioItem'>");
+
         var imageAnchor = $("<a href='#' data-target='"+ i +"' data-toggle='modal'>").html("<img src='"+ anchorImgSrc  +"' class='img-responsive' alt=''>");
-        itemContainer.append(imageAnchor);
-        var shortName = jQuery.trim(wishListArr[i].name).substring(0, 100).split(" ").slice(0, -1).join(" ") + "...";
-        var itemInfoDiv = $("<div>").html("<h4>"+ shortName +"</h4><p>"+ wishListArr[i].price +"</p>");
-        itemContainer.append(itemInfoDiv);
+        colContainer.append(imageAnchor);
+        var shortName = jQuery.trim(wishListArr[i].name).substring(0, 50).split(" ").slice(0, -1).join(" ") + "...";
+        var itemInfoDiv = $("<div>").html("<p>"+ shortName +"</p><h3> $ "+ wishListArr[i].price +"</h3>");
+        colContainer.append(itemInfoDiv);
+
+        
+
+        itemContainer.append(colContainer);
+
+
+
         $("#wishListGrid").append(itemContainer);    
     }
 }

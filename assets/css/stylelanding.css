@@ -11,6 +11,7 @@ body {
 
 p {
     font-size: 15px;
+    padding: 5px;
     line-height: 1.0;
     color: grey;
 }
@@ -240,4 +241,8 @@ header .intro-text .intro-heading {
    background-color: red;
    margin-left: 5px;
 }
+.portfolioItem{
+    margin: 10px auto;
+    height: 300px;
 
+}
