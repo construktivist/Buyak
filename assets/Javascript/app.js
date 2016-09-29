@@ -467,9 +467,6 @@ $('#searchProduct').on('click', function(){
 });
 
 
-
-
-
 //BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
 // ================================================================================================== //
 //View wishlist
@@ -488,11 +485,10 @@ $('#wishlist').on('click', function(){
   function addItem(item){ 
     var index = $(item).data("index");
     var store = $(item).data("storename");
-    console.log(store);
 
     //This one is for Search array
     if (store === "walmart"){
-       var storeArray = walmartProduct;
+       var storeArray = testStoreArray;
     }
 
     //This one is for Carousel array
@@ -520,17 +516,20 @@ $('#wishlist').on('click', function(){
 //Delivers wishlist to DOM from Local Storage
   console.log(localStorage.getItem("localWishlist"));
 
+
 // ================================================================================================== //
 
 //BELOW SECTION FOR REMOTE STORAGE OF WISHLIST
 // ================================================================================================== //
-// $("#saveList").on("click", function(){
-//   database.ref().set({
-//     wishlist: wishArray;
-  
-//   });
+$("#saveList").on("click", function(){
 
-// });
+  var wishArray = localStorage.getItem("localWishlist");
+  
+  database.ref().push({
+  wishlist: wishArray
+  });
+
+});
 
 // ================================================================================================== //
 
