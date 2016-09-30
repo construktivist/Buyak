@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     $(document).on("click", "#searchProduct", function() {
 
-            //$("#landingCarousal").addClass("hidden");
+            $("#landingCarousal").addClass("hidden");
             $("#searchResults").removeClass("hidden");
 
             var searchFor = $("#productSearch").val().trim();
@@ -137,7 +137,7 @@ $(document).ready(function(){
     });//onclick store ends
 
     //Calls addItem function when Add Item button is clicked
-  $(document).on('click', '.addItemToWishlist', function(){  
+$(document).on('click', '.addItemToWishlist', function(){  
 
      var itemIndex = $(this).data("index");
      $(this).closest('.product').addClass("animated slideOutDown hidden");
@@ -147,17 +147,27 @@ $(document).ready(function(){
      console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
 
       wishArray.push(arrayItem);
-      displayList(wishArray);
-      
-
-  });
+      displayList(wishArray);     
+});
 
 $(document).on('click', '.removeItem', function(){
 
     $(this).closest('.product').addClass("animated slideOutDown hidden");
 
   });
+$(document).on('click', '.removeItemFromWishList', function(){
+    $(this).closest('.wishlistItem').addClass("animated slideOutDown hidden");
+    var indexWishItem = $(this).data("index");
+    console.log("WishList Array Index" + indexWishItem);
+    wishArray.splice(indexWishItem, 1);
+    displayList(wishListArr);
+  });
 
+$(document).on('click', '.#wishlist', function(){
+
+    saveWishList();
+
+});
 
 });//document.ready ends
 
@@ -428,6 +438,7 @@ function carousalDisplay(walmartProducts,bestbuyProducts){
 function displayList(wishListArr){
 
     console.log("inside wishlist display function");
+    $("#saveWishList").removeClass("hidden");
 
      if($("#wishListGrid").length){
         $("#wishListGrid").empty();
@@ -447,7 +458,7 @@ function displayList(wishListArr){
         }
 
         
-        var itemContainer = $("<div class=' col-sm-3 text-center product'>");
+        var itemContainer = $("<div class=' col-sm-3 text-center wishlistItem'>");
 
        
         var colContainer = $("<div class='col-sm-12 well portfolioItem'>");
@@ -461,8 +472,10 @@ function displayList(wishListArr){
         var buttonRemove = $("<button>");
                     buttonRemove.attr("type", "submit");
                     buttonRemove.attr("data-toggle", "tooltip");
+                    buttonRemove.attr("data-index", i);
                     buttonRemove.attr("title", "Remove Item From Search displayResults");
-                    buttonRemove.addClass("removeItem");
+                    buttonRemove.addClass("removeItemFromWishList");
+
                     var spanRBtn = $("<i class='fa fa-minus-circle'>");
                     spanRBtn.text("");
                     buttonRemove.addClass("btn btn-default");
@@ -471,9 +484,6 @@ function displayList(wishListArr){
         
         itemContainer.append(buttonRemove);
         itemContainer.append(colContainer);
-
-
-
         $("#wishListGrid").append(itemContainer);    
     }
 }
