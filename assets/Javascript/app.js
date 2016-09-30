@@ -27,6 +27,8 @@ $(document).ready(function(){
 // ================================================================================================== //
   var walmartItems = [];
   var bestBuyItems = [];
+  var walmartProducts = [];
+  var bestbuyProducts = [];
   var ebayItems = [];
   var searsItems = [];
   var wishItemCount = 0;
@@ -34,37 +36,6 @@ $(document).ready(function(){
   var testProduct = "This is a test product";
   var testStoreArray = [];
   var indexCount = 0;
-
-// ================================================================================================== //
-
-
-
-// ================================================================================================== //
-
-//ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
-
-//WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
-//WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
-$('#searchProduct').on('click', function(){
-  $('#contentSection').removeClass('hidden');
-  $('#contentSectionFeatured').addClass('hidden');
-  $('#search').val("");
-
-  //NOTE: Remove hidden class from logos when no store results are available
-});
-
-
-
-
-
-//BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
-// ================================================================================================== //
-//View wishlist
-$('#wishlist').on('click', function(){
-  $('#wishListGrid').removeClass('hidden');
-});
-
-
 
 // ================================================================================================== //
 
@@ -170,11 +141,16 @@ var featuredCategories = 'computer';
                         });
                          
             });
+HEAD
+
+//return false;
+
 
   
 
 // ================================================================================================== //
 
+HEAD
 $(document).on('click', '.addItem', function(){  
 
      var itemIndex = $(this).data("index");
@@ -191,6 +167,7 @@ $(document).on('click', '.addItem', function(){
   });
 
 // ================================================================================================== //
+
 
 //APPEND AJAX CALL TO THE PANELS
 
@@ -296,6 +273,8 @@ function displayResults(resultsArray){
                 }
 
 }
+
+// ================================================================================================== //
 
 function carousalDisplay(){
     console.log(walmartProducts);
@@ -464,37 +443,7 @@ function carousalDisplay(){
 
 }
 
-
-
-
-
 // ================================================================================================== //
-
-$('.carousel').carousel({
-      interval: 6000
-});
-
-
-//ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
-
-//WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
-//WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
-$('#searchProduct').on('click', function(){
-  $('#contentSection').removeClass('hidden');
-  $('#contentSectionFeatured').addClass('hidden');
-  $('#search').val("");
-
-  //NOTE: Remove hidden class from logos when no store results are available
-});
-
-
-//BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
-// ================================================================================================== //
-//View wishlist
-$('#wishlist').on('click', function(){
-  $('#wishListGrid').removeClass('hidden');
-});
-
 
 //Calls addItem function when Add Item button is clicked
   $(".addItem").on("click", function(){
@@ -537,6 +486,71 @@ $('#wishlist').on('click', function(){
 //Delivers wishlist to DOM from Local Storage
   console.log(localStorage.getItem("localWishlist"));
 
+// ================================================================================================== //
+
+$(document).ready(function(){
+
+// FIREBASE INITIALIZATION
+// ================================================================================================== //
+//  Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAzBMRn1owNGPyB24mOo6UUP0v8KfUqMaQ",
+    authDomain: "buyakdb.firebaseapp.com",
+    databaseURL: "https://buyakdb.firebaseio.com",
+    storageBucket: "buyakdb.appspot.com",
+    messagingSenderId: "781575941750"
+  };
+  
+  firebase.initializeApp(config);
+
+  database = firebase.database();
+// ================================================================================================== //
+
+//ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
+
+//WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
+//WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
+$('#searchProduct').on('click', function(){
+  $('#contentSection').removeClass('hidden');
+  $('#contentSectionFeatured').addClass('hidden');
+  $('#search').val("");
+
+  //NOTE: Remove hidden class from logos when no store results are available
+});
+
+//BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
+// ================================================================================================== //
+//View wishlist
+$('#wishlist').on('click', function(){
+  $('#wishListGrid').removeClass('hidden');
+});
+
+// ================================================================================================== //
+
+$('.carousel').carousel({
+      interval: 6000
+});
+
+
+//ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
+
+//WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
+//WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
+$('#searchProduct').on('click', function(){
+  $('#contentSection').removeClass('hidden');
+  $('#contentSectionFeatured').addClass('hidden');
+  $('#search').val("");
+
+  //NOTE: Remove hidden class from logos when no store results are available
+});
+
+
+//BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
+// ================================================================================================== //
+//View wishlist
+$('#wishlist').on('click', function(){
+  $('#wishListGrid').removeClass('hidden');
+});
 
 // ================================================================================================== //
 
