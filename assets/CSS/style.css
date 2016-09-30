@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: grey;
     margin-top: 50px;
     background-image: url("../images/buying.png");
     background-repeat: no-repeat;
@@ -8,7 +8,7 @@ body {
 
 /*HEADER CSS --------------------------------------------------------------------------*/
 #header {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 #buyak-logo{

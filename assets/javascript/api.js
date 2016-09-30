@@ -9,9 +9,11 @@ $(document).ready(function(){
     var wishItemCount = 0;
     var wishArray= [];
 
-    $("#storeSortBtnList").empty();
+    // $("#storeSortBtnList").empty();
 
     $(document).on("click", "#searchProduct", function() {
+
+            $("#storeSortBtnList").empty();
 
             $("#landingCarousal").addClass("hidden");
             $("#searchResults").removeClass("hidden");
@@ -46,7 +48,7 @@ $(document).ready(function(){
                             };
                       
                             searchResults.push(item);
-                            walmartProductsArr.push(item);
+                            //walmartProductsArr.push(item);
                         }
                                 if($('#walmartSort').length)  
                                 {
@@ -91,7 +93,7 @@ $(document).ready(function(){
                                         };
                               
                                 searchResults.push(item);
-                                bestbuyProductsArr.push(item);
+                                //bestbuyProductsArr.push(item);
                                 
                               }  
                                 //Check if button already exist and if doesnot exist then only create a new button
@@ -110,7 +112,7 @@ $(document).ready(function(){
                                 }                        
 
                                displayResults(searchResults);   
-                               carousalDisplay(walmartProductsArr,bestbuyProductsArr);        
+                               //carousalDisplay(walmartProductsArr,bestbuyProductsArr);        
                             });
 
                              
@@ -137,37 +139,36 @@ $(document).ready(function(){
     });//onclick store ends
 
     //Calls addItem function when Add Item button is clicked
-$(document).on('click', '.addItemToWishlist', function(){  
+    $(document).on('click', '.addItemToWishlist', function(){  
 
-     var itemIndex = $(this).data("index");
-     $(this).closest('.product').addClass("animated slideOutDown hidden");
-     console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
+         var itemIndex = $(this).data("index");
+         $(this).closest('.product').addClass("animated slideOutDown hidden");
+         console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
 
-     var arrayItem = searchResults[itemIndex];
-     console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
+         var arrayItem = searchResults[itemIndex];
+         console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
 
-      wishArray.push(arrayItem);
-      displayList(wishArray);     
-});
+          wishArray.push(arrayItem);
+          displayList(wishArray);     
+    });
 
-$(document).on('click', '.removeItem', function(){
+    $(document).on('click', '.removeItem', function(){
+        $(this).closest('.product').addClass("animated slideOutDown hidden");
+    });
+    
+    $(document).on('click', '.removeItemFromWishList', function(){
+        $(this).closest('.wishlistItem').addClass("animated slideOutDown hidden");
+        var indexWishItem = $(this).data("index");
+        console.log("WishList Array Index" + indexWishItem);
+        wishArray.splice(indexWishItem, 1);
+        displayList(wishListArr);
+    });
 
-    $(this).closest('.product').addClass("animated slideOutDown hidden");
+    $(document).on('click', '#wishlist', function(){
 
-  });
-$(document).on('click', '.removeItemFromWishList', function(){
-    $(this).closest('.wishlistItem').addClass("animated slideOutDown hidden");
-    var indexWishItem = $(this).data("index");
-    console.log("WishList Array Index" + indexWishItem);
-    wishArray.splice(indexWishItem, 1);
-    displayList(wishListArr);
-  });
+        saveWishList();
 
-$(document).on('click', '.#wishlist', function(){
-
-    saveWishList();
-
-});
+    });
 
 });//document.ready ends
 
@@ -274,7 +275,8 @@ function displayResults(resultsArray){
                     containerDiv.prepend(divItem);
                     $('#productList').prepend(containerDiv);
                 }
-}//displayResults ends
+}
+//displayResults ends
 
 function carousalDisplay(walmartProducts,bestbuyProducts){
     //console.log(walmartProducts);
@@ -433,7 +435,8 @@ function carousalDisplay(walmartProducts,bestbuyProducts){
 
     $("#landingCarousal").append(divCarousal);
     //$("#landingCarousal").removeClass("hidden");
-}//carousalDisplay ends
+}
+//carousalDisplay ends
 
 function displayList(wishListArr){
 
