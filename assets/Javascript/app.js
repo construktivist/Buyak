@@ -150,20 +150,20 @@ var featuredCategories = 'computer';
 
 // ================================================================================================== //
 
-$(document).on('click', '.addItem', function(){  
+// $(document).on('click', '.addItem', function(){  
 
-     var itemIndex = $(this).data("index");
-     $(this).closest('.product').addClass("animated slideOutDown hidden");
-     console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
+//      var itemIndex = $(this).data("index");
+//      $(this).closest('.product').addClass("animated slideOutDown hidden");
+//      console.log("Inside ADDITEM item Index of item clicked" + itemIndex);
 
-     var arrayItem = searchResults[itemIndex];
-     console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
+//      var arrayItem = searchResults[itemIndex];
+//      console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
 
-      wishArray.push(arrayItem);
-      displayList(wishArray);
+//       wishArray.push(arrayItem);
+//       displayList(wishArray);
       
 
-  });
+//   });
 
 // ================================================================================================== //
 
@@ -357,7 +357,7 @@ function carousalDisplay(){
                     buttonWishList.addClass("addItem");
                     buttonWishList.addClass("walmart-item");
                     buttonWishList.attr("data-index", indexCount);
-                    buttonWishList.attr("data-store", "walmart");
+                    buttonWishList.attr("data-storename", walmartProducts[slideCount].storeName);
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
                     spanBtn.text("Add to Wishlist");
                     buttonWishList.append(spanBtn);
@@ -381,7 +381,7 @@ function carousalDisplay(){
                     buttonWishList.addClass("addItem");
                     buttonWishList.addClass("bestbuy-item");
                     buttonWishList.attr("data-index", indexCount);
-                    buttonWishList.attr("data-store", "bestbuy");
+                    buttonWishList.attr("data-storename", bestbuyProducts[slideCount].storeName);
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
                     spanBtn.text("Add to Wishlist");
                     buttonWishList.append(spanBtn);
@@ -445,9 +445,9 @@ function carousalDisplay(){
 // ================================================================================================== //
 
 //Calls addItem function when Add Item button is clicked
-  $(".addItem").on("click", function(){
+  $(document).on("click", ".addItem", function(){
     addItem(this);
-      wishItemCount++
+      wishItemCount++;
   });
 
   //Add Item to wishlist function
@@ -455,30 +455,19 @@ function carousalDisplay(){
     var index = $(item).data("index");
     var store = $(item).data("storename");
 
-    //This one is for Search array
+    //This one is for Carousel array
     if (store === "walmart"){
-       var storeArray = walmartProducts;
-    }
-
-    //This one is for Carousel array
-    else if (store === "walmart"){
       var storeArray = walmartProducts;
-    }
-
-    //This one is for Search array
-    else if (store === "bestbuy"){
-      var storeArray = bestbuyProducts;
-    }
-
-    //This one is for Carousel array
-    else if (store === "bestbuy"){
+    } else {
       var storeArray = bestbuyProducts;
     }
 
     //Items added to wishlist go to wishArray and are stored in localStorage.
     var wishItem = storeArray[index];
     wishArray.push(wishItem);
+    console.log(wishArray);
     localStorage.setItem("localWishlist", wishArray)
+    displayList(wishArray);
 
   };
 
