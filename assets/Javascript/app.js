@@ -1,3 +1,6 @@
+var walmartProducts = [];
+var bestbuyProducts = [];
+
 $(document).ready(function(){
 
 // FIREBASE INITIALIZATION
@@ -30,6 +33,7 @@ $(document).ready(function(){
   var wishArray= [];
   var testProduct = "This is a test product";
   var testStoreArray = [];
+  var indexCount = 0;
 
 // ================================================================================================== //
 
@@ -69,12 +73,11 @@ $('#wishlist').on('click', function(){
 //possibilities for featured products
 
 var searchResults = [];
-var featuredCategories = ['computer', 'ipod', 'macbook', 'headphones'];
+var featuredCategories = 'computer';
 
 //loop through possible search categories to populate the features page
-for (var i =0; i < featuredCategories.length; i++){
 
-    var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + [i] +"&sort=bestseller&responseGroup=full"
+    var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + featuredCategories +"&sort=bestseller&responseGroup=full"
 
         $.ajax({
                 url: sortQueryURLWalmart,
@@ -117,7 +120,7 @@ for (var i =0; i < featuredCategories.length; i++){
                             }
     
                     // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
-                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + [i] + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat*))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
+                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + featuredCategories + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
                           url: queryURLBB,
@@ -128,7 +131,7 @@ for (var i =0; i < featuredCategories.length; i++){
                         })
                         .done(function(responseBB) {
                             var resultsBB = responseBB.products;
-                            console.log("Inside BB API CALL");
+                            console.log("Inside BB API CALL" + JSON.stringify(resultsBB));
                               
 
                             for (var i = 0; i < resultsBB.length; i++){
@@ -162,18 +165,30 @@ for (var i =0; i < featuredCategories.length; i++){
                                 $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
                             }                        
 
-                           displayResults(searchResults);   
+                           // displayResults(searchResults);   
                            carousalDisplay();        
                         });
-
                          
             });
-                    return false;
 
-
-}//End for loop
+  
 
 // ================================================================================================== //
+
+$(document).on('click', '.addItem', function(){  
+
+     var itemIndex = $(this).data("index");
+     $(this).closest('.product').addClass("animated slideOutDown hidden");
+     console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
+
+     var arrayItem = searchResults[itemIndex];
+     console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
+
+      wishArray.push(arrayItem);
+      displayList(wishArray);
+      
+
+  });
 
 // ================================================================================================== //
 
@@ -361,13 +376,16 @@ function carousalDisplay(){
                     buttonWishList.attr("data-toggle", "tooltip");
                     buttonWishList.attr("title", "Add To Wishlist");
                     buttonWishList.addClass("btn btn-default");
-                    buttonWishList.addClass("addToWishlist");
+                    buttonWishList.addClass("addItem");
+                    buttonWishList.addClass("walmart-item");
+                    buttonWishList.attr("data-index", indexCount);
+                    buttonWishList.attr("data-store", "walmart");
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
                     spanBtn.text("Add to Wishlist");
                     buttonWishList.append(spanBtn);
 
                     panelBodyInfoCol.append(buttonWishList);
-                bodyCol.append(panelBodyInfoCol);
+                    bodyCol.append(panelBodyInfoCol);
 
                     
 
@@ -382,7 +400,10 @@ function carousalDisplay(){
                     buttonWishList.attr("data-toggle", "tooltip");
                     buttonWishList.attr("title", "Add To Wishlist");
                     buttonWishList.addClass("btn btn-default");
-                    buttonWishList.addClass("addToWishlist");
+                    buttonWishList.addClass("addItem");
+                    buttonWishList.addClass("bestbuy-item");
+                    buttonWishList.attr("data-index", indexCount);
+                    buttonWishList.attr("data-store", "bestbuy");
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
                     spanBtn.text("Add to Wishlist");
                     buttonWishList.append(spanBtn);
@@ -488,22 +509,22 @@ $('#wishlist').on('click', function(){
 
     //This one is for Search array
     if (store === "walmart"){
-       var storeArray = testStoreArray;
+       var storeArray = walmartProducts;
     }
 
     //This one is for Carousel array
     else if (store === "walmart"){
-      var storeArray = walmartItems;
+      var storeArray = walmartProducts;
     }
 
     //This one is for Search array
     else if (store === "bestbuy"){
-      var storeArray = bestBuyProduct;
+      var storeArray = bestbuyProducts;
     }
 
     //This one is for Carousel array
     else if (store === "bestbuy"){
-      var storeArray = bestBuyItems;
+      var storeArray = bestbuyProducts;
     }
 
     //Items added to wishlist go to wishArray and are stored in localStorage.
