@@ -487,42 +487,7 @@ function carousalDisplay(){
 
 // ================================================================================================== //
 
-// $(document).ready(function(){
-
-// // FIREBASE INITIALIZATION
-// // ================================================================================================== //
-// //  Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyAzBMRn1owNGPyB24mOo6UUP0v8KfUqMaQ",
-//     authDomain: "buyakdb.firebaseapp.com",
-//     databaseURL: "https://buyakdb.firebaseio.com",
-//     storageBucket: "buyakdb.appspot.com",
-//     messagingSenderId: "781575941750"
-//   };
-  
-//   firebase.initializeApp(config);
-
-//   database = firebase.database();
 // ================================================================================================== //
-
-//ARRAY OF THE PRODUCTS THAT HAVE BEEN SEARCHED. THIS WILL BE USED FOR THE WISHLIST CONTENT.
-
-//WHEN SUBMIT IS CLICKED, ADD INPUT TO THE PRODUCT ARRAY
-//WHEN SUBMIT IS CLICKED, PRODUCT MODALS WILL APPEAR
-$('#searchProduct').on('click', function(){
-  $('#contentSection').removeClass('hidden');
-  $('#contentSectionFeatured').addClass('hidden');
-  $('#search').val("");
-
-  //NOTE: Remove hidden class from logos when no store results are available
-});
-
-//BELOW SECTION FOR LOCAL STORAGE OF WISHLIST
-// ================================================================================================== //
-//View wishlist
-$('#wishlist').on('click', function(){
-  $('#wishListGrid').removeClass('hidden');
-});
 
 // ================================================================================================== //
 
