@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     $(document).on("click", "#searchProduct", function() {
 
-            $("#landingCarousal").addClass("hidden");
+            //$("#landingCarousal").addClass("hidden");
             $("#searchResults").removeClass("hidden");
 
             var searchFor = $("#productSearch").val().trim();
@@ -152,7 +152,7 @@ $(document).ready(function(){
 
   });
 
-  $(document).on('click', '.removeItem', function(){
+$(document).on('click', '.removeItem', function(){
 
     $(this).closest('.product').addClass("animated slideOutDown hidden");
 
@@ -160,6 +160,7 @@ $(document).ready(function(){
 
 
 });//document.ready ends
+
 function displayResults(resultsArray){
 
     //console.log(resultsArray);
@@ -446,7 +447,7 @@ function displayList(wishListArr){
         }
 
         
-        var itemContainer = $("<div class=' col-sm-3 text-center'>");
+        var itemContainer = $("<div class=' col-sm-3 text-center product'>");
 
        
         var colContainer = $("<div class='col-sm-12 well portfolioItem'>");
@@ -457,8 +458,18 @@ function displayList(wishListArr){
         var itemInfoDiv = $("<div>").html("<p>"+ shortName +"</p><h3> $ "+ wishListArr[i].price +"</h3>");
         colContainer.append(itemInfoDiv);
 
-        
+        var buttonRemove = $("<button>");
+                    buttonRemove.attr("type", "submit");
+                    buttonRemove.attr("data-toggle", "tooltip");
+                    buttonRemove.attr("title", "Remove Item From Search displayResults");
+                    buttonRemove.addClass("removeItem");
+                    var spanRBtn = $("<i class='fa fa-minus-circle'>");
+                    spanRBtn.text("");
+                    buttonRemove.addClass("btn btn-default");
+                    buttonRemove.append(spanRBtn);
 
+        
+        itemContainer.append(buttonRemove);
         itemContainer.append(colContainer);
 
 

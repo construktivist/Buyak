@@ -69,12 +69,12 @@ $('#wishlist').on('click', function(){
 //possibilities for featured products
 
 var searchResults = [];
-var featuredCategories = ['computer', 'ipod', 'macbook', 'headphones'];
+var featuredCategories = ['TV', 'ipod', 'tablets', 'headphones'];
 
 //loop through possible search categories to populate the features page
 for (var i =0; i < featuredCategories.length; i++){
 
-    var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + [i] +"&sort=bestseller&responseGroup=full"
+    var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + featuredCategories[i] +"&sort=bestseller&responseGroup=full"
 
         $.ajax({
                 url: sortQueryURLWalmart,
@@ -83,7 +83,6 @@ for (var i =0; i < featuredCategories.length; i++){
                 dataType: 'jsonp'
             })
             .done(function(response) {
-
                  var results = response.items;
                  console.log("Inside Walmart API CALL");
 
@@ -117,7 +116,7 @@ for (var i =0; i < featuredCategories.length; i++){
                             }
     
                     // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
-                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + [i] + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat*))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
+                    var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + featuredCategories[i] + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat*))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
                     $.ajax({
                           url: queryURLBB,
@@ -128,8 +127,7 @@ for (var i =0; i < featuredCategories.length; i++){
                         })
                         .done(function(responseBB) {
                             var resultsBB = responseBB.products;
-                            console.log("Inside BB API CALL");
-                              
+                            console.log("Inside BB API CALL");                       
 
                             for (var i = 0; i < resultsBB.length; i++){
 
@@ -148,7 +146,7 @@ for (var i =0; i < featuredCategories.length; i++){
                             
                           }  
                             //Check if button already exist and if doesnot exist then only create a new button
-                           if($('#bestbuySort').length )  
+                           if($('#bestbuySort').length)  
                             {
                                  console.log("Best Buy Button Exist!!!");
                                  
@@ -450,7 +448,7 @@ function carousalDisplay(){
 // ================================================================================================== //
 
 $('.carousel').carousel({
-      interval: 6000
+      interval: 6000;
 });
 
 
