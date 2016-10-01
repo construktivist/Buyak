@@ -669,7 +669,7 @@ if(JSON.parse(localStorage.getItem("localWishlist"))){
 
   displayList(wishArray);  
 
-<<<<<<< HEAD
+
 }else{
  
   if(wishItemCount === 0){
