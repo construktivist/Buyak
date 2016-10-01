@@ -44,7 +44,7 @@ $(document).ready(function(){
   var populateCarousel = function(){
 
     var featuredCategories = 'computer';
-      var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + featuredCategories +"&sort=bestseller&responseGroup=full"
+      var sortQueryURLWalmart = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + featuredCategories +"&sort=bestseller&responseGroup=full"
         $.ajax({
                     url: sortQueryURLWalmart,
                     method: 'GET',
@@ -124,7 +124,7 @@ $(document).ready(function(){
                 $("#productSearch").val("");
 
                 // CALL WALMART API FOR BEST SELLER PRODUCTS
-                var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + searchFor +"&sort=bestseller&responseGroup=full"
+                var sortQueryURLWalmart = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + searchFor +"&sort=bestseller&responseGroup=full"
 
                 $.ajax({
                         url: sortQueryURLWalmart,
