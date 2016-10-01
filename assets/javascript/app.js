@@ -349,7 +349,7 @@ function displayResults(resultsArray){
                         //Get Image source url
                         var imageSrc = resultsArray[i].mdImage;
                         if(typeof imageSrc === "undefined"){
-                            imageSrc = "http://placehold.it/180x180";
+                            imageSrc = "https://placehold.it/180x180";
                         }
 
                         //Get Customer Rating
