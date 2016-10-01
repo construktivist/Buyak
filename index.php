@@ -1,1 +1,1 @@
-<?php include_once("groupProject.html"); ?>
+<?php include_once("index.html"); ?>
