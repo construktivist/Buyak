@@ -37,7 +37,9 @@ $(document).ready(function(){
   // if (localStorageArrTest.length !== 0) {
   //   var wishCount = localStorageArrTest.length;
   //   console.log("INSIDE LOCAL STORAGE TEST IF BLOCK::::" + wishCount);
-  // }
+  // }  
+
+
 
   var populateCarousel = function(){
 
@@ -305,6 +307,10 @@ $(document).ready(function(){
       wishlist: wishArray
       });
     });
+
+    database.ref().on("value", function(snapshot){
+      console.log(snapshot.val().name);
+    })
 
 });//document.ready ends
 
@@ -659,6 +665,10 @@ if(JSON.parse(localStorage.getItem("localWishlist"))){
   $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
 
   displayList(wishArray);  
+
+  if(wishItemCount === 0){
+    $('#wishListSection').addClass('hidden');
+  }
 
 }
 
