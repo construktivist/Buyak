@@ -92,9 +92,36 @@
             <div class="row">
                 <div class="col-sm-12 hidden text-center" id="wishListGridDisplay">
                     <h2 class="section-heading">Wish List</h2>
-                    <button id="saveWishList" type="submit" class="btn btn-error hidden">						 
-							<i class="fa fa-floppy-o" aria-hidden="true"></i>  Save Wishlist
+                    <button id="saveWishList" type="submit" class="btn btn-info hidden" data-toggle="modal" data-target="#nameWishList"> 
+							<i class="fa fa-floppy-o" aria-hidden="true">  </i>  Save Wishlist
 					</button>
+					<!-- Modal -->
+					<div id="nameWishList" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+					  	<!-- Modal content-->
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal">&times;</button>
+						        <h4 class="modal-title">Save Wish List By Name</h4>
+						      </div>
+						      <div class="modal-body">
+
+						      <form class="form-inline">
+								<div class="form-group">
+									<label for="nameWishList">Enter Name : </label><br>
+									<input class="form-control" id="wishListName" type="text" placeholder="Enter Name To Save Wish List">
+									<button type="submit" class="btn btn-info" id="saveListByName"><i class="fa fa-floppy-o" id="searchIcon" aria-hidden="true"></i>Save</button>						
+								</div>		
+							</form>
+						        
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+
+					  </div>
+					</div>
                 </div>
             </div>
             <!-- Modal Grid Items -->

@@ -295,9 +295,13 @@ $(document).ready(function(){
 
   //BELOW SECTION FOR Pushing the local wishlist to firebase when user clicks save wishlist STORAGE OF WISHLIST
   // ================================================================================================== //
-    $(document).on("click", "#saveWishList", function(){
-      var wishArray = localStorage.getItem("localWishlist");      
+    $(document).on("click", "#saveListByName", function(){
+
+      var listName = $("#wishListName").val().trim();
+      var wishArray = localStorage.getItem("localWishlist");  
+
       database.ref().push({
+      name : listName,
       wishlist: wishArray
       });
     });
@@ -654,8 +658,7 @@ if(JSON.parse(localStorage.getItem("localWishlist"))){
 
   $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
 
-  displayList(wishArray);
-  
+  displayList(wishArray);  
 
 }
 
