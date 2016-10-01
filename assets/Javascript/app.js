@@ -37,7 +37,9 @@ $(document).ready(function(){
   // if (localStorageArrTest.length !== 0) {
   //   var wishCount = localStorageArrTest.length;
   //   console.log("INSIDE LOCAL STORAGE TEST IF BLOCK::::" + wishCount);
-  // }
+  // }  
+
+
 
   var populateCarousel = function(){
 
@@ -245,6 +247,7 @@ $(document).ready(function(){
        console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
 
         wishArray.push(arrayItem);
+
         localStorage.clear();
         localStorage.setItem("localWishlist", JSON.stringify(wishArray));
         wishItemCount++;
@@ -304,7 +307,13 @@ $(document).ready(function(){
       name : listName,
       wishlist: wishArray
       });
+
+
     });
+
+    database.ref().on("value", function(snapshot){
+      console.log(snapshot.val().name);
+    })
 
 });//document.ready ends
 
@@ -660,6 +669,12 @@ if(JSON.parse(localStorage.getItem("localWishlist"))){
 
   displayList(wishArray);  
 
+
+}else{
+ 
+  if(wishItemCount === 0){
+    $('#wishListSection').addClass('hidden');
+  }
 }
 
 
