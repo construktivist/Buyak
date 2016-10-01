@@ -58,6 +58,10 @@ input {
     margin-right: 7px;
 }
 
+.thInputs {
+    margin-right: 30px;
+}
+
 
 /*--------------------------------------------------------------------------*/
 
@@ -120,11 +124,9 @@ input {
     font-family: 'Open Sans', sans-serif;
 }
 
-#addToWishlist {
-    margin-top: 15px;
-}
 
-.addToWishlist {
+
+.addItem {
     font-family: 'Open Sans', sans-serif;
     margin-left: -15px;
 }
@@ -165,17 +167,19 @@ input {
 
 /*WISHLIST SECTION CSS --------------------------------------------------------------------------*/
 
-#wishListSection {
+/*#wishListSection {
     background-color: #F8F4F4;
-}
+    
+}*/
 
 #wishListGrid {
     font-family:'Open Sans', sans-serif;
 }
 
-.section-heading {
-    font-size: 60px;
+#wishListGridDisplay {
+    color: black;
 }
+
 
 #wishListItems {
     margin-top: 30px;
