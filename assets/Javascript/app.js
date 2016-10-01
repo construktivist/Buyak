@@ -30,6 +30,15 @@ $(document).ready(function(){
     // ================================================================================================== //
     // AJAX CALL FOR APIs TO POPULATE PRODUCT CAROUSEL On page load
     //(Scalable for search across multiple categories and products with interlooped api call)
+    // localStorage.clear();
+
+  // var localStorageArrTest = JSON.parse(localStorage.getItem("localWishlist"));
+
+  // if (localStorageArrTest.length !== 0) {
+  //   var wishCount = localStorageArrTest.length;
+  //   console.log("INSIDE LOCAL STORAGE TEST IF BLOCK::::" + wishCount);
+  // }
+
   var populateCarousel = function(){
 
     var featuredCategories = 'computer';
@@ -236,6 +245,10 @@ $(document).ready(function(){
        console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
 
         wishArray.push(arrayItem);
+        localStorage.clear();
+        localStorage.setItem("localWishlist", JSON.stringify(wishArray));
+        wishItemCount++;
+        $(".fa-gift").text(" "+wishItemCount+" Items In Wishlist");
         displayList(wishArray);     
   });//Add item to wishlist Ends
 
@@ -243,20 +256,28 @@ $(document).ready(function(){
   $(document).on("click", ".addItem", function(){
         addItem(this);
         wishItemCount++;
+        $(".fa-gift").text(" "+wishItemCount+" Items In Wishlist ");
   });
 
-  // Remove item from search results
+    // Remove item from search results
   $(document).on('click', '.removeItem', function(){
-        $(this).closest('.product').addClass("animated slideOutDown hidden");
+    $(this).closest('.product').addClass("animated slideOutDown hidden");
   });
     
   //Remove item from wishlist and display list with updated itemlist
   $(document).on('click', '.removeItemFromWishList', function(){
+
         $(this).closest('.wishlistItem').addClass("animated slideOutDown hidden");
         var indexWishItem = $(this).data("index");
         console.log("WishList Array Index" + indexWishItem);
-        wishArray.splice(indexWishItem, 1);
+        wishArray.splice(indexWishItem, 1);        
+        localStorage.clear();
+        localStorage.setItem("localWishlist", JSON.stringify(wishArray));
+        wishItemCount--;
+        $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
         displayList(wishListArr);
+        // $(".fa-gift").text(" "+ wishItemCount+" Items in your Wishlist");
+
   });
 
   $(document).on('click', '#wishlist', function(){
@@ -275,9 +296,7 @@ $(document).ready(function(){
   //BELOW SECTION FOR Pushing the local wishlist to firebase when user clicks save wishlist STORAGE OF WISHLIST
   // ================================================================================================== //
     $(document).on("click", "#saveWishList", function(){
-
-      var wishArray = localStorage.getItem("localWishlist");
-      
+      var wishArray = localStorage.getItem("localWishlist");      
       database.ref().push({
       wishlist: wishArray
       });
@@ -563,7 +582,8 @@ function addItem(item){
         var wishItem = storeArray[index];
         wishArray.push(wishItem);
         console.log(wishArray);
-        localStorage.setItem("localWishlist", wishArray)
+        localStorage.clear();
+        localStorage.setItem("localWishlist", JSON.stringify(wishArray));
         displayList(wishArray);
 }
 // ================================================================================================== //
@@ -621,7 +641,23 @@ function displayList(wishListArr){
     }
 }//displayList function ends
 
+//Implement Local storage for wishlist items
+$("#wishListGrid").empty();
+// If Data exists inside of localStorage then loop through and display it.
+if(JSON.parse(localStorage.getItem("localWishlist"))){
 
+  var storedWishlist = JSON.parse(localStorage.getItem("localWishlist"));
+
+  wishArray = storedWishlist;
+
+  wishItemCount = wishArray.length;
+
+  $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
+
+  displayList(wishArray);
+  
+
+}
 
 
 
