@@ -1,5 +1,5 @@
 body {
-    background-color: grey;
+    background-color: #000000;
     margin-top: 50px;
     background-image: url("../images/buying.png");
     background-repeat: no-repeat;
@@ -227,6 +227,8 @@ section h2.section-heading {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 40px;
+    color: #ffffff;
+    font-weight: bold;
 }
 section h3.section-subheading {
     margin-bottom: 75px;
@@ -236,22 +238,16 @@ section h3.section-subheading {
     font-style: italic;
     font-weight: 400;
 }
-/*.item{
+.item{
     margin: 10px auto;
     height: 210px;
-}*/
+}
 .titleProduct{
     font-size: 12px;
     font-weight: 500;
     padding: 10px;
     text-align: center;
 }
-
-/*comparison buttons*/
-#walmartSort, #ebaySort, #bestbuySort, #searsSort {
-    margin-top: -160px;
-}
-
 .well{
 
     background-color: #ffffff;
@@ -277,6 +273,9 @@ section h3.section-subheading {
     background-color: #31C8C8;
     color: #fff;
 }
+.img-logo-panel-heading{
+    padding: 10px;
+}
 .store{   
     padding: 5px 25px;
     width: auto;
@@ -288,7 +287,15 @@ section h3.section-subheading {
    background-color: red;
    margin-left: 5px;
 }
+.removeItemFromWishList{
+   background-color: red;
+   margin-left: 5px;
+}
+.portfolioItem{
+    margin: 10px auto;
+    height: 300px;
 
+}
 
 
 /*--------------------------------------------------------------------------------------*/
