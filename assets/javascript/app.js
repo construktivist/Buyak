@@ -39,8 +39,6 @@ $(document).ready(function(){
   //   console.log("INSIDE LOCAL STORAGE TEST IF BLOCK::::" + wishCount);
   // }  
 
-
-
   var populateCarousel = function(){
 
     var featuredCategories = 'computer';
@@ -107,8 +105,9 @@ $(document).ready(function(){
 
   //CALL POPULATE CAROUSAL
   populateCarousel();
+
   $(".carousel").carousel({
-          interval: 8000
+          interval: 7000
   });
 
   //ON PRODUCT KEYWORD SEARCH IS CLICKED
@@ -252,7 +251,8 @@ $(document).ready(function(){
         localStorage.setItem("localWishlist", JSON.stringify(wishArray));
         wishItemCount++;
         $(".fa-gift").text(" "+wishItemCount+" Items In Wishlist");
-        displayList(wishArray);     
+        displayList(wishArray);    
+        $('#wishListSection').removeClass("hidden"); 
   });//Add item to wishlist Ends
 
   //Calls addItem function when Add Item to Wishlist on carousal is clicked
@@ -260,6 +260,7 @@ $(document).ready(function(){
         addItem(this);
         wishItemCount++;
         $(".fa-gift").text(" "+wishItemCount+" Items In Wishlist ");
+        $('#wishListSection').removeClass("hidden");
   });
 
     // Remove item from search results
@@ -277,19 +278,21 @@ $(document).ready(function(){
         localStorage.clear();
         localStorage.setItem("localWishlist", JSON.stringify(wishArray));
         wishItemCount--;
-        $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
-        displayList(wishListArr);
-        // $(".fa-gift").text(" "+ wishItemCount+" Items in your Wishlist");
-
+        if(wishItemCount === 0){
+            $('#wishListSection').addClass('hidden');
+          }else{
+            $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
+            displayList(wishListArr);
+          }
   });
 
 $(document).on('click', '.viewWishlist', function(){
-
-  $('#contentSectionFeatured').addClass("hidden");
+  $("#contentSectionFeatured").addClass("hidden");
   var storedWishlist = JSON.parse(localStorage.getItem("localWishlist"));
   wishArray = storedWishlist;
   wishItemCount = wishArray.length;
   $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
+  $("#contentSectionFeatured").addClass("hidden");
   displayList(wishArray);  
   return false;
 });
@@ -301,10 +304,11 @@ $(document).on('click', '.viewWishlist', function(){
     //clear grid of items and get localstorage wisharray and display
     //if array is empty give message that no items in wish list add items
     // ================================================================================================== //
-
-    $('#wishListGrid').removeClass("hidden");
-    displayList(wishArray);     
-
+    $("#contentSectionFeatured").addClass("hidden");
+    $('#wishListSection').removeClass("hidden");
+    $('#wishListGridDisplay').removeClass("hidden");
+    displayList(wishArray);  
+    return false;   
   });
 
   //BELOW SECTION FOR Pushing the local wishlist to firebase when user clicks save wishlist STORAGE OF WISHLIST
@@ -318,13 +322,10 @@ $(document).on('click', '.viewWishlist', function(){
       name : listName,
       wishlist: wishArray
       });
-
-
     });
-
     database.ref().on("value", function(snapshot){
-      console.log(snapshot.val().name);
-    })
+      console.log(snapshot.val().name)
+    });
 
 });//document.ready ends
 
@@ -441,6 +442,7 @@ function carousalDisplay(){
 
         console.log(walmartProducts);
         console.log(bestbuyProducts);
+
         //Get the number of slides to create
         var numSlides = walmartProducts.length;
         console.log(numSlides);
@@ -631,11 +633,11 @@ function displayList(wishListArr){
 
         }else if (wishListArr[i].storeName == "bestbuy") {
             console.log(wishListArr[i].storeName);
-             var anchorImgSrc = wishListArr[i].lgImage;
+             var anchorImgSrc = wishListArr[i].mdImage;
         }
 
         
-        var itemContainer = $("<div class=' col-sm-3 text-center wishlistItem'>");
+        var itemContainer = $("<div class=' col-sm-2 text-center wishlistItem'>");
 
        
         var colContainer = $("<div class='col-sm-12 well portfolioItem'>");
@@ -679,6 +681,8 @@ if(JSON.parse(localStorage.getItem("localWishlist"))){
   $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
 
   displayList(wishArray);  
+   $('#wishListSection').removeClass("hidden");
+   $('#wishListGridDisplay').removeClass("hidden");
 
 
 }else{
