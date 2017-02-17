@@ -20,12 +20,12 @@ $(document).ready(function(){
         storageBucket: "buyakdb.appspot.com",
         messagingSenderId: "781575941750"
       };
-      
+
       firebase.initializeApp(config);
 
       database = firebase.database();
 
-     
+
 
     // ================================================================================================== //
     // AJAX CALL FOR APIs TO POPULATE PRODUCT CAROUSEL On page load
@@ -37,14 +37,14 @@ $(document).ready(function(){
   // if (localStorageArrTest.length !== 0) {
   //   var wishCount = localStorageArrTest.length;
   //   console.log("INSIDE LOCAL STORAGE TEST IF BLOCK::::" + wishCount);
-  // }  
+  // }
 
 
 
   var populateCarousel = function(){
 
-    var featuredCategories = 'computer';
-      var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + featuredCategories +"&sort=bestseller&responseGroup=full"
+    var featuredCategories = 'tv';
+      var sortQueryURLWalmart = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + featuredCategories +"&sort=bestseller&responseGroup=full"
         $.ajax({
                     url: sortQueryURLWalmart,
                     method: 'GET',
@@ -53,7 +53,7 @@ $(document).ready(function(){
         })
         .done(function(response) {
             var results = response.items;
-              console.log("Inside Walmart API CALL");
+              //console.log("Inside Walmart API CALL");
                 for (var i = 0; i < results.length; i++){
                    var item = {
                                 name: results[i].name,
@@ -64,10 +64,10 @@ $(document).ready(function(){
                                 numReviews: results[i].numReviews,
                                 storeName: "walmart"
                               };
-                      
+
                             //searchResults.push(item);
                             walmartProducts.push(item);
-                        }// for Loop Ends                         
+                        }// for Loop Ends
                   // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                   var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + featuredCategories + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat0101000))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
                      $.ajax({
@@ -79,7 +79,7 @@ $(document).ready(function(){
                             })
                             .done(function(responseBB) {
                                 var resultsBB = responseBB.products;
-                                console.log("Inside BB API CALL" + JSON.stringify(resultsBB));       
+                                //console.log("Inside BB API CALL" + JSON.stringify(resultsBB));
 
                                 for (var i = 0; i < resultsBB.length; i++){
                                   var item = {
@@ -90,19 +90,19 @@ $(document).ready(function(){
                                     rating: resultsBB[i].customerReviewAverage,
                                     numReviews: resultsBB[i].customerReviewCount,
                                     storeName: "bestbuy"
-                                  };                          
+                                  };
                                 //searchResults.push(item);
                                 bestbuyProducts.push(item);
-                                
+
                               }// for Loop ends
 
-                              //Call to display results in carousel 
-                               carousalDisplay();        
+                              //Call to display results in carousel
+                               carousalDisplay();
                           });//Bestbuy API call ends
-                             
+
         });//walmart API call ends
   }//populate Carousal ends
-   
+
   // ========================AJAX Function FOR APIs TO POPULATE PRODUCT CAROUSEL Ends======================= //
 
   //CALL POPULATE CAROUSAL
@@ -120,11 +120,11 @@ $(document).ready(function(){
                 $('#search').val("");
 
                 var searchFor = $("#productSearch").val().trim();
-                console.log("Value of P : " + searchFor);
+                //console.log("Value of P : " + searchFor);
                 $("#productSearch").val("");
 
                 // CALL WALMART API FOR BEST SELLER PRODUCTS
-                var sortQueryURLWalmart = "http://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + searchFor +"&sort=bestseller&responseGroup=full"
+                var sortQueryURLWalmart = "https://api.walmartlabs.com/v1/search?apiKey=bs4qexhbfxu9xaee8f53bhyr&query=" + searchFor +"&sort=bestseller&responseGroup=full"
 
                 $.ajax({
                         url: sortQueryURLWalmart,
@@ -147,24 +147,24 @@ $(document).ready(function(){
                                   storeURL: results[i].productUrl,
                                   storeName: "walmart"
                                 };
-                          
+
                                 searchResults.push(item);
                                 //walmartProductsArr.push(item);
                             }
-                                    if($('#walmartSort').length)  
+                                    if($('#walmartSort').length)
                                     {
-                                         console.log("Walmart Button Exist!!!");
-                                         
+                                         //console.log("Walmart Button Exist!!!");
+
                                     }else{
                                         // Then dynamicaly generates button store
-                                        var storeBtn = $("<button>") 
-                                        storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class 
+                                        var storeBtn = $("<button>")
+                                        storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class
                                         storeBtn.attr('id', "walmartSort");
                                         storeBtn.attr('data-store', "walmart"); // Added a data-attribute
                                         storeBtn.text("Walmart"); // Provided the initial button text
                                         $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
                                     }
-            
+
                             // Call BESTBUY API INSIDE DONE OF WALMART...Simlarly call future api class one by one inside the done methods of call
                             var queryURLBB = "https://api.bestbuy.com/v1/products((search=" + searchFor + ")&customerReviewAverage>=3.6&(categoryPath.id=abcat*))?apiKey=sdauhdkcw3m5f8rm3mdrqk9g&facet=onSale&pageSize=10&format=json";
 
@@ -177,7 +177,7 @@ $(document).ready(function(){
                                 })
                                 .done(function(responseBB) {
                                     var resultsBB = responseBB.products;
-                                    console.log("Inside BB API CALL");                            
+                                    //console.log("Inside BB API CALL");
 
                                     for (var i = 0; i < resultsBB.length; i++){
 
@@ -192,59 +192,59 @@ $(document).ready(function(){
                                               storeURL: results[i].url,
                                               storeName: "bestbuy"
                                             };
-                                  
+
                                     searchResults.push(item);
                                     //bestbuyProductsArr.push(item);
-                                    
-                                  }  
+
+                                  }
                                     //Check if button already exist and if doesnot exist then only create a new button
-                                   if($('#bestbuySort').length )  
+                                   if($('#bestbuySort').length )
                                     {
-                                         console.log("Best Buy Button Exist!!!");
-                                         
+                                         //console.log("Best Buy Button Exist!!!");
+
                                     }else{
                                         // Then dynamicaly generates button store
-                                        var storeBtn = $("<button>") 
+                                        var storeBtn = $("<button>")
                                         storeBtn.addClass("btn btn-default animated bounceInRight store"); // Added a class
                                         storeBtn.attr("id", "bestbuySort");
                                         storeBtn.attr('data-store', "bestbuy"); // Added a data-attribute
                                         storeBtn.text("Best Buy"); // Provided the initial button text
                                         $('#storeSortBtnList').append(storeBtn); // Added the button to the HTML
-                                    }                        
+                                    }
 
-                                   displayResults(searchResults);   
-                                   //carousalDisplay(walmartProductsArr,bestbuyProductsArr);        
+                                   displayResults(searchResults);
+                                   //carousalDisplay(walmartProductsArr,bestbuyProductsArr);
                                 });
 
-                                 
+
                     });
                             return false;
   });//seachproduct onclick ends
-  
+
   //Store Button In Search Grid sort the products
   $(document).on('click', '.store', function(){
 
-    console.log("Inside store click sort" + $(this).attr('data-store'));
+    //console.log("Inside store click sort" + $(this).attr('data-store'));
     var store = $(this).attr('data-store');
-    console.log(store);
+    //console.log(store);
       if (store == 'walmart'){
-            $(".product").fadeOut(); 
+            $(".product").fadeOut();
             $(".product.walmart").fadeIn();
        }else if (store == 'bestbuy'){
             $(".product").fadeOut();
-            $(".product.bestbuy").fadeIn();               
-      }                
+            $(".product.bestbuy").fadeIn();
+      }
   });//onclick store ends
 
   //Add items from search grid to wishlist grid
-  $(document).on('click', '.addItemToWishlist', function(){  
+  $(document).on('click', '.addItemToWishlist', function(){
 
        var itemIndex = $(this).data("index");
        $(this).closest('.product').addClass("animated slideOutDown hidden");
-       console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
+       //console.log("Inside ADDITEM item Index of item clicked" + itemIndex );
 
        var arrayItem = searchResults[itemIndex];
-       console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
+       //console.log("Inside Add item to wishlist click Item From array" + JSON.stringify(arrayItem));
 
         wishArray.push(arrayItem);
 
@@ -252,7 +252,7 @@ $(document).ready(function(){
         localStorage.setItem("localWishlist", JSON.stringify(wishArray));
         wishItemCount++;
         $(".fa-gift").text(" "+wishItemCount+" Items In Wishlist");
-        displayList(wishArray);     
+        displayList(wishArray);
   });//Add item to wishlist Ends
 
   //Calls addItem function when Add Item to Wishlist on carousal is clicked
@@ -266,14 +266,14 @@ $(document).ready(function(){
   $(document).on('click', '.removeItem', function(){
     $(this).closest('.product').addClass("animated slideOutDown hidden");
   });
-    
+
   //Remove item from wishlist and display list with updated itemlist
   $(document).on('click', '.removeItemFromWishList', function(){
 
         $(this).closest('.wishlistItem').addClass("animated slideOutDown hidden");
         var indexWishItem = $(this).data("index");
-        console.log("WishList Array Index" + indexWishItem);
-        wishArray.splice(indexWishItem, 1);        
+        //console.log("WishList Array Index" + indexWishItem);
+        wishArray.splice(indexWishItem, 1);
         localStorage.clear();
         localStorage.setItem("localWishlist", JSON.stringify(wishArray));
         wishItemCount--;
@@ -292,7 +292,7 @@ $(document).ready(function(){
     // ================================================================================================== //
 
     $('#wishListGrid').removeClass("hidden");
-    displayList(wishArray);     
+    displayList(wishArray);
 
   });
 
@@ -301,7 +301,7 @@ $(document).ready(function(){
     $(document).on("click", "#saveListByName", function(){
 
       var listName = $("#wishListName").val().trim();
-      var wishArray = localStorage.getItem("localWishlist");  
+      var wishArray = localStorage.getItem("localWishlist");
 
       database.ref().push({
       name : listName,
@@ -312,7 +312,7 @@ $(document).ready(function(){
     });
 
     database.ref().on("value", function(snapshot){
-      console.log(snapshot.val().name);
+      //console.log(snapshot.val().name);
     })
 
 });//document.ready ends
@@ -330,7 +330,7 @@ function displayResults(resultsArray){
                         //make shorttext of the name
                         var shortnameItem = jQuery.trim(nameItem).substring(0, 40).split(" ").slice(0, -1).join(" ") + "...";
                         //Get Number of reviews
-                        var reviewNum = resultsArray[i].numReviews;                         
+                        var reviewNum = resultsArray[i].numReviews;
                         if (typeof reviewNum === "undefined") {
                                 reviewNum = "None" ;
                             }
@@ -338,27 +338,27 @@ function displayResults(resultsArray){
                         //Get Image source url
                         var imageSrc = resultsArray[i].mdImage;
                         if(typeof imageSrc === "undefined"){
-                            imageSrc = "http://placehold.it/180x180";
+                            imageSrc = "https://placehold.it/180x180";
                         }
 
                         //Get Customer Rating
                         var ratingVal = resultsArray[i].rating;
                          if(typeof ratingVal === "undefined"){
                             ratingVal = ""
-                         }                      
+                         }
 
-                    
-                    //Make outer div 
+
+                    //Make outer div
                     var containerDiv = $("<div class='col-xs-12 col-sm-6 col-md-4 animated zoomIn product'>");
                     containerDiv.addClass(resultsArray[i].storeName);
-                    
+
                     //make  inner div
                     var divItem = $("<div class='col-xs-12 well item'>");
-                    
+
 
                     //add row for title
                     var rowTitleDiv = $("<div class='row'>");
-                    
+
 
                     var divTitle = $('<div class="col-xs-12 titleProduct">').html("<p>" + shortnameItem + "</p>");
                     // append div to rowTitleDiv and append rowTitleDiv to divItem
@@ -369,31 +369,31 @@ function displayResults(resultsArray){
                     //Add row to hold image and productinfo
                     var rowProductDiv = $("<div class='row'>");
                     var colproductDiv = $("<div class='col-xs-12'>");
-                    
+
                     //Add column to hold image
-                    var divImage = $("<div class='col-xs-6'>");    
+                    var divImage = $("<div class='col-xs-6'>");
 
                     var itemImage = $('<img>');
                     itemImage.attr('src', imageSrc);
-                    itemImage.addClass("img-responsive img-rounded");  
+                    itemImage.addClass("img-responsive img-rounded");
                     itemImage.addClass("itemImage");
                     divImage.append(itemImage);
-                    colproductDiv.append(divImage);    
-                    
+                    colproductDiv.append(divImage);
+
 
                     //Add info section to product
 
-                    var divInfo = $("<div class='col-xs-6'>");                
+                    var divInfo = $("<div class='col-xs-6'>");
 
-                    divInfo.append("<p class='salePrice'> $" + resultsArray[i].price + "</p>")                    
-                    divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");  
-                     
+                    divInfo.append("<p class='salePrice'> $" + resultsArray[i].price + "</p>")
+                    divInfo.append("<p> Reviews : " + reviewNum + "<br><span class='badge'>" + ratingVal + "</span></p>");
+
 
                     var buttonWishList = $("<button>");
                     buttonWishList.attr("type", "submit");
                     buttonWishList.attr("data-toggle", "tooltip");
                     buttonWishList.attr("data-index", i);
-                    
+
                     buttonWishList.attr("title", "Add To Wishlist");
                     buttonWishList.addClass("addItemToWishlist");
                     var spanBtn = $("<i class='fa fa-plus-circle'>");
@@ -415,9 +415,9 @@ function displayResults(resultsArray){
                     divInfo.append(buttonRemove);
                     colproductDiv.append(divInfo);
 
-                    rowProductDiv.append(colproductDiv); 
-                    divItem.append(rowProductDiv);                      
-                    
+                    rowProductDiv.append(colproductDiv);
+                    divItem.append(rowProductDiv);
+
                     containerDiv.prepend(divItem);
                     $('#productList').prepend(containerDiv);
                 }
@@ -428,11 +428,11 @@ function displayResults(resultsArray){
 
 function carousalDisplay(){
 
-        console.log(walmartProducts);
-        console.log(bestbuyProducts);
+        //console.log(walmartProducts);
+        //console.log(bestbuyProducts);
         //Get the number of slides to create
         var numSlides = walmartProducts.length;
-        console.log(numSlides);
+        //console.log(numSlides);
 
         //Create carousal div
         var divCarousal = $("<div id='myCarousel' class='carousel slide' data-ride='carousel'>");
@@ -449,7 +449,7 @@ function carousalDisplay(){
         //Create number of slides equal to number of item in products array
         for (var slideCount = 0; slideCount < numSlides; slideCount++){
 
-            var divItem = $("<div class='item'>");        
+            var divItem = $("<div class='item'>");
             if(slideCount==0){
                 //Set item class to active for first slide
                 divItem.addClass("active");
@@ -462,11 +462,11 @@ function carousalDisplay(){
                 var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>Panel Heading Title Here</h4>");
 
                 // Create substring of the name and then append it to heading
-                //Select items from Product Array based on the panel number eg panel one is for walmart 
-                if(i==0){                
+                //Select items from Product Array based on the panel number eg panel one is for walmart
+                if(i==0){
                     var shortItemName = jQuery.trim(walmartProducts[slideCount].name).substring(0, 80).split(" ").slice(0, -1).join(" ") + "...";
                     var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
-                }else if(i==1){                
+                }else if(i==1){
                      var shortItemName = jQuery.trim(bestbuyProducts[slideCount].name).substring(0, 80).split(" ").slice(0, -1).join(" ") + "...";
                     var panelHeadingItem = $("<div class='panel-heading'>").html("<h4>" + shortItemName + "</h4>");
                 }
@@ -488,11 +488,11 @@ function carousalDisplay(){
 
                 //Get Product Information column for each store
                 if(i==0){
-                    console.log("FOR WALMART PRODUCT Info");
+                    //console.log("FOR WALMART PRODUCT Info");
                     var panelBodyInfoCol = $("<div class='col-xs-6 product-info'>");
                     panelBodyInfoCol.append("<p class='salePrice'> $" + walmartProducts[slideCount].price + "</p>");
                     panelBodyInfoCol.append("<p class='reviews'> Reviews : " + walmartProducts[slideCount].numReviews + "<br><span class='badge'>" + walmartProducts[slideCount].rating + "</span></p>");
-                   
+
                     var buttonWishList = $("<button>");
                         buttonWishList.attr("type", "submit");
                         buttonWishList.attr("data-toggle", "tooltip");
@@ -507,13 +507,13 @@ function carousalDisplay(){
                         buttonWishList.append(spanBtn);
 
                         panelBodyInfoCol.append(buttonWishList);
-                        bodyCol.append(panelBodyInfoCol);                  
+                        bodyCol.append(panelBodyInfoCol);
                 }else if(i==1){
-                    console.log("FOR BESTBUY PRODUCT Info");
+                    //console.log("FOR BESTBUY PRODUCT Info");
                      var panelBodyInfoCol = $("<div class='col-xs-6 product-info'>");
                     panelBodyInfoCol.append("<p class='salePrice'> $" + bestbuyProducts[slideCount].price + "</p>");
                     panelBodyInfoCol.append("<p class='reviews'> Reviews : " + bestbuyProducts[slideCount].numReviews + "<br><span class='badge'>" + bestbuyProducts[slideCount].rating + "</span></p>");
-                     
+
                      var buttonWishList = $("<button>");
                         buttonWishList.attr("type", "submit");
                         buttonWishList.attr("data-toggle", "tooltip");
@@ -552,12 +552,12 @@ function carousalDisplay(){
                 panelItem.append(panelFooterItem);
 
                 colItem.append(panelItem);
-                
+
                 divItem.append(colItem);
             }
-      
+
             divCarousalInner.append(divItem);
-        }   
+        }
 
         divCarousal.append(divCarousalInner);
 
@@ -574,7 +574,7 @@ function carousalDisplay(){
         divCarousal.append(carousalNavNext);
 
         $("#contentSectionFeatured").append(divCarousal);
-}//carousalDisplay Ends 
+}//carousalDisplay Ends
 
 // ================================================================================================== //
 
@@ -594,7 +594,7 @@ function addItem(item){
         //Items added to wishlist go to wishArray and are stored in localStorage.
         var wishItem = storeArray[index];
         wishArray.push(wishItem);
-        console.log(wishArray);
+        //console.log(wishArray);
         localStorage.clear();
         localStorage.setItem("localWishlist", JSON.stringify(wishArray));
         displayList(wishArray);
@@ -603,7 +603,7 @@ function addItem(item){
 
 function displayList(wishListArr){
 
-    console.log("inside wishlist display function");
+    //console.log("inside wishlist display function");
     $("#saveWishList").removeClass("hidden");
 
      if($("#wishListGrid").length){
@@ -612,21 +612,21 @@ function displayList(wishListArr){
 
      $("#wishListGridDisplay").removeClass("hidden");
     for (var i = 0; i < wishListArr.length ; i++){
-        
+
         //Create Modal Item Short List
         if (wishListArr[i].storeName == "walmart") {
-            console.log(wishListArr[i].storeName);
+            //console.log(wishListArr[i].storeName);
             var anchorImgSrc = wishListArr[i].mdImage;
 
         }else if (wishListArr[i].storeName == "bestbuy") {
-            console.log(wishListArr[i].storeName);
+            //console.log(wishListArr[i].storeName);
              var anchorImgSrc = wishListArr[i].lgImage;
         }
 
-        
+
         var itemContainer = $("<div class=' col-sm-3 text-center wishlistItem'>");
 
-       
+
         var colContainer = $("<div class='col-sm-12 well portfolioItem'>");
 
         var imageAnchor = $("<a href='#' data-target='"+ i +"' data-toggle='modal'>").html("<img src='"+ anchorImgSrc  +"' class='img-responsive' alt=''>");
@@ -647,10 +647,10 @@ function displayList(wishListArr){
                     buttonRemove.addClass("btn btn-default");
                     buttonRemove.append(spanRBtn);
 
-        
+
         itemContainer.append(buttonRemove);
         itemContainer.append(colContainer);
-        $("#wishListGrid").append(itemContainer);    
+        $("#wishListGrid").append(itemContainer);
     }
 }//displayList function ends
 
@@ -667,22 +667,12 @@ if(JSON.parse(localStorage.getItem("localWishlist"))){
 
   $(".fa-gift").text(" "+ wishItemCount+" Items In Wishlist");
 
-  displayList(wishArray);  
+  displayList(wishArray);
 
 
 }else{
- 
+
   if(wishItemCount === 0){
     $('#wishListSection').addClass('hidden');
   }
 }
-
-
-
-
-
-
-
-
-
-
